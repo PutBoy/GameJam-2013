@@ -4,15 +4,15 @@
 Animation::Animation(const std::string& stringName, int frameTime, int frames):
 	mFrameTime(frameTime),
 	mFrames(frames),
-	mCurrentFrame(0),
-	mSprite(ResourceManager::getInstance()->getTexture(stringName))
+	mCurrentFrame(0)
+	
 {
 	
-	ResourceManager::getInstance();
+	ResourceManager* resource = ResourceManager::getInstance();
 
-
-	sf::IntRect textureRect(0, 0,	ResourceManager::getInstance()->getTexture(stringName).getSize().x/mFrames,
-									ResourceManager::getInstance()->getTexture(stringName).getSize().y);
+	mSprite = sf::Sprite(resource->getTexture(stringName));
+	sf::IntRect textureRect(0, 0,	resource->getTexture(stringName).getSize().x/mFrames,
+									resource->getTexture(stringName).getSize().y);
 
 	mSprite.setTextureRect(textureRect);
 }
