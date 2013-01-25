@@ -1,20 +1,20 @@
 #include "ResourceManager.h"
 #include "Animation.h"
 
-Animation::Animation(const std::string& s, int fTick, int nrFrames):
-	d_frameTick(fTick),
-	d_nrFrames(nrFrames),
-	d_currentFrame(0),
-	d_sprite(ResourceManager::getInstance()->getTexture(s))
+Animation::Animation(const std::string& stringName, int frameTime, int frames):
+	mFrameTime(frameTime),
+	mFrames(frames),
+	mCurrentFrame(0),
+	mSprite(ResourceManager::getInstance()->getTexture(key))
 {
 	
 	ResourceManager::getInstance();
 
 
-	sf::IntRect textureRect(0, 0,	ResourceManager::getInstance()->getTexture(s).getSize().x/d_nrFrames,
-									ResourceManager::getInstance()->getTexture(s).getSize().y);
+	sf::IntRect textureRect(0, 0,	ResourceManager::getInstance()->getTexture(stringName).getSize().x/mFrames,
+									ResourceManager::getInstance()->getTexture(stringName).getSize().y);
 
-	d_sprite.setTextureRect(textureRect);
+	mSprite.setTextureRect(textureRect);
 }
 
 Animation::~Animation(){
@@ -23,28 +23,28 @@ Animation::~Animation(){
 
 void Animation::update(){
 	//nästa frame
-	if(d_frameTimer.getElapsedTime().asMilliseconds() > d_frameTick){
+	if(mFrameTimer.getElapsedTime().asMilliseconds() > mFrameTime){
 
-		d_frameTimer.restart();
-		d_currentFrame++;
+		mFrameTimer.restart();
+		mCurrentFrame++;
 
 		// slut på animation
-		if(d_currentFrame >= d_nrFrames){
-			d_currentFrame = 0;
+		if(mCurrentFrame >= mFrames){
+			mCurrentFrame = 0;
 		}
 
-		sf::IntRect currentRect = d_sprite.getTextureRect();
+		sf::IntRect currentRect = mSprite.getTextureRect();
 		// currentFrame(1,2,3,4...) * width
-		currentRect.left = currentRect.width * d_currentFrame;
+		currentRect.left = currentRect.width * mCurrentFrame;
 
-		d_sprite.setTextureRect(currentRect);
+		mSprite.setTextureRect(currentRect);
 	}
 }
 
 void Animation::setPosition(sf::Vector2f& pos){
-	d_sprite.setPosition(pos);
+	mSprite.setPosition(pos);
 }
 
 const sf::Sprite& Animation::getSprite() const{
-	return d_sprite;
+	return mSprite;
 }
