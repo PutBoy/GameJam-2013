@@ -4,7 +4,9 @@
 
 Player::Player(sf::Vector2f startPos): Entity(startPos), mDown("downanimation.png", 200, 10)
 {
+	mWindow = WindowManager::getInstance()->getWindow();
 	mYvel = mXvel = 2;
+
 }
 
 
@@ -27,5 +29,5 @@ void Player::update()
 
 void Player::render()
 {
-
+	mWindow->draw(mDown.getSprite());
 }
