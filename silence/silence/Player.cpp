@@ -1,5 +1,6 @@
 #include "Player.h"
 #include <SFML\Window\Keyboard.hpp>
+#include "WindowManager.h"
 
 Player::Player(sf::Vector2f startPos): Entity(startPos), mDown("downanimation.png", 200, 10)
 {
