@@ -13,6 +13,7 @@ public:
 	virtual void render();
 private:
 	Animation mDown;
+	float mYvel, mXvel;
 };
 
 #endif

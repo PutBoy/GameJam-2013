@@ -5,7 +5,7 @@
 
 int main()
 {
-	Map map;
+	Map map(50,50);
 
 	sf::RenderWindow window(sf::VideoMode(1600,900),"Game");
 

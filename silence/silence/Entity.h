@@ -12,9 +12,7 @@ public:
 	virtual void update();
 	virtual void render();
 protected:
-
 	sf::Vector2f mPos;
-	float mYvel, mXvel;
 };
 
 #endif

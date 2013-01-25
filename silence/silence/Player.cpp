@@ -1,7 +1,7 @@
 #include "Player.h"
 #include <SFML\Window\Keyboard.hpp>
 
-Player::Player(sf::Vector2f startPos): Entity(startPos), mDown(
+Player::Player(sf::Vector2f startPos): Entity(startPos), mDown("downanimation.png", 200, 10)
 {
 	mYvel = mXvel = 2;
 }
@@ -23,6 +23,7 @@ void Player::update()
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 		mPos.y += mYvel;
 }
+
 void Player::render()
 {
 
