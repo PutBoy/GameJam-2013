@@ -5,7 +5,7 @@ Animation::Animation(const std::string& stringName, int frameTime, int frames):
 	mFrameTime(frameTime),
 	mFrames(frames),
 	mCurrentFrame(0),
-	mSprite(ResourceManager::getInstance()->getTexture(key))
+	mSprite(ResourceManager::getInstance()->getTexture(stringName))
 {
 	
 	ResourceManager::getInstance();
