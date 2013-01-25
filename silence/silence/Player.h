@@ -3,6 +3,7 @@
 
 #include "Entity.h"
 #include "Animation.h"
+#include <SFML\Graphics.hpp>
 
 class Player : public Entity
 {
