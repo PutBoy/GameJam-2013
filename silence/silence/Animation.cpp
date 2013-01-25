@@ -1,4 +1,5 @@
 #include "ResourceManager.h"
+#include "Animation.h"
 
 Animation::Animation(const std::string& s, int fTick, int nrFrames):
 	d_frameTick(fTick),
