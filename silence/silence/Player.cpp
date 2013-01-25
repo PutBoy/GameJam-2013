@@ -8,9 +8,10 @@ Player::Player(sf::Vector2f startPos): Entity(startPos)
 	ResourceManager* r = ResourceManager::getInstance();
 	r->loadTexture("downanimation", "priest_walk_forward_sprite.png", sf::IntRect(0,0,1280,128));
 
-	mDown = new Animation("downanimation", 150, 10);
+	mDown = new Animation("downanimation", 100, 10);
 	mDown->setPosition(mPos);
 
+	mCurrentAnim=mDown;
 	mWindow = WindowManager::getInstance()->getWindow();
 	mYvel = mXvel = 2;
 }
@@ -28,11 +29,14 @@ void Player::update()
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 		mPos.x -= mXvel;
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+	{
 		mPos.y -= mYvel;
+		mCurrentAnim = mDown;
+	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 		mPos.y += mYvel;
 
-	mDown->update();
+	mCurrentAnim->update();
 
 }
 

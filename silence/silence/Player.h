@@ -15,6 +15,7 @@ public:
 private:
 
 	Animation* mDown;
+	Animation* mCurrentAnim;
 	float mYvel, mXvel;
 	sf::RenderWindow* mWindow;
 };

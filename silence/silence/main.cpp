@@ -3,7 +3,7 @@
 #include "WindowManager.h"
 #include "Player.h"
 #include "Map.h"
-
+#include "Camera.h"
 
 int main()
 {
@@ -15,7 +15,7 @@ int main()
 
 
 	Player player(sf::Vector2f(200,200));
-
+	//Camera cam(&player, 10);
 
 	while(win->isOpen() && !sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 	{
@@ -26,8 +26,10 @@ int main()
 				win->close();
 		}
 		win->clear();
-		
+		//cam.update();
 		player.update();
+
+		//win->setView(cam.getView());
 		player.render();
 
 
