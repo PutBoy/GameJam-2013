@@ -1,4 +1,5 @@
 #include "ResourceManager.h"
+#include <cassert>
 
 ResourceManager* ResourceManager::getInstance()
 {
@@ -19,6 +20,7 @@ sf::Texture& ResourceManager::loadTexture(std::string key, std::string file, sf:
 	{
 		sf::Texture texture;
 		texture.loadFromImage(mImages.at(file), imageRect);
+		mTextures.insert(texturePair(key,texture));
 	}
 
 	return mTextures.at(key);
@@ -26,7 +28,7 @@ sf::Texture& ResourceManager::loadTexture(std::string key, std::string file, sf:
 
 sf::Texture& ResourceManager::getTexture(std::string key)
 {
-	throw "no such texture!";
+	assert(mTextures.count(key) != 0);
 
 	return mTextures.at(key);
 }
