@@ -15,9 +15,9 @@ public:
 	sf::Texture& getTexture(std::string key);
 
 private:
-	ResourceManager();
+	ResourceManager() {};
 	ResourceManager(const ResourceManager&) {};
-	ResourceManager& operator=(const ResourceManager&) {};
+	ResourceManager& operator=(const ResourceManager&) {return *this;};
 	
 	typedef std::pair<std::string, sf::Image> imagePair;
 	typedef std::pair<std::string, sf::Texture> texturePair;
