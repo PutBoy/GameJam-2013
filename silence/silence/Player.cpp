@@ -25,9 +25,12 @@ void Player::update()
 		mPos.y -= mYvel;
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 		mPos.y += mYvel;
+
+
 }
 
 void Player::render()
 {
+	mDown.setPosition(mPos);
 	mWindow->draw(mDown.getSprite());
 }

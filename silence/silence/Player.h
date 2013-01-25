@@ -13,6 +13,7 @@ public:
 	virtual void update();
 	virtual void render();
 private:
+
 	Animation mDown;
 	float mYvel, mXvel;
 	sf::RenderWindow* mWindow;
