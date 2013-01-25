@@ -5,14 +5,13 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/System/Clock.hpp>
 #include <SFML/Graphics/Rect.hpp>
-#include "ImageManager.h"
 
-class ResourceManager
+class ResourceManager;
 
 class Animation
 {
 public:
-	Animation(const std::string& s, int frameTick, int nrFrames);
+	Animation(const std::string& s, int frameTime, int frames);
 	~Animation();
 
 	void update();
@@ -20,13 +19,13 @@ public:
 	const sf::Sprite& getSprite() const;
 
 private:
-	sf::Clock d_frameTimer;		// Used for timing the frame switch
+	sf::Clock mFrameTimer;		// Used for timing the frame switch
 	
-	int d_frameTick;
-	int d_nrFrames;
-	int d_currentFrame;
+	int mFrameTime;
+	int mFrames;
+	int mCurrentFrame;
 
-	sf::Sprite d_sprite;
+	sf::Sprite mSprite;
 };
 
 #endif
