@@ -73,11 +73,10 @@ void Entity::closeToEnemy(Entity* en)
 
 bool Entity::isID(std::string ID)
 {
-	//return (IDset.count(ID) == 1);
-	return "";
+	return (IDset.count(ID) == 1);
 }
 
 void Entity::pushID(std::string ID)
 {
-	//IDset.insert(ID);
+	IDset.insert(ID);
 }

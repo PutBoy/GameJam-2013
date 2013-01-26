@@ -28,6 +28,7 @@ sf::Texture& ResourceManager::loadTexture(std::string key, std::string file, sf:
 
 sf::Texture& ResourceManager::getTexture(std::string key)
 {
+	//If the program crashes here, it means the texture was never loaded on key.
 	assert(mTextures.count(key) != 0);
 
 	return mTextures.at(key);

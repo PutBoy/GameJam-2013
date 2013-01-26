@@ -5,6 +5,7 @@
 #include "StateManager.h"
 #include "PauseMenu.h"
 
+#include "SpineMacePickup.h" //<------ ta bort
 
 Game::Game()
 	
@@ -13,6 +14,7 @@ Game::Game()
 {
 	mCam = std::auto_ptr<Camera>(new Camera(mPlayer, 200));
 	mEntityMan.AddPlayer(mPlayer);
+	mEntityMan.Add(new SpineMacePickup(sf::Vector2f(400,400), map.getMap())); //<----------statisk position
 }
 
 bool Game::isAlive()
@@ -25,6 +27,8 @@ void Game::update()
 	Entity* newEntity = spawnEnemy();
 	if(mEnemySpawnTimer.getElapsedTime().asSeconds() > 1)
 	{
+		
+		
 		mEntityMan.Add(newEntity);
 		mEnemySpawnTimer.restart();
 	}

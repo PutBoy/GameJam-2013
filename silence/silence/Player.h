@@ -46,6 +46,9 @@ private:
 
 	float mYvel, mXvel;
 	WindowManager* mWindow;
+
+
+	Weapon* mWeapon;
 };
 
 #endif

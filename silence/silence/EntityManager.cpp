@@ -60,10 +60,12 @@ void EntityManager::Collision(){
 	for(EntityVector::size_type i = 0; i<mEntities.size();i++){
 		for(EntityVector::size_type j = 0; j<mEntities.size();j++){
 
-			if(mEntities[i]->getColBox().intersects(mEntities[i]->getColBox()))
+			if(mEntities[i]->getColBox().intersects(mEntities[j]->getColBox()))
 			{
-				mEntities[j]->ResolveCollision(mEntities[i]);
+				if (i != j)
+					mEntities[j]->ResolveCollision(mEntities[i]);
 			}
+		}
 	}
 }
 

@@ -6,12 +6,14 @@
 #include "Player.h"
 #include "Entity.h"
 
-SpineMacePickup::SpineMacePickup(sf::Vector2f startPos):
-	Pickup(startPos)
+#include <iostream>
+
+SpineMacePickup::SpineMacePickup(sf::Vector2f startPos, MapCollider m):
+	Pickup(startPos, m)
 {
 	pushID("SpineMace");
-	ResourceManager::getInstance()->loadTexture("SpineMace","paint_spinemace.png", sf::IntRect(0,0,500,500));
-	mAnimation = new Animation("pickup", 150, 10);
+	ResourceManager::getInstance()->loadTexture("spinemace","paint_spinemace.png", sf::IntRect(0,0,64,64));
+	mAnimation = new Animation("spinemace", 150, 1);
 	mAnimation->setPosition(startPos);
 }
 
@@ -23,9 +25,6 @@ void SpineMacePickup::render(){
 	WindowManager::getInstance()->renderToCanvas(mAnimation->getSprite(), 0);
 }
 
-std::string SpineMacePickup::isID(std::string){
-	return "kalle";
-}
 
 sf::FloatRect SpineMacePickup::getColBox(){
 
@@ -35,8 +34,9 @@ sf::FloatRect SpineMacePickup::getColBox(){
 }
 
 void SpineMacePickup::ResolveCollision(Entity* entity){
-	if(entity->isID("Player")){
-		Player* player = static_cast<Player*>(entity);
-		player->setWep(new SpineMace(player)); // player går kanske ur scoope `?
-	}
+		if(entity->isID("Player")){
+			Player* player = static_cast<Player*>(entity);
+
+			player->setWep(new SpineMace(player)); // player går kanske ur scoope `?
+		}
 }

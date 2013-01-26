@@ -10,7 +10,8 @@
 
 #include <iostream>
 
-Player::Player(sf::Vector2f startPos, MapCollider m): Entity(startPos), mMapColider(m)
+Player::Player(sf::Vector2f startPos, MapCollider m): Entity(startPos), mMapColider(m),
+	mWeapon(nullptr)
 {
 	pushID("Player");
 
@@ -101,6 +102,9 @@ void Player::render()
 {
 	mCurrentAnim->setPosition(mPos - sf::Vector2f(64, 96));
 	mWindow->renderToCanvas(mCurrentAnim->getSprite(), 0);
+	if(mWeapon != nullptr){
+		mWindow->renderToCanvas(mWeapon->getSprite(), 1);
+	};
 }
 
 float Player::getHP(){
@@ -115,7 +119,7 @@ void Player::setHP(float damage){
 }
 
 sf::FloatRect Player::getColBox(){
-	return sf::FloatRect(0,0,0,0);
+	return mCollisionBox;
 }
 
 sf::Vector2f Player::getDirection(){ // <------------vet ej om denna ska vara här ?
@@ -125,4 +129,7 @@ return mDirection;
 
 void Player::ResolveCollision(Entity* entity){}
 
-void Player::setWep(Weapon* weapon){}
+void Player::setWep(Weapon* weapon){
+	
+	mWeapon = weapon;
+}
