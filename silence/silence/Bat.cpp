@@ -86,3 +86,34 @@ sf::FloatRect Bat::getColBox()
 {
 	return mCollisionBox;
 }
+
+void Bat::ResolveCollision(Entity* entity)
+{
+	sf::Vector2f newPos(entity->getXpos(),entity->getYpos());
+	sf::Vector2f distance = distanceRectToRect(entity->getColBox(), mCollisionBox);
+	sf::Vector2f major = getMajorVector(distance);
+
+	sf::FloatRect entbox = entity->getColBox();
+
+	if (major.x < -.5)
+	{
+		newPos.x -= distance.x; //entbox.left - mCollisionBox.width / 2;
+		entbox.left = mPos.x - mCollisionBox.width / 2;
+	}
+	else if (major.x > .5)
+	{
+		newPos.x -= distance.x;// entbox.left + entbox.width + mCollisionBox.width / 2;
+		entbox.left = mPos.x - mCollisionBox.width / 2;
+	}
+	else if (major.y < -.5)
+	{
+		newPos.y -= distance.y;// entbox.top - mCollisionBox.height / 2;
+		entbox.top = mPos.y - mCollisionBox.height / 2;
+	}
+	else if (major.y > .5)
+	{
+		newPos.y -= distance.y;// entbox.top + entbox.height + mCollisionBox.height / 2;
+		entbox.top = mPos.y - mCollisionBox.height / 2;
+	}
+	entity->setPos(newPos);
+}

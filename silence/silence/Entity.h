@@ -20,7 +20,7 @@ public:
 	virtual void update()=0;
 	virtual void render()=0;
 	bool isID(std::string ID);
-
+	void setPos(sf::Vector2f);
 	virtual sf::FloatRect getColBox()=0;
 	virtual void closeToEnemy(Entity* en);
 
@@ -33,6 +33,8 @@ protected:
 	bool closeToMyEnemy;
 	sf::Vector2f directionToMyEnemy;
 
+	sf::Vector2f distanceRectToRect(sf::FloatRect r0, sf::FloatRect r1);
+	sf::Vector2f getMajorVector(sf::Vector2f vec);
 private:
 	std::vector <Entity*> drops;
 	std::set<std::string> IDset;
