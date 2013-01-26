@@ -84,13 +84,16 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntityManager.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="MapCollider.cpp" />
     <ClCompile Include="MapGenerator.cpp" />
     <ClCompile Include="MapManager.cpp" />
     <ClCompile Include="MapTile.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="State.cpp" />
     <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="WindowManager.cpp" />
@@ -100,7 +103,9 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityManager.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="MapCollider.h" />
     <ClInclude Include="MapGenerator.h" />
     <ClInclude Include="MapManager.h" />
     <ClInclude Include="MapTile.h" />

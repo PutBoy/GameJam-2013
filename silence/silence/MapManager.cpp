@@ -6,7 +6,7 @@
 #include "WindowManager.h"
 
 MapManager::MapManager()
-	:mMapGenerator(10, 10)
+	:mMapGenerator(50, 50)
 	,mResources(ResourceManager::getInstance())
 {
 	
@@ -20,11 +20,17 @@ void MapManager::render()
 	WindowManager* window = WindowManager::getInstance();
 
 		
-	size_t leftTile = (window->getView().getCenter().x - window->getView().getSize().x / 2) / 64;
-	size_t rightTile = (window->getView().getCenter().x + window->getView().getSize().x / 2) / 64;
+	int leftTile = (window->getView().getCenter().x - window->getView().getSize().x / 2) / 64;
+	int rightTile = (window->getView().getCenter().x + window->getView().getSize().x / 2) / 64 + 1;
 
-	size_t topTile = (window->getView().getCenter().y - window->getView().getSize().y / 2) / 64;
-	size_t bottomTile = (window->getView().getCenter().y + window->getView().getSize().y / 2) / 64;
+	int topTile = (window->getView().getCenter().y - window->getView().getSize().y / 2) / 64;
+	int bottomTile = (window->getView().getCenter().y + window->getView().getSize().y / 2) / 64 + 1;
+
+	if (leftTile < 0)
+		leftTile = 0;
+
+	if (topTile < 0)
+		topTile = 0;
 
 	if (map.getHeight() < bottomTile)
 		bottomTile = map.getHeight() - 1;

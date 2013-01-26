@@ -6,45 +6,26 @@
 #include "Camera.h"
 #include <sstream>
 
+#include "StateManager.h"
+#include "Game.h"
+
 int main()
 {
 	WindowManager* window = WindowManager::getInstance();
 	ResourceManager* resources = ResourceManager::getInstance();
+	StateManager* StateManager = StateManager::getInstance();
 
+	StateManager->add(new Game());
 
-	std::stringstream ss;
-
-	for (size_t x = 0; x < 5; ++x)
-	{
-		for (size_t y = 0; y < 5; ++y)
-		{
-			ss << "maptiles_" << x << "_" << y;
-			resources->loadTexture(ss.str(), "map_collection_png.png", sf::IntRect(x * 64, y * 64, 64, 64) );
-			ss.str("");
-		}
-	}
-
-
-	MapManager map;
-
-
-	Player player(sf::Vector2f(200,200));
-	Camera cam(&player);
 
 	while(window->isOpen() && !sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 	{		
-		cam.update();
-		player.update();
+
+		StateManager->update();
 
 		window->clear();
-
-
-		player.render();
-
-		map.render();
-
+		StateManager->render();
 		window->renderCanvas();
-
 		window->flip();
 	}
 }

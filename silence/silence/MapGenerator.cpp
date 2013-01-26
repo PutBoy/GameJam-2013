@@ -68,6 +68,7 @@ void MapGenerator::placeHut(int x, int y)
 				{
 					mMap[tileX][tileY].setSprite(2, sf::Vector2i(i, j));
 					mMap[tileX][tileY].setCollidabe(false);
+					mMap[tileX][tileY].setOccupied(true);
 				}
 			}
 			
@@ -82,6 +83,7 @@ void MapGenerator::placeHut(int x, int y)
 				{
 					mMap[tileX][tileY].setSprite(1, sf::Vector2i(i, j));
 					mMap[tileX][tileY].setCollidabe(true);
+					mMap[tileX][tileY].setOccupied(true);
 				}
 			}
 		}
@@ -104,6 +106,7 @@ void MapGenerator::placeTree(int x, int y)
 				{
 					mMap[tileX][tileY].setSprite(1, sf::Vector2i(i + 3, j));
 					mMap[tileX][tileY].setCollidabe(true);
+					mMap[tileX][tileY].setOccupied(true);
 				}
 			}
 		}
@@ -120,7 +123,7 @@ bool MapGenerator::isClear(const sf::IntRect& rect)
 			if (i >= 0 && i < mMap.getWidth() &&
 				j >= 0 && j < mMap.getHeight())
 			{
-				if (mMap[i][j].getCollibable() == true)
+				if (mMap[i][j].getOccupied() == true)
 					return false;
 
 			}

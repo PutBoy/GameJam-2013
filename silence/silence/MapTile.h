@@ -18,9 +18,12 @@ public:
 	void setCollidabe(bool collidable) {mCollidable = collidable;};
 	void setSprite(size_t layer, const sf::Vector2i& spriteSheedPos); 
 
+	void setOccupied(bool occupied) {mOccupied = occupied;};
+	bool getOccupied() {return mOccupied;};
 private:
 	std::array<sf::Sprite, 3U> mSprites;
 	bool mCollidable;
+	bool mOccupied;
 };
 
 #endif

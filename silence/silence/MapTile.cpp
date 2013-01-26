@@ -4,6 +4,7 @@
 
 MapTile::MapTile()
 	:mCollidable(0)
+	,mOccupied(0)
 {
 }
 

@@ -16,7 +16,9 @@ public:
 
 	void update();
 	void setPosition(sf::Vector2f& pos);
+
 	const sf::Sprite& getSprite() const;
+	sf::Sprite& getSprite();
 
 private:
 	sf::Clock mFrameTimer;		// Used for timing the frame switch

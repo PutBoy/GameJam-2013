@@ -4,7 +4,7 @@
 
 WindowManager::WindowManager(){
 	mWindow = new sf::RenderWindow(sf::VideoMode(1600,900), "HeartBeater", sf::Style::Default);
-	mWindow->setFramerateLimit(60);
+	mWindow->setVerticalSyncEnabled(true);
 }
 
 WindowManager::~WindowManager(){}
@@ -18,9 +18,9 @@ WindowManager* WindowManager::getInstance(){
  *	to rendered in order of the layers.
  */
 
-void WindowManager::renderToCanvas(const sf::Sprite& sprite, int layer)
+void WindowManager::renderToCanvas(sf::Drawable& drawable, int layer)
 {
-	layers[layer].push_back(sprite);
+	layers[layer].push_back(&drawable);
 }
 
 /*	This renders all the layers in the canvas, then clears.
@@ -32,7 +32,7 @@ void WindowManager::renderCanvas()
 	{
 		for (int i = 0; i < (*layer).second.size(); ++i)
 		{
-			mWindow->draw(layer->second[i]);
+			mWindow->draw(*layer->second[i]);
 		}
 	}
 	layers.clear();

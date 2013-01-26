@@ -4,7 +4,14 @@
 
 StateManager::StateManager(){}
 
-StateManager::~StateManager(){}
+StateManager::~StateManager()
+{
+	while (!mStack.empty())
+	{
+		delete mStack.top();
+		mStack.pop();
+	}
+}
 
 void StateManager::add(State* state){
 	mStack.push(state);

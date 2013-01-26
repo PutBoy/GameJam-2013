@@ -23,7 +23,7 @@ public:
 	bool isOpen();
 	void pollEvents();
 	
-	void renderToCanvas(const sf::Sprite& drawable, int layer);
+	void renderToCanvas(sf::Drawable& drawable, int layer);
 	void renderCanvas();
 
 	void flip();
@@ -35,8 +35,8 @@ private:
 	WindowManager& operator=(const WindowManager);
 	WindowManager(const WindowManager&);
 
-	typedef std::pair<int, std::vector<sf::Sprite>> layerPair; 
-	std::map<int, std::vector<sf::Sprite>> layers;
+	typedef std::pair<int, std::vector<sf::Drawable*>> layerPair; 
+	std::map<int, std::vector<sf::Drawable*>> layers;
 };
 
 

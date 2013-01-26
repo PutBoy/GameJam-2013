@@ -48,3 +48,7 @@ void Animation::setPosition(sf::Vector2f& pos){
 const sf::Sprite& Animation::getSprite() const{
 	return mSprite;
 }
+
+sf::Sprite& Animation::getSprite(){
+	return mSprite;
+}
