@@ -1,7 +1,7 @@
 #include "Game.h"
 #include "MapCollider.h"
 #include "WindowManager.h"
-
+#include "Entity.h"
 
 Game::Game()
 	:player(sf::Vector2f(200,200),
@@ -20,6 +20,8 @@ void Game::update()
 {
 
 		player.update();
+		Entity* p = &player;
+		frog.closeToEnemy(p);
 		frog.update();
 		cam.update();
 	WindowManager::getInstance()->setView(cam.getView());
