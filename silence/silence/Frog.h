@@ -18,8 +18,12 @@ public:
 	virtual float getDamage();
 	virtual void setHP(float damage);
 	virtual sf::FloatRect getColBox();
+	virtual void ResolveCollision(Entity* entity);
 private:
 	Animation* mRigth;
+	Animation* mLeft;
+	Animation* mDown;
+	Animation* mUp;
 	Animation* mCurrentAnim;
 	WindowManager* mWindow;
 

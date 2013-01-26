@@ -12,11 +12,9 @@ public:
 	~SpineMace();
 
 	bool shoot();
-	sf::Sprite getSprite();
+	sf::Sprite& getSprite();
 	Entity* createBullet();
 	sf::FloatRect getColBox();
-protected:
-	Entity* getPlayer();
 
 private:
 	Animation* mAnimation;
