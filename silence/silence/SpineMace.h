@@ -14,6 +14,7 @@ public:
 	bool shoot();
 	sf::Sprite getSprite();
 	Entity* createBullet();
+	sf::FloatRect getColBox();
 protected:
 	Entity* getPlayer();
 

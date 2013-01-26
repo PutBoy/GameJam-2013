@@ -16,11 +16,12 @@ public:
 	virtual bool shoot()=0;
 	virtual sf::Sprite getSprite()=0;
 	virtual Entity* createBullet()=0;
+	virtual sf::FloatRect getColBox()=0;
 protected:
 	virtual Entity* getPlayer()=0;
 private:
 	sf::Vector2f mDirection;
-	Player* mPlayer;
+	Entity* mPlayer;
 };
 
 #endif

@@ -85,7 +85,19 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SpineMace.cpp">
-	<Filter>Source Files</Filter>
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Bat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Knuckles.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="KnucklesPickUp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -156,7 +168,16 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SpineMace.h">
-	<Filter>Header Files</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Knuckles.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="KnucklesPickUp.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

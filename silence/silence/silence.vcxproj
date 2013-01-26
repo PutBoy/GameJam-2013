@@ -88,6 +88,8 @@
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="Frog.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Knuckles.cpp" />
+    <ClCompile Include="KnucklesPickUp.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapCollider.cpp" />
@@ -102,6 +104,7 @@
     <ClCompile Include="StartMenu.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="StateManager.cpp" />
+    <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -113,6 +116,8 @@
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="Frog.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Knuckles.h" />
+    <ClInclude Include="KnucklesPickUp.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapCollider.h" />
     <ClInclude Include="MapGenerator.h" />

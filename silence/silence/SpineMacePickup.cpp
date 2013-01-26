@@ -10,7 +10,7 @@ SpineMacePickup::SpineMacePickup(sf::Vector2f startPos):
 	Pickup(startPos)
 {
 	pushID("SpineMace");
-	ResourceManager::getInstance()->loadTexture("SpineMace","blablalb pickup.png", sf::IntRect(0,0,500,500));
+	ResourceManager::getInstance()->loadTexture("SpineMace","paint_spinemace.png", sf::IntRect(0,0,500,500));
 	mAnimation = new Animation("pickup", 150, 10);
 	mAnimation->setPosition(startPos);
 }

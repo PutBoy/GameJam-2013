@@ -28,7 +28,7 @@ public:
 
 protected:
 	void pushID(std::string ID);
-
+	
 	sf::Vector2f mPos;
 	bool closeToMyEnemy;
 	sf::Vector2f directionToMyEnemy;

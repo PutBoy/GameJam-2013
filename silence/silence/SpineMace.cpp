@@ -25,4 +25,8 @@ Entity* SpineMace::createBullet(){
 
 Entity* SpineMace::getPlayer(){
 	return nullptr;
-};
+}
+
+sf::FloatRect SpineMace::getColBox(){
+	return mAnimation->getSprite().getGlobalBounds();
+}
