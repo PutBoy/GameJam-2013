@@ -5,11 +5,6 @@ Entity::Entity(sf::Vector2f startPos): mPos(startPos)
 {
 }
 
-
-Entity::~Entity(void)
-{
-}
-
 float Entity::getXpos()const
 {
 	return mPos.x;
