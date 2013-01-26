@@ -59,12 +59,19 @@ void EntityManager::Collision(){
 	for(EntityVector::size_type i = 0; i<mEntities.size();i++){
 		for(EntityVector::size_type j = 0; j<mEntities.size();j++){
 
-			if(mEntities[i]->isID("Enemy") ==  mEntities[j]->isID("Friend") && mEntities[i]->getColbox().intersects(mEntities[j]->getColbox()){
+			if(mEntities[i]->isID("Enemy") ==  mEntities[j]->isID("Friend") && mEntities[i]->getColbox().intersects(mEntities[j]->getColbox())){
 				mEntities[i]->setHP(mEntities[j]->getDamage());
 			}
 
-			if(mEntities[i]->isID("Friend") ==  mEntities[j]->isID("Enemy") && mEntities[i]->getColbox().intersects(mEntities[j]->getColbox()){
+			if(mEntities[i]->isID("Friend") ==  mEntities[j]->isID("Enemy") && mEntities[i]->getColbox().intersects(mEntities[j]->getColbox())){
 			mEntities[i]->setHP(mEntities[j]->getDamage());
+			}
 		}
 	}
 }
+
+	void EntityManager::Updatedrops(){
+		for(EntityVector::size_type i = 0; i < mEntities.size(); i++){
+			if(mEntities[i].
+		}
+	}

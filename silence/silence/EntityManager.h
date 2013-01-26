@@ -1,7 +1,7 @@
 #ifndef INCLUDE_ENTITYMANAGER
 #define INCLUDE_ENTITYMANAGER
 #include <vector>
-
+#include "Entity.h"
 	
 
 	class EntityManager
@@ -17,6 +17,7 @@
 	void Add(Entity* Ent);
 	void AliveCheck();
 	void Collision();
+	void Updatedrops();
 
 	protected:
 	
