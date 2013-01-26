@@ -1,16 +1,21 @@
 #ifndef WEAPON_H
 #define WEAPON_H
 
-class Player;
+#include "Player.h"
+
 class Entity;
 
 class Weapon
 {
+	friend class Player;
 public:
-	Weapon(void);
+	Weapon(Player* player);
 	~Weapon(void);
+
 	Entity* shoot();
+
 private:
+	sf::Vector2f mDirection;
 	Player* mPlayer;
 };
 

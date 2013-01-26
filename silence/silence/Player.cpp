@@ -22,7 +22,7 @@ Player::Player(sf::Vector2f startPos, MapCollider m): Entity(startPos), mMapColi
 	mUp = new Animation("up",150,10);
 
 	mDownIdle = new Animation("downIdle", 150, 10);
-
+	mDirection = sf::Vector2f(0.0, mYvel);
 	mCurrentAnim = mDown;
 	mYvel = mXvel = 5;
 	mWindow = WindowManager::getInstance();
@@ -50,22 +50,30 @@ void Player::update()
 	{
 		mCurrentAnim = mRigth;
 		distance.x += mXvel;
+		mDirection = sf::Vector2f(mXvel,0.0);
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		mCurrentAnim = mLeft;
 		distance.x -= mXvel;
+		mDirection = sf::Vector2f(mXvel,0.0);
 	}
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
 		mCurrentAnim = mUp;
 		distance.y -= mYvel;
+		mDirection = sf::Vector2f(0.0,mYvel);
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
 		mCurrentAnim = mDown;
 		distance.y += mYvel;
+		mDirection = sf::Vector2f(0.0,mYvel);
 	}
+	
+		
+	
+	
 
 	//idle animations
 	if(mCurrentAnim == mDown && distance.y == 0){
@@ -106,4 +114,9 @@ void Player::setHP(float damage){
 
 sf::FloatRect Player::getColBox(){
 	return sf::FloatRect(0,0,0,0);
+}
+
+sf::Vector2f Player::getDirection(){
+
+return mDirection;
 }
