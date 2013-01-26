@@ -20,6 +20,7 @@ MapGenerator::MapGenerator(size_t w, size_t h)
 			ss.str("");
 		}
 	}
+
 	generateNew(w, h);
 }
 
@@ -30,6 +31,8 @@ Map& MapGenerator::getMap()
 
 void MapGenerator::generateNew(size_t w, size_t h)
 {
+	mMap.resize(w, h);
+
 	std::srand(static_cast<unsigned int>(std::time(0)));
 
 	for (size_t x = 0; x < mMap.getWidth(); ++x)
@@ -45,12 +48,12 @@ void MapGenerator::generateNew(size_t w, size_t h)
 
 	}
 
-	for (int i = 0; i < 20; i++)
+	for (int i = 0; i < 100; i++)
 	{
 		placeHut(std::rand() % mMap.getWidth(), std::rand() % mMap.getHeight());
 	}
 
-	for (int i = 0; i < 20; i++)
+	for (int i = 0; i < 0; i++)
 	{
 		placeTree(std::rand() % mMap.getWidth(), std::rand() % mMap.getHeight());
 	}
@@ -58,39 +61,134 @@ void MapGenerator::generateNew(size_t w, size_t h)
 
 void MapGenerator::placeHut(int x, int y)
 {
+	int width = std::rand() % 2 + 3;
+	int height = std::rand() % 2 + 3;
+	
+	sf::IntRect hutRect(x - width / 2, y - height / 2, width, height );
 
-	if (isClear(sf::IntRect(x - 1, y - 1, 3, 3)))
+
+	if (isClear(hutRect))
 	{
-		for (int i = 0; i < 3; i++)
+		//first make all tiles occupied
+		for (int i = hutRect.left; i < hutRect.left + hutRect.width; i++)
 		{
-			
-			for (int j = 0; j < 1; j++)
+			for (int j = hutRect.top; j < hutRect.top + hutRect.height; j++)
 			{
-				int tileX = i - 1 + x;
-				int tileY = j - 1 + y;
+				int tileX = i;
+				int tileY = j;
 
 				if (tileX >= 0 && tileX < mMap.getWidth() &&
 					tileY >= 0 && tileY < mMap.getHeight())
 				{
-					mMap[tileX][tileY].setSprite(2, sf::Vector2i(i, j));
-					mMap[tileX][tileY].setCollidable(false);
 					mMap[tileX][tileY].setOccupied(true);
 				}
 			}
-			
+		}
 
-			for (int j = 1; j < 3; j++)
+		//then place corners:
+		if (hutRect.left >= 0 && hutRect.left < mMap.getWidth() &&
+			hutRect.top >= 0 && hutRect.top < mMap.getHeight())
+		{
+			mMap[hutRect.left][hutRect.top].setSprite(2, sf::Vector2i(0, 0));
+			mMap[hutRect.left][hutRect.top].setCollidable(false);
+		}
+
+		if (hutRect.left + hutRect.width - 1 >= 0 && hutRect.left + hutRect.width - 1 < mMap.getWidth() &&
+			hutRect.top >= 0 && hutRect.top < mMap.getHeight())
+		{
+			mMap[hutRect.left + hutRect.width - 1][hutRect.top].setSprite(2, sf::Vector2i(2, 0));
+			mMap[hutRect.left + hutRect.width - 1][hutRect.top].setCollidable(false);
+		}
+
+		if (hutRect.left >= 0 && hutRect.left < mMap.getWidth() &&
+			hutRect.top + hutRect.height - 1 >= 0 && hutRect.top + hutRect.height - 1 < mMap.getHeight())
+		{
+			mMap[hutRect.left][hutRect.top + hutRect.height - 1].setSprite(1, sf::Vector2i(0, 2));
+			mMap[hutRect.left][hutRect.top + hutRect.height - 1].setCollidable(true);
+		}
+
+		if (hutRect.left + hutRect.width - 1 >= 0 && hutRect.left + hutRect.width - 1 < mMap.getWidth() &&
+			hutRect.top + hutRect.height - 1 >= 0 && hutRect.top + hutRect.height - 1 < mMap.getHeight())
+		{
+			mMap[hutRect.left + hutRect.width - 1][hutRect.top + hutRect.height - 1].setSprite(1, sf::Vector2i(2, 2));
+			mMap[hutRect.left + hutRect.width - 1][hutRect.top + hutRect.height - 1].setCollidable(true);
+		}
+
+		//place roof!
+		for (int i = hutRect.left + 1; i < hutRect.left + hutRect.width; i++)
+		{
+			for (int j = hutRect.top + 1; j < hutRect.top + hutRect.height; j++)
 			{
-				int tileX = i - 1 + x;
-				int tileY = j - 1 + y;
+				int tileX = i;
+				int tileY = j;
 
 				if (tileX >= 0 && tileX < mMap.getWidth() &&
 					tileY >= 0 && tileY < mMap.getHeight())
 				{
-					mMap[tileX][tileY].setSprite(1, sf::Vector2i(i, j));
+					mMap[tileX][tileY].setSprite(2, sf::Vector2i(0, 3));
 					mMap[tileX][tileY].setCollidable(true);
-					mMap[tileX][tileY].setOccupied(true);
 				}
+			}
+		}
+		
+		//then place chimney!
+		if (x >= 0 && x < mMap.getWidth() &&
+			y >= 0 && y < mMap.getHeight())
+		{
+			mMap[x][y].setSprite(2, sf::Vector2i(1, 1));
+			mMap[x][y].setCollidable(true);
+		}
+
+		//NOW PLACE ROOF! OVER AND OUT MOTHERFAKKARS!
+		for (int i = hutRect.left + 1; i < hutRect.left + hutRect.width; i++)
+		{
+			int tileX = i;
+			int tileY = hutRect.top;
+
+			if (tileX >= 0 && tileX < mMap.getWidth() &&
+				tileY >= 0 && tileY < mMap.getHeight())
+			{
+				mMap[tileX][tileY].setSprite(2, sf::Vector2i(1, 0));
+				mMap[tileX][tileY].setCollidable(false);
+			}
+		}
+
+		for (int i = hutRect.left + 1; i < hutRect.left + hutRect.width; i++)
+		{
+			int tileX = i;
+			int tileY = hutRect.top + hutRect.height;
+
+			if (tileX >= 0 && tileX < mMap.getWidth() &&
+				tileY >= 0 && tileY < mMap.getHeight())
+			{
+				mMap[tileX][tileY].setSprite(1, sf::Vector2i(1, 2));
+				mMap[tileX][tileY].setCollidable(true);
+			}
+		}
+
+		for (int i = hutRect.top + 1; i < hutRect.top + hutRect.height; i++)
+		{
+			int tileX = hutRect.left;
+			int tileY = i;
+
+			if (tileX >= 0 && tileX < mMap.getWidth() &&
+				tileY >= 0 && tileY < mMap.getHeight())
+			{
+				mMap[tileX][tileY].setSprite(1, sf::Vector2i(0, 1));
+				mMap[tileX][tileY].setCollidable(true);
+			}
+		}
+
+		for (int i = hutRect.top + 1; i < hutRect.top + hutRect.height; i++)
+		{
+			int tileX = hutRect.left + hutRect.width;
+			int tileY = i;
+
+			if (tileX >= 0 && tileX < mMap.getWidth() &&
+				tileY >= 0 && tileY < mMap.getHeight())
+			{
+				mMap[tileX][tileY].setSprite(1, sf::Vector2i(2, 1));
+				mMap[tileX][tileY].setCollidable(true);
 			}
 		}
 	}
@@ -355,9 +453,9 @@ void MapGenerator::placeRoadTile(const sf::Vector2i& walkWayPos, Direction direc
 
 bool MapGenerator::isClear(const sf::IntRect& rect)
 {
-	for (int i = rect.left; i < rect.left + rect.width; i++)
+	for (int i = rect.left; i < rect.left + rect.width + 1; i++)
 	{
-		for (int j = rect.top; j < rect.top + rect.height; j++)
+		for (int j = rect.top; j < rect.top + rect.height + 1; j++)
 		{
 
 			if (i >= 0 && i < mMap.getWidth() &&

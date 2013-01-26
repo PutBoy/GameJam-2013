@@ -64,6 +64,7 @@ void Player::update()
 		distance.y += mYvel;
 	}
 
+
 	//idle animations
 	if(mCurrentAnim == mDown && distance.y == 0){
 		mCurrentAnim = mDownIdle;
