@@ -3,7 +3,8 @@
 #include "Game.h"
 #include "ResourceManager.h"
 #include "WindowManager.h"
-
+#include "MapCollider.h"
+#include "Map.h"
 StartMenu::StartMenu()
 {
 	mSprite.setTexture(ResourceManager::getInstance()->loadTexture("background","paint_background.png",sf::IntRect(0,0,1600,900)));
