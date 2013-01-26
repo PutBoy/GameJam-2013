@@ -11,7 +11,7 @@ class MapCollider
 public:
 	MapCollider(Map* map);
 
-	sf::Vector2f tryMove(sf::Vector2f position, sf::Vector2f velocity, sf::IntRect collisionBox);
+	sf::Vector2f tryMove(sf::Vector2f position, sf::Vector2f velocity, sf::FloatRect collisionBox);
 private:
 	static const unsigned int tileSize = 64;
 	sf::Vector2i getTileFromPosition(sf::Vector2f position);

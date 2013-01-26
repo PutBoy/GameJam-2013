@@ -21,7 +21,7 @@ sf::FloatRect MapCollider::getRectFromTile(size_t x, size_t y)
 	return sf::FloatRect(x * tileSize, y * tileSize, tileSize, tileSize);
 }
 
-sf::Vector2f MapCollider::tryMove(sf::Vector2f position, sf::Vector2f velocity, sf::IntRect collisionBox)
+sf::Vector2f MapCollider::tryMove(sf::Vector2f position, sf::Vector2f velocity, sf::FloatRect collisionBox)
 {
 	sf::Vector2f newPos = position;
 	
@@ -53,55 +53,56 @@ sf::Vector2f MapCollider::tryMove(sf::Vector2f position, sf::Vector2f velocity, 
 			if (iterX < 0 || iterX >= mMap->getWidth() ||
 				iterY < 0 || iterY >= mMap->getHeight())
 				continue;
-	
+
+			if ((*mMap)[iterX][iterY].getCollibable() == false)
+				continue;
+
+			sf::FloatRect tileBox = getRectFromTile(iterX, iterY);
+			sf::FloatRect interRect;
+
+			if (collisionBox.intersects(tileBox, interRect))
+			{
+				int diffX = newPos.x - (tileBox.left + tileBox.width / 2);
+				int diffY = newPos.y - (tileBox.top + tileBox.height / 2);
+				
+				diffX = diffX / (collisionBox.width / 2 + tileBox.width / 2);
+				diffY = diffY / (collisionBox.height / 2 + tileBox.height / 2);
+
+				if(std::abs(diffY) > std::abs(diffX))
+				{
+					if(diffY > 0)
+					{
+						newPos.y = tileBox.top - collisionBox.height / 2;
+						collisionBox.top = newPos.y - collisionBox.height / 2;
+					}
+					else
+					{
+						newPos.y = tileBox.top + tileRect.height + collisionBox.height / 2;
+						collisionBox.top = newPos.y - collisionBox.height / 2;
+					}
+
+				}
+				else
+				{
+					if(diffX > 0)
+					{
+						SetX(other->GetX() + (GetSizeX() + other->GetSizeX()) / 2 + 2);
+
+						if (mVelocityX < 0)
+							mVelocityX = 0;
+					}
+					else
+					{
+						SetX(other->GetX() - (GetSizeX() + other->GetSizeX()) / 2 - 2);
+
+						if (mVelocityX > 0)
+							mVelocityX = 0;
+					}
+				}
+			}
 		}
 	}
 
-	/*
-	if(other->IsID("Box"))
-	{
-		boxCollided = true;
-
-		int diffX = GetX() - other->GetX();
-		int diffY = GetY() - other->GetY();
-
-		if(std::abs(diffY) > std::abs(diffX))
-		{
-			if(diffY > 0)
-			{
-				SetY(other->GetY() + (GetSizeY() + other->GetSizeY()) / 2);
-
-				if (mVelocityY < 0)
-					mVelocityY = 0;
-			}
-			else
-			{
-				SetY(other->GetY() - (GetSizeY() + other->GetSizeY()) / 2);
-
-				if (mVelocityY > 0)
-					mVelocityY = 0;
-			}
-
-		}
-		else
-		{
-			if(diffX > 0)
-			{
-				SetX(other->GetX() + (GetSizeX() + other->GetSizeX()) / 2 + 2);
-
-				if (mVelocityX < 0)
-					mVelocityX = 0;
-			}
-			else
-			{
-				SetX(other->GetX() - (GetSizeX() + other->GetSizeX()) / 2 - 2);
-
-				if (mVelocityX > 0)
-					mVelocityX = 0;
-			}
-		}
-	}
-	*/
 	
 	return newPos;
 }
