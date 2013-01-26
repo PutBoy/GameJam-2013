@@ -30,6 +30,10 @@ void Game::update()
 	}
 	mEntityMan.Update();
 
+	mEntityMan.AliveCheck();
+	mEntityMan.Collision();
+	mEntityMan.Updatedrops();
+
 	input();
 	mCam->update();
 
