@@ -7,7 +7,7 @@
 
 
 Game::Game()
-	
+
 	:mAlive(true)
 	,mPlayer(new Player(sf::Vector2f(200,200),MapCollider(map.getMap())))
 {

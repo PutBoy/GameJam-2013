@@ -33,7 +33,7 @@ Player::Player(sf::Vector2f startPos, MapCollider m): Entity(startPos), mMapColi
 	mWindow = WindowManager::getInstance();
 
 	mCollisionBox.height = 64;
-	mCollisionBox.width = 96;
+	mCollisionBox.width = 64;
 	mCollisionBox.left = mPos.x - mCollisionBox.width / 2;
 	mCollisionBox.top = mPos.y - mCollisionBox.height / 2;
 	
