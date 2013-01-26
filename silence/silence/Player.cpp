@@ -5,10 +5,15 @@
 #include "MapCollider.h"
 
 
+
+#include "Weapon.h"
+
 #include <iostream>
 
 Player::Player(sf::Vector2f startPos, MapCollider m): Entity(startPos), mMapColider(m)
 {
+	pushID("Player");
+
 	ResourceManager* r = ResourceManager::getInstance();
 	r->loadTexture("down","priest_walk_forward_sprite.png",sf::IntRect(0,0,1280,128));
 	r->loadTexture("left","priest_walk_left_sprite.png",sf::IntRect(0,0,1280,128));
@@ -90,10 +95,6 @@ float Player::getHP(){
 	return 0.0f;
 }
 
-std::string Player::isID(std::string ID){
-	return "kallke";
-}
-
 float Player::getDamage(){
 	return 0.0f;
 }
@@ -104,3 +105,7 @@ void Player::setHP(float damage){
 sf::FloatRect Player::getColBox(){
 	return sf::FloatRect(0,0,0,0);
 }
+
+void Player::ResolveCollision(Entity* entity){}
+
+void Player::setWep(Weapon* weapon){}

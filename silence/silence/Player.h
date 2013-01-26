@@ -5,6 +5,8 @@
 #include "Animation.h"
 #include "MapCollider.h"
 
+
+class Weapon;
 class WindowManager;
 
 class Player : public Entity
@@ -15,10 +17,13 @@ public:
 	virtual void update();
 	virtual void render();
 	virtual float getHP();
-	virtual std::string isID(std::string ID);
+
 	virtual float getDamage();
 	virtual void setHP(float damage);
 	virtual sf::FloatRect getColBox();
+	virtual void ResolveCollision(Entity* entity);
+	void setWep(Weapon* weapon);
+	
 private:
 
 	Animation* mDown;

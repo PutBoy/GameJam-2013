@@ -8,10 +8,6 @@ Enemy::~Enemy(void)
 }
 
 
-std::string Enemy::isID(std::string ID){
-	return "Enemy";
-}
-
 sf::Vector2f Enemy::getRandomMove()
 {
 	sf::Vector2f move;
@@ -20,3 +16,5 @@ sf::Vector2f Enemy::getRandomMove()
 
 	return move;
 }
+
+void Enemy::ResolveCollision(Entity* entity){}

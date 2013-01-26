@@ -3,6 +3,7 @@
 
 Entity::Entity(sf::Vector2f startPos): mPos(startPos)
 {
+	pushID("Entity");
 }
 
 float Entity::getXpos()const
@@ -60,4 +61,14 @@ void Entity::closeToEnemy(Entity* en)
 	{
 		closeToMyEnemy = false;
 	}
+}
+
+bool Entity::isID(std::string ID)
+{
+	return (IDset.count(ID) == 1);
+}
+
+void Entity::pushID(std::string ID)
+{
+	IDset.insert(ID);
 }

@@ -11,10 +11,12 @@ public:
 	virtual void update()=0;
 	virtual void render()=0;
 	virtual float getHP()=0;
-	virtual std::string isID(std::string ID);
+
 	virtual float getDamage()=0;
 	virtual void setHP(float damage)=0;
 	virtual sf::FloatRect getColBox()=0;
+
+	virtual void ResolveCollision(Entity* entity);
 protected:
 	sf::Vector2f getRandomMove();
 };
