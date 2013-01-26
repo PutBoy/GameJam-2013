@@ -2,11 +2,12 @@
 #define INCLUDED_STATEMANAGER
 
 #include <stack>
-class state;
+
+class State;
 
 class StateManager{
 public:
-	void add(State* s);
+	void add(State* state);
 	void update();
 	void render();
 
@@ -18,7 +19,7 @@ private:
 
 	~StateManager();
 	StateManager();
-	StateManager& operator=(const StateManager);
+	StateManager& operator=(const StateManager&);
 	StateManager(const StateManager&);
 };
 

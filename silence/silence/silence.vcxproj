@@ -99,6 +99,7 @@
     <ClInclude Include="MapGenerator.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="State.h" />
     <ClInclude Include="StateManager.h" />
     <ClInclude Include="WindowManager.h" />
   </ItemGroup>
