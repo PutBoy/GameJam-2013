@@ -22,10 +22,10 @@ public:
 	virtual float getDamage()=0;
 	virtual void setHP(float damage)=0;
 	virtual sf::FloatRect getColBox()=0;
-
+	virtual void closeToEnemy(Entity* en);
 protected:
 	sf::Vector2f mPos;
-
+	bool closeToMyEnemy;
 private:
 	std::vector <Entity*> drops;
 

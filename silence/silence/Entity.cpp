@@ -1,5 +1,5 @@
 #include "Entity.h"
-
+#include <cmath>
 
 Entity::Entity(sf::Vector2f startPos): mPos(startPos)
 {
@@ -37,4 +37,15 @@ Entity* Entity::getNextDrop(){
 	return ent;
 
 
+}
+
+void Entity::closeToEnemy(Entity* en)
+{
+	sf::Vector2f direction;
+	direction.x = (mPos.x) - en->getXpos();
+	direction.y = mPos.y - en->getYpos();
+	float length = ((direction.x*direction.x)+(direction.y*direction.y));
+	length = sqrt(length);
+	if(length < 10)
+		closeToMyEnemy = true;
 }

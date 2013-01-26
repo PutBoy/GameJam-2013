@@ -11,6 +11,7 @@
 
 int main()
 {
+	srand(time(NULL));
 	WindowManager* window = WindowManager::getInstance();
 	ResourceManager* resources = ResourceManager::getInstance();
 	StateManager* StateManager = StateManager::getInstance();
