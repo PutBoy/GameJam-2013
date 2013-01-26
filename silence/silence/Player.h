@@ -15,10 +15,14 @@ public:
 	virtual void update();
 	virtual void render();
 	virtual float getHP();
+	
 	virtual std::string isID(std::string ID);
 	virtual float getDamage();
 	virtual void setHP(float damage);
 	virtual sf::FloatRect getColBox();
+
+protected:
+	sf::Vector2f getDirection();
 private:
 
 	Animation* mDown;
@@ -26,11 +30,11 @@ private:
 	Animation* mRigth;
 	Animation* mUp;
 	Animation* mCurrentAnim;
-
+	
 	Animation* mDownIdle;
 
 	MapCollider mMapColider;
-
+	sf::Vector2f mDirection;
 	sf::FloatRect mCollisionBox;
 
 	float mYvel, mXvel;

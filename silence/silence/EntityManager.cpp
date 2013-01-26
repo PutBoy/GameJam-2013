@@ -30,7 +30,7 @@ void EntityManager::Update(){
 	Player* player;
 	for(EntityVector::size_type i = 0; i <mEntities.size(); i++)
 	{
-			player = static_cast<Player*>(mEntities[i]);
+			player = dynamic_cast<Player*>(mEntities[i]);
 		if(player)
 			continue;
 	}
@@ -38,8 +38,10 @@ void EntityManager::Update(){
 	{
 		mEntities[i]->closeToEnemy(player);
 		mEntities[i]->update();
-		mEntities.push_back(mEntities[i]->getNextDrop());
 	}
+
+	Updatedrops();
+
 }
 
 void EntityManager::AliveCheck(){
@@ -71,7 +73,12 @@ void EntityManager::Collision(){
 
 	void EntityManager::Updatedrops(){
 		for(EntityVector::size_type i = 0; i < mEntities.size(); i++){
-			//if(mEntities[i]
+			Entity* drop = mEntities[i]->getNextDrop();
+			while (drop != nullptr)
+			{
+				mEntities.push_back(drop);
+				drop = mEntities[i]->getNextDrop();
+			}
 		}
 	}
 

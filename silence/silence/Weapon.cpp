@@ -1,8 +1,11 @@
 #include "Weapon.h"
 
 
-Weapon::Weapon(void)
+Weapon::Weapon(Player* player):
+mPlayer(player)
+
 {
+//	mDirection = mPlayer->getDirection();
 }
 
 

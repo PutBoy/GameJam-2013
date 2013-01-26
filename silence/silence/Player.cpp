@@ -22,7 +22,7 @@ Player::Player(sf::Vector2f startPos, MapCollider m): Entity(startPos), mMapColi
 	mUp = new Animation("up",150,10);
 
 	mDownIdle = new Animation("downIdle", 150, 10);
-
+	mDirection = sf::Vector2f(0.0, mYvel);
 	mCurrentAnim = mDown;
 	mYvel = mXvel = 5;
 	mWindow = WindowManager::getInstance();
@@ -42,27 +42,38 @@ Player::~Player(void)
 
 void Player::update()
 {
-	sf::Vector2f distance;
+	//Bullet* bullet = gun->shoot();
+	//Drop(bullet);
+
+	sf::Vector2f distance; 
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		mCurrentAnim = mRigth;
 		distance.x += mXvel;
+		mDirection = sf::Vector2f(mXvel,0.0);
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		mCurrentAnim = mLeft;
 		distance.x -= mXvel;
+		mDirection = sf::Vector2f(mXvel,0.0);
 	}
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
 		mCurrentAnim = mUp;
 		distance.y -= mYvel;
+		mDirection = sf::Vector2f(0.0,mYvel);
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
 		mCurrentAnim = mDown;
 		distance.y += mYvel;
+		mDirection = sf::Vector2f(0.0,mYvel);
 	}
+	
+		
+	
+	
 
 
 	//idle animations
@@ -104,4 +115,9 @@ void Player::setHP(float damage){
 
 sf::FloatRect Player::getColBox(){
 	return sf::FloatRect(0,0,0,0);
+}
+
+sf::Vector2f Player::getDirection(){
+
+return mDirection;
 }

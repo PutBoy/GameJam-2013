@@ -5,6 +5,14 @@ Entity::Entity(sf::Vector2f startPos): mPos(startPos)
 {
 }
 
+Entity::~Entity(){
+	for(int i = 0; i < drops.size(); i++){
+	
+		drops.pop_back();
+	}
+
+}
+
 float Entity::getXpos()const
 {
 	return mPos.x;

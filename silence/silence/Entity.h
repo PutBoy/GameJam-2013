@@ -10,9 +10,10 @@ class Entity
 {
 public:
 	Entity(sf::Vector2f startPos);
+	virtual ~Entity();
 	Entity* getNextDrop();
 	void Drop(Entity* drop);
-	virtual ~Entity(void){};
+	
 	float getXpos()const;
 	float getYpos()const;
 	virtual void update()=0;
