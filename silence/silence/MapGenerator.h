@@ -3,6 +3,7 @@
 
 #include "Map.h"
 #include <SFML\System\Vector2.hpp>
+#include <SFML\Graphics\Rect.hpp>
 
 class MapGenerator
 {
@@ -14,6 +15,12 @@ public:
 
 
 private:
+	enum Direction {NONE = -1, UP, DOWN, LEFT, RIGHT};
+	enum OppositeDirection {OPP_NONE = NONE, OPP_UP = DOWN, OPP_DOWN = UP, OPP_LEFT = RIGHT, OPP_RIGHT = LEFT};
+
+
+	void placeWalkWay(const sf::Vector2i& start, const sf::Vector2i stop);
+	void placeRoadTile(const sf::Vector2i& walkWayPos, Direction direction, Direction nextDirection);
 
 	void placeHut(int x, int y);
 	void placeTree(int x, int y);

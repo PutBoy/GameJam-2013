@@ -6,7 +6,7 @@
 #include "WindowManager.h"
 
 MapManager::MapManager()
-	:mMapGenerator(50, 50)
+	:mMapGenerator(20, 20)
 	,mResources(ResourceManager::getInstance())
 {
 	mMap = &mMapGenerator.getMap();
@@ -33,11 +33,11 @@ void MapManager::render()
 	if (topTile < 0)
 		topTile = 0;
 
-	if (map.getHeight() <= bottomTile)
-		bottomTile = map.getHeight() - 1;
+	if (map.getHeight() < bottomTile)
+		bottomTile = map.getHeight();
 
-	if (map.getWidth() <= rightTile)
-		rightTile = map.getWidth() - 1;
+	if (map.getWidth() < rightTile)
+		rightTile = map.getWidth();
 
 
 	for (size_t x = leftTile; x < rightTile; ++x)
