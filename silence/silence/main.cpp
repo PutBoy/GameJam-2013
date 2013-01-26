@@ -5,9 +5,9 @@
 #include "MapManager.h"
 #include "Camera.h"
 #include <sstream>
+#include "StartMenu.h"
 
 #include "StateManager.h"
-#include "Game.h"
 
 int main()
 {
@@ -15,7 +15,7 @@ int main()
 	ResourceManager* resources = ResourceManager::getInstance();
 	StateManager* StateManager = StateManager::getInstance();
 
-	StateManager->add(new Game());
+	StateManager->add(new StartMenu());
 
 
 	while(window->isOpen() && !sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
