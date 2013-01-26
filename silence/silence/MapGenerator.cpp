@@ -54,14 +54,14 @@ void MapGenerator::generateNew(size_t w, size_t h)
 		std::srand(static_cast<unsigned int>(std::clock()));
 	}
 
-	for (int i = 0; i < 50; i++)
+	for (int i = 0; i < 200; i++)
 	{
 		placeHut(std::rand() % mMap.getWidth(), std::rand() % mMap.getHeight());
 	}
 
 	for (int i = 0; i < 50; i++)
 	{
-		placeTree(std::rand() % mMap.getWidth(), std::rand() % mMap.getHeight());
+		//placeTree(std::rand() % mMap.getWidth(), std::rand() % mMap.getHeight());
 	}
 }
 
@@ -114,14 +114,14 @@ void MapGenerator::placeHut(int x, int y)
 		if (hutRect.left >= 0 && hutRect.left < mMap.getWidth() &&
 			hutRect.top + hutRect.height - 1 >= 0 && hutRect.top + hutRect.height - 1 < mMap.getHeight())
 		{
-			mMap[hutRect.left][hutRect.top + hutRect.height - 1].setSprite(2, sf::Vector2i(0, 2));
+			mMap[hutRect.left][hutRect.top + hutRect.height - 1].setSprite(1, sf::Vector2i(0, 2));
 			mMap[hutRect.left][hutRect.top + hutRect.height - 1].setCollidable(true);
 		}
 
 		if (hutRect.left + hutRect.width - 1 >= 0 && hutRect.left + hutRect.width - 1 < mMap.getWidth() &&
 			hutRect.top + hutRect.height - 1 >= 0 && hutRect.top + hutRect.height - 1 < mMap.getHeight())
 		{
-			mMap[hutRect.left + hutRect.width - 1][hutRect.top + hutRect.height - 1].setSprite(2, sf::Vector2i(2, 2));
+			mMap[hutRect.left + hutRect.width - 1][hutRect.top + hutRect.height - 1].setSprite(1, sf::Vector2i(2, 2));
 			mMap[hutRect.left + hutRect.width - 1][hutRect.top + hutRect.height - 1].setCollidable(true);
 		}
 		
@@ -186,7 +186,7 @@ void MapGenerator::placeHut(int x, int y)
 			if (tileX >= 0 && tileX < mMap.getWidth() &&
 				tileY >= 0 && tileY < mMap.getHeight())
 			{
-				mMap[tileX][tileY].setSprite(2, sf::Vector2i(0, 1));
+				mMap[tileX][tileY].setSprite(1, sf::Vector2i(0, 1));
 				mMap[tileX][tileY].setCollidable(true);
 			}
 		}
@@ -199,7 +199,7 @@ void MapGenerator::placeHut(int x, int y)
 			if (tileX >= 0 && tileX < mMap.getWidth() &&
 				tileY >= 0 && tileY < mMap.getHeight())
 			{
-				mMap[tileX][tileY].setSprite(2, sf::Vector2i(2, 1));
+				mMap[tileX][tileY].setSprite(1, sf::Vector2i(2, 1));
 				mMap[tileX][tileY].setCollidable(true);
 			}
 		}

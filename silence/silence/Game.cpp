@@ -24,12 +24,12 @@ bool Game::isAlive()
 
 void Game::update()
 {
-	Entity* newEntity = spawnEnemy();
+	//Entity* newEntity = spawnEnemy();
 	if(mEnemySpawnTimer.getElapsedTime().asSeconds() > 1)
 	{
 		
 		
-		mEntityMan.Add(newEntity);
+		//mEntityMan.Add(newEntity);
 		mEnemySpawnTimer.restart();
 	}
 	mEntityMan.Update();

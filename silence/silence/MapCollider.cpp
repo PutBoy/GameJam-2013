@@ -25,7 +25,9 @@ sf::FloatRect MapCollider::getRectFromTile(size_t x, size_t y)
 sf::Vector2f MapCollider::tryMove(sf::Vector2f position, sf::Vector2f velocity, sf::FloatRect collisionBox)
 {
 	sf::Vector2f newPos = position;
-	
+	int oldX = newPos.x;
+	int oldY = newPos.y;
+
 	//check if box is outside of the screen.
 	if (newPos.x  - collisionBox.width / 2 < 0)
 	{ 
@@ -46,6 +48,7 @@ sf::Vector2f MapCollider::tryMove(sf::Vector2f position, sf::Vector2f velocity, 
 
 	collisionBox.left = newPos.x - collisionBox.width / 2;
 	collisionBox.top = newPos.y - collisionBox.height / 2;
+
 
 	for (int iterY = (newPos.y - collisionBox.height / 2) / tileSize; iterY < (newPos.y + collisionBox.height / 2) / tileSize; iterY++)
 	{
@@ -88,6 +91,7 @@ sf::Vector2f MapCollider::tryMove(sf::Vector2f position, sf::Vector2f velocity, 
 					{
 						newPos.y = tileBox.top - collisionBox.height / 2;
 						collisionBox.top = newPos.y - collisionBox.height / 2;
+
 					}
 					else if (major.y > .5)
 					{
