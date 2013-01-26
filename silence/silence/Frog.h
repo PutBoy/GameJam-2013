@@ -4,11 +4,12 @@
 #include "Enemy.h"
 #include "Animation.h"
 #include "WindowManager.h"
+#include "MapCollider.h"
 
 class Frog : public Enemy
 {
 public:
-	Frog(sf::Vector2f spawnPos);
+	Frog(sf::Vector2f spawnPos, MapCollider map);
 	~Frog(void);
 	virtual void update();
 	virtual void render();
@@ -21,6 +22,9 @@ private:
 	Animation* mRigth;
 	Animation* mCurrentAnim;
 	WindowManager* mWindow;
+
+	MapCollider mMap;
+
 	sf::FloatRect mCollisionBox;
 };
 

@@ -2,7 +2,7 @@
 #include "ResourceManager.h"
 
 
-Frog::Frog(sf::Vector2f spawnPos): Enemy(spawnPos)
+Frog::Frog(sf::Vector2f spawnPos, MapCollider map): Enemy(spawnPos), mMap(map)
 {
 	ResourceManager* r = ResourceManager::getInstance();
 	r->loadTexture("FrogRigth", "frog-sprite.png",sf::IntRect(0,0,1280,128));
@@ -30,12 +30,17 @@ void Frog::update()
 
 	sf::Vector2f move(0,0);
 	if(closeToMyEnemy)
-		move += Enemy::getRandomMove();
+	{
+		move.x -= directionToMyEnemy.x*2;
+		move.y -= directionToMyEnemy.y*2;
+	}
 
 	mPos += move;
-
 	mCollisionBox.left = mPos.x - mCollisionBox.width / 2;
 	mCollisionBox.top = mPos.y - mCollisionBox.height / 2;
+
+	move = mMap.tryMove(mPos, move, mCollisionBox);
+	mPos = move;
 }
 
 void Frog::render()

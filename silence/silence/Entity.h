@@ -26,6 +26,7 @@ public:
 protected:
 	sf::Vector2f mPos;
 	bool closeToMyEnemy;
+	sf::Vector2f directionToMyEnemy;
 private:
 	std::vector <Entity*> drops;
 

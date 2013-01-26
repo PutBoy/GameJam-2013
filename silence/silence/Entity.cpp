@@ -46,8 +46,18 @@ void Entity::closeToEnemy(Entity* en)
 	direction.y = mPos.y - en->getYpos();
 	float length = ((direction.x*direction.x)+(direction.y*direction.y));
 	length = sqrt(length);
-	if(length < 500)
+	if(length < 1000)
+	{
+		if(length > 0.0)
+		{
+			direction.x = direction.x/length;
+			direction.y = direction.y/length;
+		}
+		directionToMyEnemy = direction;
 		closeToMyEnemy = true;
+	}
 	else
+	{
 		closeToMyEnemy = false;
+	}
 }

@@ -7,7 +7,7 @@ Game::Game()
 	:player(sf::Vector2f(200,200),
 	MapCollider(map.getMap()))
 	,cam(&player)
-	,frog(sf::Vector2f(300,300))
+	,frog(sf::Vector2f(300,300), MapCollider(map.getMap()))
 {
 }
 
@@ -19,11 +19,13 @@ bool Game::isAlive()
 void Game::update()
 {
 
-		player.update();
-		Entity* p = &player;
-		frog.closeToEnemy(p);
-		frog.update();
-		cam.update();
+	player.update();
+	Entity* p = &player;
+
+	frog.closeToEnemy(p);
+	frog.update();
+
+	cam.update();
 	WindowManager::getInstance()->setView(cam.getView());
 }
 
