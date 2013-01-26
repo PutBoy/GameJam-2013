@@ -2,7 +2,7 @@
 #include <SFML\Window\Keyboard.hpp>
 #include "ResourceManager.h"
 #include "WindowManager.h"
-
+#include "MapCollider.h"
 
 Player::Player(sf::Vector2f startPos): Entity(startPos)
 {
@@ -18,38 +18,52 @@ Player::Player(sf::Vector2f startPos): Entity(startPos)
 
 	mCurrentAnim = mDown;
 	mYvel = mXvel = 5;
-
 	mWindow = WindowManager::getInstance();
+
+	mCollisionBox.height = 128;
+	mCollisionBox.width = 128;
+	mCollisionBox.top = mPos.y;
+	mCollisionBox.left = mPos.x;
 }
 
 
 Player::~Player(void)
 {
+	delete mMapColider;
 }
 
 
 void Player::update()
 {
+	sf::Vector2f distance;
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		mCurrentAnim = mRigth;
-		mPos.x += mXvel;
+		distance.x += mXvel;
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		mCurrentAnim = mLeft;
-		mPos.x -= mXvel;
+		distance.x -= mXvel;
 	}
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
 		mCurrentAnim = mUp;
-		mPos.y -= mYvel;
+		distance.y -= mYvel;
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
 		mCurrentAnim = mDown;
-		mPos.y += mYvel;
+		distance.y += mYvel;
 	}
+
+	mPos += distance;
+	mCollisionBox.left = mPos.x;
+	mCollisionBox.top = mPos.y;
+	
+
+	sf::Vector2f move = mMapColider->tryMove(mPos, distance, mCollisionBox);
+	mPos = move;
 
 	mCurrentAnim->update();
 }
