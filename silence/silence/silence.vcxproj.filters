@@ -48,9 +48,6 @@
     <ClCompile Include="MapGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Weapon.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MapTile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -84,8 +81,11 @@
     <ClCompile Include="PauseMenu.cpp">
       <Filter>Source Files\States</Filter>
     </ClCompile>
-    <ClCompile Include="Bat.cpp">
+    <ClCompile Include="SpineMacePickup.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SpineMace.cpp">
+	<Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -149,8 +149,14 @@
     <ClInclude Include="PauseMenu.h">
       <Filter>Header Files\States</Filter>
     </ClInclude>
-    <ClInclude Include="Bat.h">
+    <ClInclude Include="Pickup.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SpineMacePickup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SpineMace.h">
+	<Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

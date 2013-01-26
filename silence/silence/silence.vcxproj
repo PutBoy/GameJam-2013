@@ -97,10 +97,11 @@
     <ClCompile Include="PauseMenu.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="SpineMace.cpp" />
+    <ClCompile Include="SpineMacePickup.cpp" />
     <ClCompile Include="StartMenu.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="StateManager.cpp" />
-    <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -118,8 +119,11 @@
     <ClInclude Include="MapManager.h" />
     <ClInclude Include="MapTile.h" />
     <ClInclude Include="PauseMenu.h" />
+    <ClInclude Include="Pickup.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="SpineMace.h" />
+    <ClInclude Include="SpineMacePickup.h" />
     <ClInclude Include="StartMenu.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateManager.h" />
