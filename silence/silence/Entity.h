@@ -35,7 +35,7 @@ protected:
 
 private:
 	std::vector <Entity*> drops;
-	std::set<std::string> IDset;
+	//std::set<std::string> IDset;
 };
 
 #endif

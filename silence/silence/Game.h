@@ -9,6 +9,7 @@
 #include "Bat.h"
 #include <SFML\Window\Keyboard.hpp>
 #include "EntityManager.h"
+#include <memory>
 
 class StateManager;
 class PauseMenu;
@@ -25,12 +26,12 @@ private:
 	Entity* spawnEnemy();
 
 	MapManager map;
-	EntityManager* mEntityMan;
+	EntityManager mEntityMan;
 	
-	Player player;
 	sf::Clock mEnemySpawnTimer;
 
-	Camera cam;
+	std::auto_ptr<Camera> mCam;
+	Player* mPlayer;
 	bool mAlive;
 
 };
