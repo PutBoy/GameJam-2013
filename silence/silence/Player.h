@@ -21,7 +21,7 @@ private:
 
 	Animation* mDown;
 	Animation* mLeft;
-	Animation* mRight;
+	Animation* mRigth;
 	Animation* mUp;
 	Animation* mCurrentAnim;
 	float mYvel, mXvel;

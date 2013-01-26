@@ -13,7 +13,7 @@ Player::Player(sf::Vector2f startPos): Entity(startPos)
 	r->loadTexture("up","priest_walk_back_sprite.png",sf::IntRect(0,0,1280,128));
 	mDown = new Animation("down",150,10);
 	mLeft = new Animation("left",150,10);
-	mRight = new Animation("right",150,10);
+	mRigth = new Animation("right",150,10);
 	mUp = new Animation("up",150,10);
 
 	mCurrentAnim = mDown;
@@ -32,12 +32,12 @@ void Player::update()
 {
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
-		mCurrentAnim = mDown;
+		mCurrentAnim = mRigth;
 		mPos.x += mXvel;
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
-		mCurrentAnim = mDown;
+		mCurrentAnim = mLeft;
 		mPos.x -= mXvel;
 	}
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
