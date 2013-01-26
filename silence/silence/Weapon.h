@@ -1,4 +1,5 @@
-#pragma once
+#ifndef WEAPON_H
+#define WEAPON_H
 class Weapon
 {
 public:
@@ -6,3 +7,4 @@ public:
 	~Weapon(void);
 };
 
+#endif
