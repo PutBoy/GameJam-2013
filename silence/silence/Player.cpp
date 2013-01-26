@@ -15,7 +15,7 @@ Player::Player(sf::Vector2f startPos): Entity(startPos)
 	mRight = new Animation("rigth",150,10);
 
 	mCurrentAnim = mDown;
-	mYvel = mXvel = 2;
+	mYvel = mXvel = 5;
 
 	mWindow = WindowManager::getInstance()->getWindow();
 }
