@@ -15,7 +15,7 @@ int main()
 
 
 	Player player(sf::Vector2f(200,200));
-	//Camera cam(&player, 10);
+	Camera cam(&player);
 
 	while(win->isOpen() && !sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 	{
@@ -26,10 +26,10 @@ int main()
 				win->close();
 		}
 		win->clear();
-		//cam.update();
+		cam.update();
 		player.update();
 
-		//win->setView(cam.getView());
+		win->setView(cam.getView());
 		player.render();
 
 

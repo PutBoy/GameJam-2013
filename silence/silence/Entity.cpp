@@ -21,9 +21,7 @@ float Entity::getYpos()const
 }
 
 void Entity::update()
-{
-
-}
+{}
 
 void Entity::render()
 {}
