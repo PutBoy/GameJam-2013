@@ -19,7 +19,7 @@ Player::Player(sf::Vector2f startPos): Entity(startPos)
 	mCurrentAnim = mDown;
 	mYvel = mXvel = 5;
 
-	mWindow = WindowManager::getInstance()->getWindow();
+	mWindow = WindowManager::getInstance();
 }
 
 
@@ -57,7 +57,7 @@ void Player::update()
 void Player::render()
 {
 	mCurrentAnim->setPosition(mPos);
-	mWindow->draw(mCurrentAnim->getSprite());
+	mWindow->renderToCanvas(mCurrentAnim->getSprite(), 0);
 }
 
 float Player::getHP(){

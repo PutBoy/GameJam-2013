@@ -3,7 +3,8 @@
 
 #include "Entity.h"
 #include "Animation.h"
-#include <SFML\Graphics.hpp>
+
+class WindowManager;
 
 class Player : public Entity
 {
@@ -25,7 +26,7 @@ private:
 	Animation* mUp;
 	Animation* mCurrentAnim;
 	float mYvel, mXvel;
-	sf::RenderWindow* mWindow;
+	WindowManager* mWindow;
 };
 
 #endif

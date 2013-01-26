@@ -2,19 +2,18 @@
 #include "ResourceManager.h"
 #include <sstream>
 
-MapTile::MapTile(sf::Vector2i spriteSheetPos, bool collidable)
-	:mSpriteSheetPos(spriteSheetPos)
-	,mCollidable(collidable)
-
+MapTile::MapTile()
+	:mCollidable(0)
 {
+}
+
+void MapTile::setSprite(size_t index, const sf::Vector2i& spriteSheetPos)
+{
+	if (index >= mSprites.size())
+		return;
+
 	std::stringstream ss;
 
 	ss << "maptiles_" << spriteSheetPos.x << "_" << spriteSheetPos.y;
-	mSprite = sf::Sprite(ResourceManager::getInstance()->getTexture(ss.str()));
-}
-
-MapTile::MapTile()
-	:mSpriteSheetPos(0, 0)
-	,mCollidable(0)
-{
+	mSprites[index] = sf::Sprite(ResourceManager::getInstance()->getTexture(ss.str()));
 }

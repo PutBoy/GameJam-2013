@@ -3,10 +3,22 @@
 #include <exception>
 #include <cmath>
 #include <ctime>
+#include <sstream>
+#include "ResourceManager.h"
 
 MapGenerator::MapGenerator(size_t w, size_t h)
 	:mMap(w, h)
 {
+	std::stringstream ss;
+	for (int i = 0; i < 5; ++i)
+	{
+		for (int j = 0; j < 5; ++j)
+		{
+			ss << "maptiles_" << i << "_" << j;
+			ResourceManager::getInstance()->loadTexture(ss.str(), "map_collection_png.png", sf::IntRect(i * 64, j * 64, 64, 64));
+			ss.str("");
+		}
+	}
 	generateNew(w, h);
 }
 
@@ -23,7 +35,7 @@ void MapGenerator::generateNew(size_t w, size_t h)
 	{
 		for (size_t y = 0; y < mMap.getHeight(); ++y)
 		{
-			mMap[x][y] = MapTile(sf::Vector2i(0, 4), false);
+			mMap[x][y].setSprite(0, sf::Vector2i(1, 4));
 		}
 	}
 
@@ -45,7 +57,8 @@ void MapGenerator::placeHut(int x, int y)
 	{
 		for (int i = 0; i < 3; i++)
 		{
-			for (int j = 0; j < 3; j++)
+			
+			for (int j = 0; j < 1; j++)
 			{
 				int tileX = i - 1 + x;
 				int tileY = j - 1 + y;
@@ -53,10 +66,24 @@ void MapGenerator::placeHut(int x, int y)
 				if (tileX >= 0 && tileX < mMap.getWidth() &&
 					tileY >= 0 && tileY < mMap.getHeight())
 				{
-					mMap[tileX][tileY] = MapTile(sf::Vector2i(i, j), true);
+					mMap[tileX][tileY].setSprite(2, sf::Vector2i(i, j));
+					mMap[tileX][tileY].setCollidabe(false);
 				}
 			}
+			
 
+			for (int j = 1; j < 3; j++)
+			{
+				int tileX = i - 1 + x;
+				int tileY = j - 1 + y;
+
+				if (tileX >= 0 && tileX < mMap.getWidth() &&
+					tileY >= 0 && tileY < mMap.getHeight())
+				{
+					mMap[tileX][tileY].setSprite(1, sf::Vector2i(i, j));
+					mMap[tileX][tileY].setCollidabe(true);
+				}
+			}
 		}
 	}
 }
@@ -75,7 +102,8 @@ void MapGenerator::placeTree(int x, int y)
 				if (tileX >= 0 && tileX < mMap.getWidth() &&
 					tileY >= 0 && tileY < mMap.getHeight())
 				{
-					mMap[i + x][j + y] = MapTile(sf::Vector2i(i + 3, j), true);
+					mMap[tileX][tileY].setSprite(1, sf::Vector2i(i + 3, j));
+					mMap[tileX][tileY].setCollidabe(true);
 				}
 			}
 		}

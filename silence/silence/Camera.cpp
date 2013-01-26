@@ -19,5 +19,5 @@ sf::View& Camera::getView()
 
 void Camera::update()
 {
-		mCamera.setCenter(mObj->getXpos()+128/2, mObj->getYpos()-128);
+	mCamera.setCenter(mObj->getXpos()+128/2, mObj->getYpos()-128);
 }

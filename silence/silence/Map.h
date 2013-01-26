@@ -5,8 +5,8 @@
  */
 
 
-#ifndef COLLISIONMAP_H
-#define COLLISIONMAP_H
+#ifndef MAP_H
+#define MAP_H
 
 #include <vector>
 #include <SFML\Graphics\Rect.hpp>

@@ -3,18 +3,23 @@
 
 #include <SFML\System\Vector2.hpp>
 #include <SFML\Graphics.hpp>
+#include <string>
+#include <array>
 
 class MapTile
 {
 public:
 	MapTile();
-	MapTile(sf::Vector2i spriteSheetPos, bool coolidable);
+
 	bool getCollibable() const {return mCollidable;};
-	const sf::Vector2i& getSheetPosition() const {return mSpriteSheetPos;};
-	const sf::Sprite& getSprite() const {return mSprite;};
+	sf::Sprite& getSprite(size_t layer) {return mSprites[layer];};
+	const sf::Sprite& getSprite(size_t layer) const {return mSprites[layer];};
+	
+	void setCollidabe(bool collidable) {mCollidable = collidable;};
+	void setSprite(size_t layer, const sf::Vector2i& spriteSheedPos); 
+
 private:
-	sf::Sprite mSprite;
-	sf::Vector2i mSpriteSheetPos;
+	std::array<sf::Sprite, 3U> mSprites;
 	bool mCollidable;
 };
 
