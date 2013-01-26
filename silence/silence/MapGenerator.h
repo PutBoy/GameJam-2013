@@ -14,6 +14,7 @@ private:
 	void placeHut(int x, int y);
 	void placeTree(int x, int y);
 
+	bool isClear(const sf::IntRect& rect);
 	Map mMap;
 };
 

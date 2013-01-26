@@ -1,6 +1,8 @@
 #include "MapGenerator.h"
 #include "Map.h"
 #include <exception>
+#include <cmath>
+#include <ctime>
 
 MapGenerator::MapGenerator(size_t w, size_t h)
 	:mMap(w, h)
@@ -15,6 +17,8 @@ Map& MapGenerator::getMap()
 
 void MapGenerator::generateNew(size_t w, size_t h)
 {
+	std::srand(static_cast<unsigned int>(std::time(0)));
+
 	for (size_t x = 0; x < mMap.getWidth(); ++x)
 	{
 		for (size_t y = 0; y < mMap.getHeight(); ++y)
@@ -23,46 +27,77 @@ void MapGenerator::generateNew(size_t w, size_t h)
 		}
 	}
 
-	placeHut(0, 3);
-	placeHut(9, 3);
-	placeTree(1, 7);
-	placeTree(4, 7);
+	for (int i = 0; i < 20; i++)
+	{
+		placeHut(std::rand() % mMap.getWidth(), std::rand() % mMap.getHeight());
+	}
+
+	for (int i = 0; i < 20; i++)
+	{
+		placeTree(std::rand() % mMap.getWidth(), std::rand() % mMap.getHeight());
+	}
 }
 
 void MapGenerator::placeHut(int x, int y)
 {
-	for (int i = 0; i < 3; i++)
+
+	if (isClear(sf::IntRect(x - 1, y - 1, 3, 3)))
 	{
-		for (int j = 0; j < 3; j++)
+		for (int i = 0; i < 3; i++)
 		{
-			int tileX = i - 1 + x;
-			int tileY = j - 1 + y;
-
-			if (tileX >= 0 && tileX < mMap.getWidth() &&
-				tileY >= 0 && tileY < mMap.getHeight())
+			for (int j = 0; j < 3; j++)
 			{
-				mMap[tileX][tileY] = MapTile(sf::Vector2i(i, j), true);
+				int tileX = i - 1 + x;
+				int tileY = j - 1 + y;
+
+				if (tileX >= 0 && tileX < mMap.getWidth() &&
+					tileY >= 0 && tileY < mMap.getHeight())
+				{
+					mMap[tileX][tileY] = MapTile(sf::Vector2i(i, j), true);
+				}
 			}
+
 		}
-
 	}
-
 }
 
 void MapGenerator::placeTree(int x, int y)
 {
-	for (int i = 0; i < 2; i++)
+	if (isClear(sf::IntRect(x, y, 2, 2)))
 	{
-		for (int j = 0; j < 2; j++)
+		for (int i = 0; i < 2; i++)
 		{
-			int tileX = i + x;
-			int tileY = j + y;
-
-			if (tileX >= 0 && tileX < mMap.getWidth() &&
-				tileY >= 0 && tileY < mMap.getHeight())
+			for (int j = 0; j < 2; j++)
 			{
-				mMap[i + x][j + y] = MapTile(sf::Vector2i(i + 3, j), true);
+				int tileX = i + x;
+				int tileY = j + y;
+
+				if (tileX >= 0 && tileX < mMap.getWidth() &&
+					tileY >= 0 && tileY < mMap.getHeight())
+				{
+					mMap[i + x][j + y] = MapTile(sf::Vector2i(i + 3, j), true);
+				}
 			}
 		}
 	}
+}
+
+bool MapGenerator::isClear(const sf::IntRect& rect)
+{
+	for (int i = rect.left; i < rect.left + rect.width; i++)
+	{
+		for (int j = rect.top; j < rect.top + rect.height; j++)
+		{
+
+			if (i >= 0 && i < mMap.getWidth() &&
+				j >= 0 && j < mMap.getHeight())
+			{
+				if (mMap[i][j].getCollibable() == true)
+					return false;
+
+			}
+		}
+	}
+
+	return true;
 }
