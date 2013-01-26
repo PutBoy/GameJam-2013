@@ -1,5 +1,6 @@
 #include "MapGenerator.h"
 #include "Map.h"
+#include <exception>
 
 MapGenerator::MapGenerator(size_t w, size_t h)
 	:mMap(w, h)
@@ -19,30 +20,49 @@ void MapGenerator::generateNew(size_t w, size_t h)
 		for (size_t y = 0; y < mMap.getHeight(); ++y)
 		{
 			mMap[x][y] = MapTile(sf::Vector2i(0, 4), false);
-			
 		}
 	}
 
-	placeHut(5, 3);
+	placeHut(0, 3);
+	placeHut(9, 3);
+	placeTree(1, 7);
+	placeTree(4, 7);
 }
 
-void MapGenerator::placeHut(size_t x, size_t y)
+void MapGenerator::placeHut(int x, int y)
 {
-	mMap[x - 1][y - 1] = MapTile(sf::Vector2i(0, 0), true);
-	mMap[x ][y - 1] = MapTile(sf::Vector2i(1, 0), true);
-	mMap[x + 1][y - 1] = MapTile(sf::Vector2i(2, 0), true);
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			int tileX = i - 1 + x;
+			int tileY = j - 1 + y;
 
-	mMap[x - 1][y ] = MapTile(sf::Vector2i(0, 1), true);
-	mMap[x ][y ] = MapTile(sf::Vector2i(1, 1), true);
-	mMap[x + 1][y ] = MapTile(sf::Vector2i(2, 1), true);
+			if (tileX >= 0 && tileX < mMap.getWidth() &&
+				tileY >= 0 && tileY < mMap.getHeight())
+			{
+				mMap[tileX][tileY] = MapTile(sf::Vector2i(i, j), true);
+			}
+		}
 
-	mMap[x - 1][y + 1] = MapTile(sf::Vector2i(0, 2), true);
-	mMap[x ][y + 1] = MapTile(sf::Vector2i(1, 2), true);
-	mMap[x + 1][y + 1] = MapTile(sf::Vector2i(2, 2), true);
+	}
 
 }
 
-void placeTree(size_t x, size_t y)
+void MapGenerator::placeTree(int x, int y)
 {
+	for (int i = 0; i < 2; i++)
+	{
+		for (int j = 0; j < 2; j++)
+		{
+			int tileX = i + x;
+			int tileY = j + y;
 
+			if (tileX >= 0 && tileX < mMap.getWidth() &&
+				tileY >= 0 && tileY < mMap.getHeight())
+			{
+				mMap[i + x][j + y] = MapTile(sf::Vector2i(i + 3, j), true);
+			}
+		}
+	}
 }

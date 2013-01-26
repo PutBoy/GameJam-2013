@@ -11,8 +11,8 @@ public:
 	Map& getMap();
 	void generateNew(size_t w, size_t h);
 private:
-	void placeHut(size_t x, size_t y);
-	void placeTree(size_t x, size_t y);
+	void placeHut(int x, int y);
+	void placeTree(int x, int y);
 
 	Map mMap;
 };
