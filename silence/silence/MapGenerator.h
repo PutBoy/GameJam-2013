@@ -19,8 +19,8 @@ private:
 	enum OppositeDirection {OPP_NONE = NONE, OPP_UP = DOWN, OPP_DOWN = UP, OPP_LEFT = RIGHT, OPP_RIGHT = LEFT};
 
 
-	void placeWalkWay(const sf::Vector2i& start, const sf::Vector2i stop);
-	void placeRoadTile(const sf::Vector2i& walkWayPos, Direction direction, Direction nextDirection);
+	bool placeWalkWay(const sf::Vector2i& start, const sf::Vector2i stop);
+	void placeRoadTile(const sf::Vector2i& walkWayPos, Direction direction, Direction prevDirection);
 
 	void placeHut(int x, int y);
 	void placeTree(int x, int y);

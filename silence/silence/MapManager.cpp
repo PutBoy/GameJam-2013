@@ -6,7 +6,7 @@
 #include "WindowManager.h"
 
 MapManager::MapManager()
-	:mMapGenerator(20, 20)
+	:mMapGenerator(100, 100)
 	,mResources(ResourceManager::getInstance())
 {
 	mMap = &mMapGenerator.getMap();
