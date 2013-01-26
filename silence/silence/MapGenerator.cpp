@@ -61,12 +61,17 @@ void MapGenerator::generateNew(size_t w, size_t h)
 
 void MapGenerator::placeHut(int x, int y)
 {
-	int width = std::rand() % 2 + 3;
-	int height = std::rand() % 2 + 3;
-	
+	int width = std::rand() % 3 + 3;
+	int height = std::rand() % 3 + 3;
+
+
 	sf::IntRect hutRect(x - width / 2, y - height / 2, width, height );
-
-
+	
+	if (width % 2 == 0)
+		x-=1;
+	if (height % 2 == 0)
+		y-=1;
+	
 	if (isClear(hutRect))
 	{
 		//first make all tiles occupied
@@ -113,11 +118,11 @@ void MapGenerator::placeHut(int x, int y)
 			mMap[hutRect.left + hutRect.width - 1][hutRect.top + hutRect.height - 1].setSprite(1, sf::Vector2i(2, 2));
 			mMap[hutRect.left + hutRect.width - 1][hutRect.top + hutRect.height - 1].setCollidable(true);
 		}
-
+		
 		//place roof!
-		for (int i = hutRect.left + 1; i < hutRect.left + hutRect.width; i++)
+		for (int i = hutRect.left + 1; i < hutRect.left + hutRect.width - 1; i++)
 		{
-			for (int j = hutRect.top + 1; j < hutRect.top + hutRect.height; j++)
+			for (int j = hutRect.top + 1; j < hutRect.top + hutRect.height - 1; j++)
 			{
 				int tileX = i;
 				int tileY = j;
@@ -139,8 +144,9 @@ void MapGenerator::placeHut(int x, int y)
 			mMap[x][y].setCollidable(true);
 		}
 
-		//NOW PLACE ROOF! OVER AND OUT MOTHERFAKKARS!
-		for (int i = hutRect.left + 1; i < hutRect.left + hutRect.width; i++)
+		
+		//NOW PLACE WALLS! OVER AND OUT MOTHERFAKKARS!
+		for (int i = hutRect.left + 1; i < hutRect.left + hutRect.width - 1; i++)
 		{
 			int tileX = i;
 			int tileY = hutRect.top;
@@ -153,10 +159,10 @@ void MapGenerator::placeHut(int x, int y)
 			}
 		}
 
-		for (int i = hutRect.left + 1; i < hutRect.left + hutRect.width; i++)
+		for (int i = hutRect.left + 1; i < hutRect.left + hutRect.width - 1; i++)
 		{
 			int tileX = i;
-			int tileY = hutRect.top + hutRect.height;
+			int tileY = hutRect.top + hutRect.height - 1;
 
 			if (tileX >= 0 && tileX < mMap.getWidth() &&
 				tileY >= 0 && tileY < mMap.getHeight())
@@ -166,7 +172,7 @@ void MapGenerator::placeHut(int x, int y)
 			}
 		}
 
-		for (int i = hutRect.top + 1; i < hutRect.top + hutRect.height; i++)
+		for (int i = hutRect.top + 1; i < hutRect.top + hutRect.height - 1; i++)
 		{
 			int tileX = hutRect.left;
 			int tileY = i;
@@ -179,9 +185,9 @@ void MapGenerator::placeHut(int x, int y)
 			}
 		}
 
-		for (int i = hutRect.top + 1; i < hutRect.top + hutRect.height; i++)
+		for (int i = hutRect.top + 1; i < hutRect.top + hutRect.height - 1; i++)
 		{
-			int tileX = hutRect.left + hutRect.width;
+			int tileX = hutRect.left + hutRect.width - 1;
 			int tileY = i;
 
 			if (tileX >= 0 && tileX < mMap.getWidth() &&
@@ -191,6 +197,8 @@ void MapGenerator::placeHut(int x, int y)
 				mMap[tileX][tileY].setCollidable(true);
 			}
 		}
+
+		
 	}
 }
 
