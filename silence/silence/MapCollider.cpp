@@ -23,8 +23,42 @@ sf::FloatRect MapCollider::getRectFromTile(size_t x, size_t y)
 
 sf::Vector2f MapCollider::tryMove(sf::Vector2f position, sf::Vector2f velocity, sf::IntRect collisionBox)
 {
+	sf::Vector2f newPos = position;
+	
+	//check if box is outside of the screen.
+	if (newPos.x  - collisionBox.width / 2 < 0)
+	{ 
+		newPos.x = collisionBox.width / 2;
+	}
+	if (newPos.y - collisionBox.width / 2 < 0)
+	{
+		newPos.y = collisionBox.height / 2;
+	}
+	if (newPos.x + collisionBox.width / 2 > mMap->getWidth() * tileSize)
+	{
+		newPos.x = (mMap->getWidth() * tileSize) - collisionBox.width / 2;
+	}
+	if (newPos.y + collisionBox.height / 2 > mMap->getHeight() * tileSize)
+	{
+ 		newPos.y = (mMap->getHeight() * tileSize) - collisionBox.height / 2;
+	}
+
+	collisionBox.left = newPos.x - collisionBox.width / 2;
+	collisionBox.top = newPos.y - collisionBox.height / 2;
+	for (int iterY = (newPos.y - collisionBox.height / 2) / tileSize; iterY < (newPos.y + collisionBox.height / 2) / tileSize; iterY++)
+	{
+		for (int iterX = (newPos.x- collisionBox.width / 2) / tileSize; iterX < (newPos.x + collisionBox.width / 2) / tileSize; iterX++)
+		{
+			//If tile is outside of the collisionMap, ignore that tile
+			if (iterX < 0 || iterX >= mMap->getWidth() ||
+				iterY < 0 || iterY >= mMap->getHeight())
+				continue;
+	
+		}
+	}
+
 	/*
-if(other->IsID("Box"))
+	if(other->IsID("Box"))
 	{
 		boxCollided = true;
 
@@ -68,4 +102,6 @@ if(other->IsID("Box"))
 		}
 	}
 	*/
+	
+	return newPos;
 }
