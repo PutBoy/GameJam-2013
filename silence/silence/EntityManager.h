@@ -17,6 +17,7 @@
 	void Add(Entity* Ent);
 	void AliveCheck();
 	void Collision();
+	void Updatedrops();
 
 	protected:
 	
