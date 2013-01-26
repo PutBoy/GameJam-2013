@@ -14,11 +14,6 @@ public:
 	float getYpos()const;
 	virtual void update()=0;
 	virtual void render()=0;
-protected:
-	sf::Vector2f mPos;
-
-	virtual void update() = 0;
-	virtual void render() = 0;
 	void Drop(Entity* drop);
 	Entity* getNextDrop();
 protected:
