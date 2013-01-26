@@ -9,7 +9,9 @@
 
 	public:
 
-	static EntityManager* EM();
+	static EntityManager* getInstance();
+
+	//static EntityManager* EM();
 	~EntityManager();
 
 	void Update();
@@ -17,14 +19,12 @@
 	void Add(Entity* Ent);
 	void AliveCheck();
 	void Collision();
-
-	protected:
-	
-		EntityManager();
+	void Updatedrops();
 
 	private:
+		EntityManager();
 
-		static EntityManager* mEM;
+		//static EntityManager* mEM;
 		typedef std::vector <Entity*> EntityVector;
 		EntityVector mEntities;
 

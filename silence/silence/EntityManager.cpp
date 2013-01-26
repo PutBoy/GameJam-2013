@@ -1,18 +1,9 @@
 #include "EntityManager.h"
 #include "Entity.h"
 
-EntityManager* EntityManager::mEM = 0;
-
 
 EntityManager::EntityManager()
-{
-
-	if(mEM == 0){
-	mEM = new EntityManager();
-	
-	}
-	return mEM;
-}
+{}
 
 
 EntityManager::~EntityManager(){
@@ -41,7 +32,7 @@ void EntityManager::Update(){
 	
 		mEntities[i]->update();
 
-		mEntities.push_back(mEntities[i]->GetNextDrop());
+		mEntities.push_back(mEntities[i]->getNextDrop());
 	}
 }
 
@@ -61,12 +52,26 @@ void EntityManager::Collision(){
 	for(EntityVector::size_type i = 0; i<mEntities.size();i++){
 		for(EntityVector::size_type j = 0; j<mEntities.size();j++){
 
-			if(mEntities[i]->isID("Enemy") ==  mEntities[j]->isID("Friend") && mEntities[i]->getColbox().intersects(mEntities[j]->getColbox()){
+			if(mEntities[i]->isID("Enemy") ==  mEntities[j]->isID("Friend") && mEntities[i]->getColBox().intersects(mEntities[j]->getColBox())){
 				mEntities[i]->setHP(mEntities[j]->getDamage());
 			}
 
-			if(mEntities[i]->isID("Friend") ==  mEntities[j]->isID("Enemy") && mEntities[i]->getColbox().intersects(mEntities[j]->getColbox()){
+			if(mEntities[i]->isID("Friend") ==  mEntities[j]->isID("Enemy") && mEntities[i]->getColBox().intersects(mEntities[j]->getColBox())){
 			mEntities[i]->setHP(mEntities[j]->getDamage());
+			}
 		}
 	}
 }
+
+	void EntityManager::Updatedrops(){
+		for(EntityVector::size_type i = 0; i < mEntities.size(); i++){
+			//if(mEntities[i]
+		}
+	}
+
+
+	EntityManager* EntityManager::getInstance(){
+		static EntityManager instance;
+		return &instance;
+	
+	}

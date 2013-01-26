@@ -13,4 +13,28 @@ float Entity::getXpos()const
 float Entity::getYpos()const
 {
 	return mPos.y;
+
+}
+
+
+
+void Entity::Drop(Entity* drop){
+	if(drop != nullptr){
+		drops.push_back(drop);
+	
+	}
+}
+
+Entity* Entity::getNextDrop(){
+
+	Entity* ent = nullptr;
+	if(drops.size() == 0)
+		return nullptr;
+
+	ent = drops[drops.size() - 1];
+	drops.pop_back();
+
+	return ent;
+
+
 }
