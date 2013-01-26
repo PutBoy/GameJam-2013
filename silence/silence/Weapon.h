@@ -3,22 +3,20 @@
 
 #include <SFML\Graphics\Sprite.hpp>
 
-class Player; // kanske
-
-class Entity;
+#include "Entity.h"
 
 class Weapon
 {
-	friend class Player;
+	friend class Entity;
 public:
-	Weapon(Entity* player){}; //   <---------------correct med måsvingar ??
+	Weapon(Entity* player){mPlayer = player;}; //   <---------------correct med måsvingar ??
 	virtual ~Weapon(){};
 	virtual bool shoot()=0;
-	virtual sf::Sprite getSprite()=0;
+	virtual sf::Sprite& getSprite()=0;
 	virtual Entity* createBullet()=0;
 	virtual sf::FloatRect getColBox()=0;
 protected:
-	virtual Entity* getPlayer()=0;
+	Entity* getPlayer(){return mPlayer;};
 private:
 	sf::Vector2f mDirection;
 	Entity* mPlayer;

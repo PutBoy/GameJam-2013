@@ -9,13 +9,21 @@ SpineMace::SpineMace(Entity* player):
 	mAnimation = new Animation("spinemace", 150, 1);
 }
 
-SpineMace::~SpineMace(){}
+SpineMace::~SpineMace()
+{}
 
 bool SpineMace::shoot(){
 	return false;
 }
 
-sf::Sprite SpineMace::getSprite(){
+sf::Sprite& SpineMace::getSprite(){
+	int pX = getPlayer()->getXpos();
+	int pY = getPlayer()->getYpos();
+
+	mAnimation->getSprite().setPosition(
+		pX - mAnimation->getSprite().getTextureRect().width / 2,
+		pY - mAnimation->getSprite().getTextureRect().height / 2);
+
 	return mAnimation->getSprite();
 }
 
@@ -23,9 +31,6 @@ Entity* SpineMace::createBullet(){
 	return nullptr;
 }
 
-Entity* SpineMace::getPlayer(){
-	return nullptr;
-}
 
 sf::FloatRect SpineMace::getColBox(){
 	return mAnimation->getSprite().getGlobalBounds();
