@@ -7,6 +7,7 @@
 #include "ResourceManager.h"
 #include <vector>
 
+
 MapGenerator::MapGenerator(size_t w, size_t h)
 	:mMap(w, h)
 {
@@ -35,7 +36,7 @@ void MapGenerator::generateNew(size_t w, size_t h)
 
 	std::srand(static_cast<unsigned int>(std::time(0)));
 	std::vector<sf::Vector2i> groundSprites;
-	groundSprites.push_back(sf::Vector2i(0, 5));
+	groundSprites.push_back(sf::Vector2i(1, 4));
 
 
 	//place ground
@@ -47,18 +48,18 @@ void MapGenerator::generateNew(size_t w, size_t h)
 		}
 	}
 
-	/*
+		
 	while(!placeWalkWay(sf::Vector2i(0, 0), sf::Vector2i(w - 1, h - 1)))
 	{
-		std::srand(static_cast<unsigned int>(std::time(0)));
-	}*/
+		std::srand(static_cast<unsigned int>(std::clock()));
+	}
 
-	for (int i = 0; i < 100; i++)
+	for (int i = 0; i < 50; i++)
 	{
 		placeHut(std::rand() % mMap.getWidth(), std::rand() % mMap.getHeight());
 	}
 
-	for (int i = 0; i < 0; i++)
+	for (int i = 0; i < 50; i++)
 	{
 		placeTree(std::rand() % mMap.getWidth(), std::rand() % mMap.getHeight());
 	}
@@ -113,14 +114,14 @@ void MapGenerator::placeHut(int x, int y)
 		if (hutRect.left >= 0 && hutRect.left < mMap.getWidth() &&
 			hutRect.top + hutRect.height - 1 >= 0 && hutRect.top + hutRect.height - 1 < mMap.getHeight())
 		{
-			mMap[hutRect.left][hutRect.top + hutRect.height - 1].setSprite(1, sf::Vector2i(0, 2));
+			mMap[hutRect.left][hutRect.top + hutRect.height - 1].setSprite(2, sf::Vector2i(0, 2));
 			mMap[hutRect.left][hutRect.top + hutRect.height - 1].setCollidable(true);
 		}
 
 		if (hutRect.left + hutRect.width - 1 >= 0 && hutRect.left + hutRect.width - 1 < mMap.getWidth() &&
 			hutRect.top + hutRect.height - 1 >= 0 && hutRect.top + hutRect.height - 1 < mMap.getHeight())
 		{
-			mMap[hutRect.left + hutRect.width - 1][hutRect.top + hutRect.height - 1].setSprite(1, sf::Vector2i(2, 2));
+			mMap[hutRect.left + hutRect.width - 1][hutRect.top + hutRect.height - 1].setSprite(2, sf::Vector2i(2, 2));
 			mMap[hutRect.left + hutRect.width - 1][hutRect.top + hutRect.height - 1].setCollidable(true);
 		}
 		
@@ -185,7 +186,7 @@ void MapGenerator::placeHut(int x, int y)
 			if (tileX >= 0 && tileX < mMap.getWidth() &&
 				tileY >= 0 && tileY < mMap.getHeight())
 			{
-				mMap[tileX][tileY].setSprite(1, sf::Vector2i(0, 1));
+				mMap[tileX][tileY].setSprite(2, sf::Vector2i(0, 1));
 				mMap[tileX][tileY].setCollidable(true);
 			}
 		}
@@ -198,7 +199,7 @@ void MapGenerator::placeHut(int x, int y)
 			if (tileX >= 0 && tileX < mMap.getWidth() &&
 				tileY >= 0 && tileY < mMap.getHeight())
 			{
-				mMap[tileX][tileY].setSprite(1, sf::Vector2i(2, 1));
+				mMap[tileX][tileY].setSprite(2, sf::Vector2i(2, 1));
 				mMap[tileX][tileY].setCollidable(true);
 			}
 		}
@@ -209,24 +210,158 @@ void MapGenerator::placeHut(int x, int y)
 
 void MapGenerator::placeTree(int x, int y)
 {
-	if (isClear(sf::IntRect(x, y, 2, 2)))
+	int width = std::rand() % 4 + 2;
+	int height = std::rand() % 4 + 3;
+
+
+	sf::IntRect treeRect(x - 1, y - 1, width, height );
+	
+	if (isClear(treeRect))
 	{
-		for (int i = 0; i < 2; i++)
+		//first make all tiles occupied:
+		for (int i = treeRect.left; i < treeRect.left + treeRect.width; i++)
 		{
-			for (int j = 0; j < 2; j++)
+			for (int j = treeRect.top; j < treeRect.top + treeRect.height; j++)
 			{
-				int tileX = i + x;
-				int tileY = j + y;
+				int tileX = i;
+				int tileY = j;
 
 				if (tileX >= 0 && tileX < mMap.getWidth() &&
 					tileY >= 0 && tileY < mMap.getHeight())
 				{
-					mMap[tileX][tileY].setSprite(1, sf::Vector2i(i + 3, j));
-					mMap[tileX][tileY].setCollidable(true);
 					mMap[tileX][tileY].setOccupied(true);
 				}
 			}
 		}
+
+		//then place corners:
+		if (treeRect.left >= 0 && treeRect.left < mMap.getWidth() &&
+			treeRect.top >= 0 && treeRect.top < mMap.getHeight())
+		{
+			mMap[treeRect.left][treeRect.top].setSprite(2, sf::Vector2i(3, 0));
+			mMap[treeRect.left][treeRect.top].setCollidable(false);
+		}
+
+		if (treeRect.left + treeRect.width - 1 >= 0 && treeRect.left + treeRect.width - 1 < mMap.getWidth() &&
+			treeRect.top >= 0 && treeRect.top < mMap.getHeight())
+		{
+			mMap[treeRect.left + treeRect.width - 1][treeRect.top].setSprite(2, sf::Vector2i(4, 0));
+			mMap[treeRect.left + treeRect.width - 1][treeRect.top].setCollidable(false);
+		}
+
+		if (treeRect.left >= 0 && treeRect.left < mMap.getWidth() &&
+			treeRect.top + treeRect.height - 1 >= 0 && treeRect.top + treeRect.height - 1 < mMap.getHeight())
+		{
+			mMap[treeRect.left][treeRect.top + treeRect.height - 1].setSprite(2, sf::Vector2i(3, 1));
+			mMap[treeRect.left][treeRect.top + treeRect.height - 1].setCollidable(false);
+		}
+
+		if (treeRect.left + treeRect.width - 1 >= 0 && treeRect.left + treeRect.width - 1 < mMap.getWidth() &&
+			treeRect.top + treeRect.height - 1 >= 0 && treeRect.top + treeRect.height - 1 < mMap.getHeight())
+		{
+			mMap[treeRect.left + treeRect.width - 1][treeRect.top + treeRect.height - 1].setSprite(2, sf::Vector2i(4, 1));
+			mMap[treeRect.left + treeRect.width - 1][treeRect.top + treeRect.height - 1].setCollidable(false);
+		}
+
+		//place mid leaves! THERE ARE NONE!
+		for (int i = treeRect.left + 1; i < treeRect.left + treeRect.width - 1; i++)
+		{
+			for (int j = treeRect.top + 1; j < treeRect.top + treeRect.height - 1; j++)
+			{
+				int tileX = i;
+				int tileY = j;
+
+				if (tileX >= 0 && tileX < mMap.getWidth() &&
+					tileY >= 0 && tileY < mMap.getHeight())
+				{
+					mMap[tileX][tileY].setSprite(2, sf::Vector2i(4, 5));
+					mMap[tileX][tileY].setCollidable(false);
+				}
+			}
+		}
+
+		//NOW PLACE EDGES! OVER AND OTHER MOTHERFATHERS!
+		for (int i = treeRect.left + 1; i < treeRect.left + treeRect.width - 1; i++)
+		{
+			int tileX = i;
+			int tileY = treeRect.top;
+
+			if (tileX >= 0 && tileX < mMap.getWidth() &&
+				tileY >= 0 && tileY < mMap.getHeight())
+			{
+				mMap[tileX][tileY].setSprite(2, sf::Vector2i(3, 2));
+				mMap[tileX][tileY].setCollidable(false);
+			}
+		}
+		
+		for (int i = treeRect.left + 1; i < treeRect.left + treeRect.width - 1; i++)
+		{
+			int tileX = i;
+			int tileY = treeRect.top + treeRect.height - 1;
+
+			if (tileX >= 0 && tileX < mMap.getWidth() &&
+				tileY >= 0 && tileY < mMap.getHeight())
+			{
+				mMap[tileX][tileY].setSprite(2, sf::Vector2i(4, 3));
+				mMap[tileX][tileY].setCollidable(false);
+			}
+		}
+		
+		for (int i = treeRect.top + 1; i < treeRect.top + treeRect.height - 1; i++)
+		{
+			int tileX = treeRect.left;
+			int tileY = i;
+
+			if (tileX >= 0 && tileX < mMap.getWidth() &&
+				tileY >= 0 && tileY < mMap.getHeight())
+			{
+				mMap[tileX][tileY].setSprite(2, sf::Vector2i(4, 2));
+				mMap[tileX][tileY].setCollidable(false);
+			}
+		}
+
+		for (int i = treeRect.top + 1; i < treeRect.top + treeRect.height - 1; i++)
+		{
+			int tileX = treeRect.left + treeRect.width - 1;
+			int tileY = i;
+
+			if (tileX >= 0 && tileX < mMap.getWidth() &&
+				tileY >= 0 && tileY < mMap.getHeight())
+			{
+				mMap[tileX][tileY].setSprite(2, sf::Vector2i(4, 4));
+				mMap[tileX][tileY].setCollidable(false);
+			}
+		}
+		
+		//BUT BEFORE WE LEAVE: PLACE DA FUCKING TRUNK SON!
+		for (int i = treeRect.left + 1; i < treeRect.left + treeRect.width - 1; i++)
+		{
+			int tileX = i;
+			int tileY = treeRect.top + treeRect.height;
+
+			if (tileX >= 0 && tileX < mMap.getWidth() &&
+				tileY >= 0 && tileY < mMap.getHeight())
+			{
+				mMap[tileX][tileY].setSprite(1, sf::Vector2i(2, 3));
+				mMap[tileX][tileY].setCollidable(true);
+			}
+		}
+
+		//EDGES
+		if (treeRect.left >= 0 && treeRect.left < mMap.getWidth() &&
+			treeRect.top + treeRect.height >= 0 && treeRect.top + treeRect.height < mMap.getHeight())
+		{
+			mMap[treeRect.left][treeRect.top + treeRect.height].setSprite(1, sf::Vector2i(1, 3));
+			mMap[treeRect.left][treeRect.top + treeRect.height].setCollidable(true);
+		}
+
+		if (treeRect.left + treeRect.width - 1 >= 0 && treeRect.left + treeRect.width - 1 < mMap.getWidth() &&
+			treeRect.top + treeRect.height >= 0 && treeRect.top + treeRect.height < mMap.getHeight())
+		{
+			mMap[treeRect.left + treeRect.width - 1][treeRect.top + treeRect.height].setSprite(1, sf::Vector2i(3, 3));
+			mMap[treeRect.left + treeRect.width - 1][treeRect.top + treeRect.height].setCollidable(true);
+		}
+
 	}
 }
 
@@ -351,6 +486,13 @@ bool MapGenerator::placeWalkWay(const sf::Vector2i& start, const sf::Vector2i st
 
 void MapGenerator::placeRoadTile(const sf::Vector2i& walkWayPos, Direction direction, Direction prevDirection)
 {
+	std::vector<sf::Vector2i> roadSprites;
+	roadSprites.push_back(sf::Vector2i(0, 5));
+	roadSprites.push_back(sf::Vector2i(0, 7));
+	roadSprites.push_back(sf::Vector2i(1, 6));
+	roadSprites.push_back(sf::Vector2i(2, 5));
+	roadSprites.push_back(sf::Vector2i(2, 7));
+
 	if (direction == NONE)
 		return;
 
@@ -371,7 +513,7 @@ void MapGenerator::placeRoadTile(const sf::Vector2i& walkWayPos, Direction direc
 		for (size_t y = 1; y < 3; ++y)
 		{
 			//pick a random sprite for walkway here
-			mMap[walkWayPos.x * 4 + x][walkWayPos.y * 4 + y].setSprite(1, sf::Vector2i(1, 6));
+			mMap[walkWayPos.x * 4 + x][walkWayPos.y * 4 + y].setSprite(1, roadSprites[std::rand() % roadSprites.size()]);
 		}
 	}
 
