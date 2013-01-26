@@ -2,7 +2,7 @@
 #include "ResourceManager.h"
 #include "WindowManager.h"
 #include "Player.h"
-#include "Map.h"
+#include "MapManager.h"
 #include "Camera.h"
 
 int main()
@@ -10,7 +10,8 @@ int main()
 	WindowManager* window = WindowManager::getInstance();
 	sf::RenderWindow* win = window->getWindow();
 	
-	Map map(50,50);
+	MapManager map;
+
 	ResourceManager* resources = ResourceManager::getInstance();
 
 
@@ -25,13 +26,16 @@ int main()
 			if (event.type == sf::Event::Closed)
 				win->close();
 		}
-		win->clear();
+		
 		cam.update();
 		player.update();
 
-		win->setView(cam.getView());
-		player.render();
+		win->clear();
 
+		//win->setView(cam.getView());
+	
+		map.render();
+		player.render();
 
 
 		win->display();

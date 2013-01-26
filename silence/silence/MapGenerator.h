@@ -8,7 +8,7 @@ class MapGenerator
 public:
 	MapGenerator(size_t w, size_t h);
 
-	Map* getMap();
+	Map& getMap();
 	void generateNew(size_t w, size_t h);
 private:
 	void placeHut(size_t x, size_t y);
