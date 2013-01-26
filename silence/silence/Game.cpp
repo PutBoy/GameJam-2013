@@ -1,19 +1,24 @@
 #include "Game.h"
 #include "MapCollider.h"
 #include "WindowManager.h"
+
 #include "Entity.h"
+#include "StateManager.h"
+#include "PauseMenu.h"
 
 Game::Game()
 	:player(sf::Vector2f(200,200),
 	MapCollider(map.getMap()))
 	,cam(&player)
-	,frog(sf::Vector2f(300,300), MapCollider(map.getMap()))
+	,frog(sf::Vector2f(300,300), MapCollider(map.getMap())),
+	mAlive(true)
+
 {
 }
 
 bool Game::isAlive()
 {
-	return true;
+	return mAlive;
 }
 
 void Game::update()
@@ -25,13 +30,24 @@ void Game::update()
 	frog.closeToEnemy(p);
 	frog.update();
 
+	input();
 	cam.update();
-	WindowManager::getInstance()->setView(cam.getView());
+
 }
 
 void Game::render()
 {
+	WindowManager::getInstance()->setView(cam.getView());
 	player.render();
 	frog.render();
 	map.render();
+}
+
+void Game::input(){
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::P)){
+		StateManager::getInstance()->add(new PauseMenu());
+	}
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
+		mAlive = false;
+	}
 }

@@ -6,6 +6,10 @@
 #include "Player.h"
 #include "Camera.h"
 #include "Frog.h"
+#include <SFML\Window\Keyboard.hpp>
+
+class StateManager;
+class PauseMenu;
 
 class Game: public State
 {
@@ -14,13 +18,15 @@ public:
 	bool isAlive();
 	void update();
 	void render();
+	void input();
 private:
 
 	MapManager map;
-
 	Player player;
 	Frog frog;
 	Camera cam;
+	bool mAlive;
+
 };
 
 #endif

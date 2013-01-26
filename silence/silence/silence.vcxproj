@@ -93,6 +93,7 @@
     <ClCompile Include="MapGenerator.cpp" />
     <ClCompile Include="MapManager.cpp" />
     <ClCompile Include="MapTile.cpp" />
+    <ClCompile Include="PauseMenu.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="StartMenu.cpp" />
@@ -114,6 +115,7 @@
     <ClInclude Include="MapGenerator.h" />
     <ClInclude Include="MapManager.h" />
     <ClInclude Include="MapTile.h" />
+    <ClInclude Include="PauseMenu.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="StartMenu.h" />

@@ -72,3 +72,7 @@ const sf::View& WindowManager::getView()
 {
 	return mWindow->getView();
 }
+
+void WindowManager::setDefaultView(){
+	mWindow->setView(mWindow->getDefaultView());
+}
