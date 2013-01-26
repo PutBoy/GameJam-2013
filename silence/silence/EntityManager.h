@@ -2,7 +2,7 @@
 #define INCLUDE_ENTITYMANAGER
 #include <vector>
 
-	
+	class Entity;
 
 	class EntityManager
 	{

@@ -1,18 +1,8 @@
 #include "Player.h"
 #include <SFML\Window\Keyboard.hpp>
-#include "WindowManager.h"
-#include "ResourceManager.h"
 
-Player::Player(sf::Vector2f startPos): Entity(startPos)
+Player::Player(sf::Vector2f startPos): Entity(startPos), mDown("downanimation.png", 200, 10)
 {
-	ResourceManager* r = ResourceManager::getInstance();
-	r->loadTexture("downanimation", "priest_walk_forward_sprite.png", sf::IntRect(0,0,1280,128));
-
-	mDown = new Animation("downanimation", 100, 10);
-	mDown->setPosition(mPos);
-
-	mCurrentAnim=mDown;
-	mWindow = WindowManager::getInstance()->getWindow();
 	mYvel = mXvel = 2;
 }
 
@@ -28,20 +18,16 @@ void Player::update()
 		mPos.x += mXvel;
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 		mPos.x -= mXvel;
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-	{
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 		mPos.y -= mYvel;
-		mCurrentAnim = mDown;
-	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 		mPos.y += mYvel;
 
-	mCurrentAnim->update();
-
+	Drop(new Player(sf::Vector2f(1,1)));
+	
 }
 
 void Player::render()
 {
-	mDown->setPosition(mPos);
-	mWindow->draw(mDown->getSprite());
+
 }

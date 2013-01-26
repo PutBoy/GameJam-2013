@@ -1,5 +1,5 @@
 #include "EntityManager.h"
-
+#include "Entity.h"
 
 EntityManager* EntityManager::mEM = 0;
 
@@ -40,6 +40,8 @@ void EntityManager::Update(){
 	for(EntityVector::size_type i = 0; i < mEntities.size(); i++){
 	
 		mEntities[i]->update();
+
+		mEntities.push_back(mEntities[i]->GetNextDrop());
 	}
 }
 
