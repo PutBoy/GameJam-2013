@@ -10,8 +10,9 @@
 
 #include <vector>
 #include <SFML\Graphics\Rect.hpp>
+#include "MapTile.h"
 
-typedef unsigned char tileType;
+typedef MapTile tileType;
 
 /*	WidthElement is used to resolve a 2d postion in a 1d vector
  *		Written: Sebastian Zander 13-01-18 15:39
