@@ -2,15 +2,16 @@
 #include "State.h"
 
 
-StateManager::StateManager()
-{}
+StateManager::StateManager(){}
+
+StateManager::~StateManager(){}
 
 void StateManager::add(State* state){
 	mStack.push(state);
 }
 
 void StateManager::update(){
-	if(mStack.top()->isAlive == true){
+	if(mStack.top()->isAlive() == true){
 		mStack.top()->update();
 	}else{
 		delete mStack.top();
