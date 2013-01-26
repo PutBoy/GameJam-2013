@@ -34,19 +34,24 @@ void MapGenerator::generateNew(size_t w, size_t h)
 	mMap.resize(w, h);
 
 	std::srand(static_cast<unsigned int>(std::time(0)));
+	std::vector<sf::Vector2i> groundSprites;
+	groundSprites.push_back(sf::Vector2i(0, 5));
 
+
+	//place ground
 	for (size_t x = 0; x < mMap.getWidth(); ++x)
 	{
 		for (size_t y = 0; y < mMap.getHeight(); ++y)
 		{
-			mMap[x][y].setSprite(0, sf::Vector2i(1, 4));
+			mMap[x][y].setSprite(0, groundSprites[std::rand() % groundSprites.size()]);
 		}
 	}
 
+	/*
 	while(!placeWalkWay(sf::Vector2i(0, 0), sf::Vector2i(w - 1, h - 1)))
 	{
-
-	}
+		std::srand(static_cast<unsigned int>(std::time(0)));
+	}*/
 
 	for (int i = 0; i < 100; i++)
 	{
@@ -358,6 +363,7 @@ void MapGenerator::placeRoadTile(const sf::Vector2i& walkWayPos, Direction direc
 				mMap[x][y].setOccupied(true);
 		}
 	}
+
 
 	//set mid blocks
 	for (size_t x = 1; x < 3; ++x)

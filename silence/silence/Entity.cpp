@@ -9,7 +9,7 @@ Entity::Entity(sf::Vector2f startPos): mPos(startPos)
 Entity::~Entity(){
 	for(int i = 0; i < drops.size(); i++){
 	
-		drops.pop_back();
+		delete drops[i];
 	}
 
 }
@@ -73,10 +73,11 @@ void Entity::closeToEnemy(Entity* en)
 
 bool Entity::isID(std::string ID)
 {
-	return (IDset.count(ID) == 1);
+	//return (IDset.count(ID) == 1);
+	return "";
 }
 
 void Entity::pushID(std::string ID)
 {
-	IDset.insert(ID);
+	//IDset.insert(ID);
 }

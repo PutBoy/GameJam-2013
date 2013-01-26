@@ -9,10 +9,9 @@
 
 	public:
 
-	static EntityManager* getInstance();
-
-	//static EntityManager* EM();
 	~EntityManager();
+
+	EntityManager();
 
 	void Update();
 	void Draw();
@@ -23,11 +22,10 @@
 	void Updatedrops();
 
 	private:
-		EntityManager();
 
-		Entity* mPlayer;
-		typedef std::vector <Entity*> EntityVector;
-		EntityVector mEntities;
+	Entity* mPlayer;
+	typedef std::vector <Entity*> EntityVector;
+	EntityVector mEntities;
 
 	};
 

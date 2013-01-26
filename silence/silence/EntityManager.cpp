@@ -7,20 +7,21 @@ EntityManager::EntityManager()
 
 
 EntityManager::~EntityManager(){
-	while(!mEntities.empty()){
-		delete mEntities.back();
-		mEntities.pop_back();
+	for (size_t i = 0; i < mEntities.size(); i++)
+	{
+		delete mEntities[i];
 	}
 }
 
 void EntityManager::AddPlayer(Entity* ent)
 {
 	mPlayer = ent;
+	mEntities.push_back(ent);
 }
 
-void EntityManager::Add(Entity* Ent){
+void EntityManager::Add(Entity* ent){
 
-	mEntities.push_back(Ent);
+	mEntities.push_back(ent);
 }
 
 
@@ -81,9 +82,3 @@ void EntityManager::Collision(){
 		}
 	}
 
-
-	EntityManager* EntityManager::getInstance(){
-		static EntityManager instance;
-		return &instance;
-	
-	}
