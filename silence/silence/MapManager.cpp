@@ -32,10 +32,10 @@ void MapManager::render()
 	if (topTile < 0)
 		topTile = 0;
 
-	if (map.getHeight() < bottomTile)
+	if (map.getHeight() <= bottomTile)
 		bottomTile = map.getHeight() - 1;
 
-	if (map.getWidth() < rightTile)
+	if (map.getWidth() <= rightTile)
 		rightTile = map.getWidth() - 1;
 
 

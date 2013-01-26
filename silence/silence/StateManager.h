@@ -2,6 +2,7 @@
 #define INCLUDED_STATEMANAGER
 
 #include <stack>
+#include <SFML\System\Clock.hpp>
 
 class State;
 
@@ -14,6 +15,10 @@ public:
 	static StateManager* getInstance();
 
 private:
+	sf::Clock clock;
+	float msElapsed;
+	const float msUpdateRate;
+
 	typedef std::stack <State*> StateStack;
 	StateStack mStack;
 

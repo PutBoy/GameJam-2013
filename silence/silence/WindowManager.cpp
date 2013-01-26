@@ -3,7 +3,7 @@
 #include <SFML\Window\Event.hpp>
 
 WindowManager::WindowManager(){
-	mWindow = new sf::RenderWindow(sf::VideoMode(1600,900), "HeartBeater", sf::Style::Default);
+	mWindow = new sf::RenderWindow(sf::VideoMode(1600,900), "HeartBeater" );
 	mWindow->setVerticalSyncEnabled(true);
 }
 

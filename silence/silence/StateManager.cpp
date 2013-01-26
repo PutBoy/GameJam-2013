@@ -2,7 +2,12 @@
 #include "State.h"
 
 
-StateManager::StateManager(){}
+StateManager::StateManager()
+	:msElapsed(0.f)
+	,msUpdateRate(10.f)
+{
+	clock.restart();
+}
 
 StateManager::~StateManager()
 {
@@ -19,7 +24,13 @@ void StateManager::add(State* state){
 
 void StateManager::update(){
 	if(mStack.top()->isAlive() == true){
-		mStack.top()->update();
+
+		//I R so clever herp derp
+		for (msElapsed += clock.restart().asMilliseconds(); msElapsed > msUpdateRate; msElapsed -= msUpdateRate)
+		{
+			mStack.top()->update();
+		}
+		
 	}else{
 		delete mStack.top();
 		mStack.pop();

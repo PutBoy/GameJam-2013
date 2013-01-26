@@ -1,10 +1,10 @@
 #include "Camera.h"
 #include "Entity.h"
 
-Camera::Camera(Entity* obj): mObj(obj)
+Camera::Camera(Entity* obj, int freeRoam): mObj(obj), mFreeRoam(freeRoam)
 {
 	mCamera.reset(sf::FloatRect(0,0,1600,900));
-	mCamera.setCenter(sf::Vector2f(0,0));
+	mCamera.setCenter(sf::Vector2f(mObj->getXpos() + 64, mObj->getYpos() + 64));
 }
 
 
@@ -19,23 +19,24 @@ sf::View& Camera::getView()
 
 void Camera::update()
 {
-	int objRelativeX = mObj->getXpos() - mCamera.getCenter().x;
-	int objRelativeY = mObj->getXpos() - mCamera.getCenter().x;
 
-	if (objRelativeX > 100 )
+	int objRelativeX = mObj->getXpos() - mCamera.getCenter().x + 64;
+	int objRelativeY = mObj->getYpos() - mCamera.getCenter().y + 64;
+
+	if (objRelativeX > mFreeRoam )
 	{
-		mCamera.setCenter(mObj->getXpos(), mObj->getYpos());
+		mCamera.setCenter(mCamera.getCenter().x + objRelativeX - mFreeRoam, mCamera.getCenter().y);
 	}
-	if (objRelativeX < 100 )
+	if (objRelativeX < -mFreeRoam )
 	{
-		mCamera.setCenter(mObj->getXpos(), mObj->getYpos());
+		mCamera.setCenter(mCamera.getCenter().x + objRelativeX + mFreeRoam, mCamera.getCenter().y);
 	}
-	if (objRelativeY > 100 )
+	if (objRelativeY > mFreeRoam )
 	{
-		mCamera.setCenter(mObj->getXpos(), mObj->getYpos());
+		mCamera.setCenter(mCamera.getCenter().x, mCamera.getCenter().y + objRelativeY - mFreeRoam);
 	}
-	if (objRelativeY < 100 )
+	if (objRelativeY < -mFreeRoam )
 	{
-		mCamera.setCenter(mObj->getXpos(), mObj->getYpos());
+		mCamera.setCenter(mCamera.getCenter().x, mCamera.getCenter().y + objRelativeY + mFreeRoam);
 	}
 }
