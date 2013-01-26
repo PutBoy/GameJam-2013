@@ -6,7 +6,7 @@ Frog::Frog(sf::Vector2f spawnPos, MapCollider map): Enemy(spawnPos), mMap(map)
 {
 	ResourceManager* r = ResourceManager::getInstance();
 	r->loadTexture("FrogRigth", "frog-sprite.png",sf::IntRect(0,0,1280,128));
-	mRigth = new Animation("FrogRigth",150,10);
+	mRigth = new Animation("FrogRigth",50,10);
 
 
 
@@ -27,7 +27,7 @@ Frog::~Frog(void)
 
 void Frog::update()
 {
-
+	
 	sf::Vector2f move(0,0);
 	if(closeToMyEnemy)
 	{
@@ -35,9 +35,13 @@ void Frog::update()
 		move.y -= directionToMyEnemy.y*2;
 	}
 
+	
+
 	mPos += move;
 	mCollisionBox.left = mPos.x - mCollisionBox.width / 2;
 	mCollisionBox.top = mPos.y - mCollisionBox.height / 2;
+
+	mCurrentAnim->update();
 
 	move = mMap.tryMove(mPos, move, mCollisionBox);
 	mPos = move;
