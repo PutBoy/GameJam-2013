@@ -5,7 +5,7 @@
 SpineMace::SpineMace(Entity* player): 
 	Weapon(player)
 {
-	ResourceManager::getInstance()->loadTexture("spinemace", "paint_spinemace.png", sf::IntRect(0,0,64,64));
+	ResourceManager::getInstance()->loadTexture("spinemace", "bonemace_idle_png.png", sf::IntRect(0,0,256,256));
 	mAnimation = new Animation("spinemace", 150, 1);
 }
 
