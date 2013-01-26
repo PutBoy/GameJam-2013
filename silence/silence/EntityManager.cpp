@@ -1,6 +1,6 @@
 #include "EntityManager.h"
 #include "Entity.h"
-
+#include "Player.h"
 
 EntityManager::EntityManager()
 {}
@@ -27,11 +27,17 @@ void EntityManager::Draw() {
 }
 
 void EntityManager::Update(){
-	
-	for(EntityVector::size_type i = 0; i < mEntities.size(); i++){
-	
+	Player* player;
+	for(EntityVector::size_type i = 0; i <mEntities.size(); i++)
+	{
+			player = static_cast<Player*>(mEntities[i]);
+		if(player)
+			continue;
+	}
+	for(EntityVector::size_type i = 0; i < mEntities.size(); i++)
+	{
+		mEntities[i]->closeToEnemy(player);
 		mEntities[i]->update();
-
 		mEntities.push_back(mEntities[i]->getNextDrop());
 	}
 }

@@ -63,14 +63,20 @@
     <ClCompile Include="State.cpp">
       <Filter>Source Files\States</Filter>
     </ClCompile>
+    <ClCompile Include="StateManager.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>Source Files\States</Filter>
     </ClCompile>
     <ClCompile Include="MapCollider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="StateManager.cpp">
-      <Filter>Source Files\States</Filter>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Frog.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="StartMenu.cpp">
       <Filter>Source Files\States</Filter>
@@ -125,8 +131,16 @@
     <ClInclude Include="MapCollider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="StartMenu.h">
       <Filter>Header Files\States</Filter>
+=======
+    <ClInclude Include="Enemy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Frog.h">
+      <Filter>Header Files</Filter>
+>>>>>>> Jimmy
     </ClInclude>
   </ItemGroup>
 </Project>
