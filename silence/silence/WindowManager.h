@@ -20,6 +20,8 @@ public:
 	void setView(const sf::View& view);
 	const sf::View& getView();
 
+	void setDefaultView();
+
 	bool isOpen();
 	void pollEvents();
 	

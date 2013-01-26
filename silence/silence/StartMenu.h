@@ -19,7 +19,6 @@ public:
 	void render();
 	void input();
 private:
-
 	sf::Sprite mSprite;
 };
 
