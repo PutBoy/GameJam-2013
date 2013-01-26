@@ -41,8 +41,6 @@ void Player::update()
 		mPos.y += mYvel;
 	}
 
-	Drop(new Player(sf::Vector2f(1,1)));
-	
 	mCurrentAnim->update();
 }
 
