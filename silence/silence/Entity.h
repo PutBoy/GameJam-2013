@@ -17,8 +17,6 @@ public:
 protected:
 	sf::Vector2f mPos;
 
-	virtual void update() = 0;
-	virtual void render() = 0;
 	void Drop(Entity* drop);
 	Entity* getNextDrop();
 protected:
