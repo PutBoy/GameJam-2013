@@ -1,5 +1,6 @@
 #include "MapCollider.h"
 #include "Map.h"
+#include <cmath>
 
 MapCollider::MapCollider(Map* map)
 	:mMap(map)
@@ -77,27 +78,24 @@ sf::Vector2f MapCollider::tryMove(sf::Vector2f position, sf::Vector2f velocity, 
 					}
 					else
 					{
-						newPos.y = tileBox.top + tileRect.height + collisionBox.height / 2;
+						newPos.y = tileBox.top + tileBox.height + collisionBox.height / 2;
 						collisionBox.top = newPos.y - collisionBox.height / 2;
 					}
 
 				}
 				else
 				{
-					if(diffX > 0)
+					if(diffY > 0)
 					{
-						SetX(other->GetX() + (GetSizeX() + other->GetSizeX()) / 2 + 2);
-
-						if (mVelocityX < 0)
-							mVelocityX = 0;
+						newPos.x = tileBox.left - collisionBox.height / 2;
+						collisionBox.left = newPos.y - collisionBox.height / 2;
 					}
 					else
 					{
-						SetX(other->GetX() - (GetSizeX() + other->GetSizeX()) / 2 - 2);
-
-						if (mVelocityX > 0)
-							mVelocityX = 0;
+						newPos.x = tileBox.left + tileBox.width + collisionBox.width / 2;
+						collisionBox.left = newPos.x - collisionBox.width / 2;
 					}
+
 				}
 			}
 		}

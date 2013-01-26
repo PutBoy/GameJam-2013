@@ -19,5 +19,23 @@ sf::View& Camera::getView()
 
 void Camera::update()
 {
-	mCamera.setCenter(mObj->getXpos()+128/2, mObj->getYpos()-128);
+	int objRelativeX = mObj->getXpos() - mCamera.getCenter().x;
+	int objRelativeY = mObj->getXpos() - mCamera.getCenter().x;
+
+	if (objRelativeX > 100 )
+	{
+		mCamera.setCenter(mObj->getXpos(), mObj->getYpos());
+	}
+	if (objRelativeX < 100 )
+	{
+		mCamera.setCenter(mObj->getXpos(), mObj->getYpos());
+	}
+	if (objRelativeY > 100 )
+	{
+		mCamera.setCenter(mObj->getXpos(), mObj->getYpos());
+	}
+	if (objRelativeY < 100 )
+	{
+		mCamera.setCenter(mObj->getXpos(), mObj->getYpos());
+	}
 }
