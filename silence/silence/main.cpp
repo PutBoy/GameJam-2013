@@ -1,29 +1,39 @@
 #include <SFML\Graphics.hpp>
 #include "ResourceManager.h"
-
+#include "WindowManager.h"
+#include "Player.h"
 #include "Map.h"
-
+#include "Camera.h"
 
 int main()
 {
+	WindowManager* window = WindowManager::getInstance();
+	sf::RenderWindow* win = window->getWindow();
+	
 	Map map(50,50);
 	ResourceManager* resources = ResourceManager::getInstance();
-	resources->loadTexture("Player", "sprite.png", sf::IntRect(0, 64, 64, 64));
-	
-	resources->getTexture("Player");
 
-	sf::RenderWindow window(sf::VideoMode(1600,900),"Game");
 
-	while(window.isOpen())
+	Player player(sf::Vector2f(200,200));
+	Camera cam(&player);
+
+	while(win->isOpen() && !sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 	{
 		sf::Event event;
-		while(window.pollEvent(event))
+		while(win->pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
-				window.close();
+				win->close();
 		}
-		window.clear();
-		
-		window.display();
+		win->clear();
+		cam.update();
+		player.update();
+
+		win->setView(cam.getView());
+		player.render();
+
+
+
+		win->display();
 	}
 }

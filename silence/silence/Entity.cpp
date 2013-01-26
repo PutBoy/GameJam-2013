@@ -19,11 +19,3 @@ float Entity::getYpos()const
 {
 	return mPos.y;
 }
-
-void Entity::update()
-{
-
-}
-
-void Entity::render()
-{}

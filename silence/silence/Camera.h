@@ -7,7 +7,7 @@ class Entity;
 class Camera
 {
 public:
-	Camera(Entity* obj, float delay);
+	Camera(Entity* obj);
 	~Camera(void);
 	sf::View& getView();
 	void update();

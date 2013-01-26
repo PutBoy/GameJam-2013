@@ -6,6 +6,8 @@ class Entity
 {
 public:
 	Entity(sf::Vector2f startPos);
+	Entity* GetNextDrop();
+	void Drop(Entity*);
 	virtual ~Entity(void);
 	float getXpos()const;
 	float getYpos()const;
@@ -13,6 +15,8 @@ public:
 	virtual void render();
 protected:
 	sf::Vector2f mPos;
+
+
 };
 
 #endif

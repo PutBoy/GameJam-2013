@@ -14,7 +14,10 @@ public:
 	virtual void render();
 private:
 
-	Animation mDown;
+	Animation* mDown;
+	Animation* mLeft;
+
+	Animation* mCurrentAnim;
 	float mYvel, mXvel;
 	sf::RenderWindow* mWindow;
 };
