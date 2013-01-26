@@ -20,6 +20,7 @@ WindowManager* WindowManager::getInstance(){
 
 void WindowManager::renderToCanvas(sf::Drawable& drawable, int layer)
 {
+
 	layers[layer].push_back(&drawable);
 }
 
