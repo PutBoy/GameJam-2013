@@ -11,8 +11,8 @@ public:
 	virtual ~Entity(void);
 	float getXpos()const;
 	float getYpos()const;
-	virtual void update();
-	virtual void render();
+	virtual void update()=0;
+	virtual void render()=0;
 protected:
 	sf::Vector2f mPos;
 
