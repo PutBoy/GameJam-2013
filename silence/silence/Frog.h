@@ -21,6 +21,9 @@ public:
 	virtual void ResolveCollision(Entity* entity);
 private:
 	Animation* mRigth;
+	Animation* mLeft;
+	Animation* mDown;
+	Animation* mUp;
 	Animation* mCurrentAnim;
 	WindowManager* mWindow;
 
