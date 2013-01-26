@@ -31,7 +31,7 @@ sf::Vector2f MapCollider::tryMove(sf::Vector2f position, sf::Vector2f velocity, 
 	{ 
 		newPos.x = collisionBox.width / 2;
 	}
-	if (newPos.y - collisionBox.width / 2 < 0)
+	if (newPos.y - collisionBox.height / 2 < 0)
 	{
 		newPos.y = collisionBox.height / 2;
 	}
