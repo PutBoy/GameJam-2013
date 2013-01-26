@@ -1,5 +1,5 @@
 
-class KnucklesPickUp
+class KnucklesPickUp 
 {
 public:
 	KnucklesPickUp();

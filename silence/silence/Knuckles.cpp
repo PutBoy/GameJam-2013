@@ -19,7 +19,7 @@ bool Knuckles::shoot(){
 return false;
 }
 
-sf::Sprite Knuckles::getSprite(){
+sf::Sprite& Knuckles::getSprite(){
 	return mAnimation->getSprite();
 }
 
