@@ -1,8 +1,8 @@
 #include "Game.h"
-
+#include "MapCollider.h"
 #include "WindowManager.h"
 Game::Game()
-	:player(sf::Vector2f(200,200))
+	:player(sf::Vector2f(200,200),MapCollider(new Map(50,50)))
 	,msElapsed(0.f)
 	,cam(&player)
 	,msUpdateRate(10.f)
