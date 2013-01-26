@@ -4,6 +4,8 @@
 #include "Entity.h"
 #include "Animation.h"
 
+#include "MapCollider.h"
+
 class WindowManager;
 
 class Player : public Entity
@@ -25,6 +27,11 @@ private:
 	Animation* mRigth;
 	Animation* mUp;
 	Animation* mCurrentAnim;
+
+	MapCollider* mMapColider;
+
+	sf::IntRect mCollisionBox;
+
 	float mYvel, mXvel;
 	WindowManager* mWindow;
 };
