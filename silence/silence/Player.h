@@ -27,6 +27,8 @@ private:
 	Animation* mUp;
 	Animation* mCurrentAnim;
 
+	Animation* mDownIdle;
+
 	MapCollider mMapColider;
 
 	sf::FloatRect mCollisionBox;

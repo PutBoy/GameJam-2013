@@ -4,6 +4,9 @@
 #include "WindowManager.h"
 #include "MapCollider.h"
 
+
+#include <iostream>
+
 Player::Player(sf::Vector2f startPos, MapCollider m): Entity(startPos), mMapColider(m)
 {
 	ResourceManager* r = ResourceManager::getInstance();
@@ -11,10 +14,14 @@ Player::Player(sf::Vector2f startPos, MapCollider m): Entity(startPos), mMapColi
 	r->loadTexture("left","priest_walk_left_sprite.png",sf::IntRect(0,0,1280,128));
 	r->loadTexture("right","priest_walk_right_sprite.png",sf::IntRect(0,0,1280,128));
 	r->loadTexture("up","priest_walk_back_sprite.png",sf::IntRect(0,0,1280,128));
+	r->loadTexture("downIdle", "priest_stand_still_sprite.png", sf::IntRect(0,0,1280,128));
+
 	mDown = new Animation("down",150,10);
 	mLeft = new Animation("left",150,10);
 	mRigth = new Animation("right",150,10);
 	mUp = new Animation("up",150,10);
+
+	mDownIdle = new Animation("downIdle", 150, 10);
 
 	mCurrentAnim = mDown;
 	mYvel = mXvel = 5;
@@ -55,6 +62,11 @@ void Player::update()
 	{
 		mCurrentAnim = mDown;
 		distance.y += mYvel;
+	}
+
+	//idle animations
+	if(mCurrentAnim == mDown && distance.y == 0){
+		mCurrentAnim = mDownIdle;
 	}
 
 	mPos += distance;
