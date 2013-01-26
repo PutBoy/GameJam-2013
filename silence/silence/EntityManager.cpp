@@ -48,11 +48,11 @@ void EntityManager::AliveCheck(){
 
 	for(EntityVector::size_type i = 0; i < mEntities.size(); i++){
 	
-		/*if(mEntities[i]->getHP() <= 0){
-			mEntities[i] = mEntities.back();
-			mEntities.pop_back();
+		//if(mEntities[i]->getHP() <= 0){
+		//	mEntities[i] = mEntities.back();
+		//	mEntities.pop_back();
 
-		}*/
+		//}
 	}
 }
 
@@ -60,14 +60,10 @@ void EntityManager::Collision(){
 	for(EntityVector::size_type i = 0; i<mEntities.size();i++){
 		for(EntityVector::size_type j = 0; j<mEntities.size();j++){
 
-			/*if(mEntities[i]->isID("Enemy") ==  mEntities[j]->isID("Friend") && mEntities[i]->getColBox().intersects(mEntities[j]->getColBox())){
-				mEntities[i]->setHP(mEntities[j]->getDamage());
+			if(mEntities[i]->getColBox().intersects(mEntities[i]->getColBox()))
+			{
+				mEntities[j]->ResolveCollision(mEntities[i]);
 			}
-
-			if(mEntities[i]->isID("Friend") ==  mEntities[j]->isID("Enemy") && mEntities[i]->getColBox().intersects(mEntities[j]->getColBox())){
-			mEntities[i]->setHP(mEntities[j]->getDamage());
-			}*/
-		}
 	}
 }
 
