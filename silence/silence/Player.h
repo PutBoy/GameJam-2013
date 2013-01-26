@@ -3,7 +3,6 @@
 
 #include "Entity.h"
 #include "Animation.h"
-
 #include "MapCollider.h"
 
 class WindowManager;
@@ -11,7 +10,7 @@ class WindowManager;
 class Player : public Entity
 {
 public:
-	Player(sf::Vector2f startPos);
+	Player(sf::Vector2f startPos, MapCollider m );
 	~Player(void);
 	virtual void update();
 	virtual void render();
@@ -28,9 +27,9 @@ private:
 	Animation* mUp;
 	Animation* mCurrentAnim;
 
-	MapCollider* mMapColider;
+	MapCollider mMapColider;
 
-	sf::IntRect mCollisionBox;
+	sf::FloatRect mCollisionBox;
 
 	float mYvel, mXvel;
 	WindowManager* mWindow;

@@ -20,7 +20,7 @@ int main()
 
 	while(window->isOpen() && !sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 	{		
-
+		window->pollEvents();
 		StateManager->update();
 
 		window->clear();
