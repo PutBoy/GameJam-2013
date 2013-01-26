@@ -6,6 +6,7 @@
 class MapTile
 {
 public:
+	MapTile();
 	MapTile(sf::Vector2i spriteSheetPos, bool coolidable);
 	bool getCollibable() const {return mCollidable;};
 	const sf::Vector2i& getSheetPosition() const {return mSpriteSheetPos;};

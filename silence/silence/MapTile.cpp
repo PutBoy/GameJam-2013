@@ -5,3 +5,9 @@ MapTile::MapTile(sf::Vector2i spriteSheetPos, bool collidable)
 	,mCollidable(collidable)
 {
 }
+
+MapTile::MapTile()
+	:mSpriteSheetPos(0, 0)
+	,mCollidable(0)
+{
+}
