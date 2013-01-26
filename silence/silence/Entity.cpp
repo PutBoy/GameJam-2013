@@ -24,6 +24,3 @@ void Entity::update()
 {
 
 }
-
-void Entity::render()
-{}
