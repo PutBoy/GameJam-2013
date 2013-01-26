@@ -14,7 +14,7 @@ public:
 	~Knuckles();
 
 	bool shoot();
-	sf::Sprite getSprite();
+	sf::Sprite& getSprite();
 	Entity* createBullet();
 	sf::FloatRect getColBox();
 
