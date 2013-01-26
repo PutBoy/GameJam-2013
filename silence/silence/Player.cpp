@@ -42,7 +42,10 @@ Player::~Player(void)
 
 void Player::update()
 {
-	sf::Vector2f distance;
+	//Bullet* bullet = gun->shoot();
+	//Drop(bullet);
+
+	sf::Vector2f distance; 
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		mCurrentAnim = mRigth;
