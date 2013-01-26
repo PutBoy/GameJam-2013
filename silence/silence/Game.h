@@ -8,6 +8,7 @@
 #include "Frog.h"
 #include "Bat.h"
 #include <SFML\Window\Keyboard.hpp>
+#include "EntityManager.h"
 
 class StateManager;
 class PauseMenu;
@@ -21,11 +22,14 @@ public:
 	void render();
 	void input();
 private:
+	Entity* spawnEnemy();
 
 	MapManager map;
+	EntityManager* mEntityMan;
+	
 	Player player;
-	Frog frog;
-	Bat bat;
+	sf::Clock mEnemySpawnTimer;
+
 	Camera cam;
 	bool mAlive;
 

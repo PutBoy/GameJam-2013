@@ -19,7 +19,7 @@ int main()
 	StateManager->add(new StartMenu());
 
 
-	while(window->isOpen()/* && !sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)*/)
+	while(window->isOpen())
 	{		
 		window->pollEvents();
 		StateManager->update();

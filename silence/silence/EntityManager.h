@@ -17,6 +17,7 @@
 	void Update();
 	void Draw();
 	void Add(Entity* Ent);
+	void AddPlayer(Entity* ent);
 	void AliveCheck();
 	void Collision();
 	void Updatedrops();
@@ -24,7 +25,7 @@
 	private:
 		EntityManager();
 
-		//static EntityManager* mEM;
+		Entity* mPlayer;
 		typedef std::vector <Entity*> EntityVector;
 		EntityVector mEntities;
 

@@ -13,6 +13,11 @@ EntityManager::~EntityManager(){
 	}
 }
 
+void EntityManager::AddPlayer(Entity* ent)
+{
+	mPlayer = ent;
+}
+
 void EntityManager::Add(Entity* Ent){
 
 	mEntities.push_back(Ent);
@@ -27,16 +32,10 @@ void EntityManager::Draw() {
 }
 
 void EntityManager::Update(){
-	Player* player;
-	for(EntityVector::size_type i = 0; i <mEntities.size(); i++)
-	{
-			player = dynamic_cast<Player*>(mEntities[i]);
-		if(player)
-			continue;
-	}
 	for(EntityVector::size_type i = 0; i < mEntities.size(); i++)
 	{
-		mEntities[i]->closeToEnemy(player);
+		if(mEntities[i] != mPlayer)	
+			mEntities[i]->closeToEnemy(mPlayer);
 		mEntities[i]->update();
 	}
 
