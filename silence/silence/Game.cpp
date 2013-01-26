@@ -10,7 +10,8 @@ Game::Game()
 	:player(sf::Vector2f(200,200),
 	MapCollider(map.getMap()))
 	,cam(&player)
-	,frog(sf::Vector2f(300,300), MapCollider(map.getMap())),
+	,frog(sf::Vector2f(300,300), MapCollider(map.getMap()))
+	,bat(sf::Vector2f(1000,1300), MapCollider(map.getMap())),
 	mAlive(true)
 
 {
@@ -30,6 +31,9 @@ void Game::update()
 	frog.closeToEnemy(p);
 	frog.update();
 
+	bat.closeToEnemy(p);
+	bat.update();
+
 	input();
 	cam.update();
 
@@ -40,6 +44,7 @@ void Game::render()
 	WindowManager::getInstance()->setView(cam.getView());
 	player.render();
 	frog.render();
+	bat.render();
 	map.render();
 }
 

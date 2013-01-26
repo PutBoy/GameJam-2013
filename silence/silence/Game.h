@@ -6,6 +6,7 @@
 #include "Player.h"
 #include "Camera.h"
 #include "Frog.h"
+#include "Bat.h"
 #include <SFML\Window\Keyboard.hpp>
 
 class StateManager;
@@ -24,6 +25,7 @@ private:
 	MapManager map;
 	Player player;
 	Frog frog;
+	Bat bat;
 	Camera cam;
 	bool mAlive;
 
