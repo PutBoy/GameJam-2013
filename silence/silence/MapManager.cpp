@@ -14,7 +14,6 @@ MapManager::MapManager()
 
 void MapManager::render()
 {
-
 	int bufferdepth[3] = {-2 , -1 , 2};
 
 	Map& map = mMapGenerator.getMap();
