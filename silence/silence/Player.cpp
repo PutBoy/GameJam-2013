@@ -20,10 +20,11 @@ Player::Player(sf::Vector2f startPos, MapCollider m): Entity(startPos), mMapColi
 	mYvel = mXvel = 5;
 	mWindow = WindowManager::getInstance();
 
-	mCollisionBox.height = 128;
-	mCollisionBox.width = 128;
-	mCollisionBox.top = mPos.y;
-	mCollisionBox.left = mPos.x;
+	mCollisionBox.height = 64;
+	mCollisionBox.width = 96;
+	mCollisionBox.left = mPos.x - mCollisionBox.width / 2;
+	mCollisionBox.top = mPos.y - mCollisionBox.height / 2;
+	
 }
 
 
@@ -57,8 +58,8 @@ void Player::update()
 	}
 
 	mPos += distance;
-	mCollisionBox.left = mPos.x;
-	mCollisionBox.top = mPos.y;
+	mCollisionBox.left = mPos.x - mCollisionBox.width / 2;
+	mCollisionBox.top = mPos.y - mCollisionBox.height / 2;
 	
 
 	sf::Vector2f move = mMapColider.tryMove(mPos, distance, mCollisionBox);
@@ -69,7 +70,7 @@ void Player::update()
 
 void Player::render()
 {
-	mCurrentAnim->setPosition(mPos);
+	mCurrentAnim->setPosition(mPos - sf::Vector2f(64, 96));
 	mWindow->renderToCanvas(mCurrentAnim->getSprite(), 0);
 }
 

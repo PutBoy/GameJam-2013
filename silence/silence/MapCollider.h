@@ -17,6 +17,9 @@ private:
 	sf::Vector2i getTileFromPosition(sf::Vector2f position);
 	sf::FloatRect getRectFromTile(size_t x, size_t y);
 
+	sf::Vector2f distanceRectToRect(sf::FloatRect, sf::FloatRect);
+	sf::Vector2f getMajorVector(sf::Vector2f);
+
 	Map* mMap;
 };
 

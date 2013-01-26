@@ -9,11 +9,12 @@ MapManager::MapManager()
 	:mMapGenerator(50, 50)
 	,mResources(ResourceManager::getInstance())
 {
-	
+	mMap = &mMapGenerator.getMap();
 }
 
 void MapManager::render()
 {
+
 	int bufferdepth[3] = {-2 , -1 , 2};
 
 	Map& map = mMapGenerator.getMap();

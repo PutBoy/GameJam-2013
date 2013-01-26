@@ -10,9 +10,9 @@ class MapManager
 public:
 	MapManager();
 	void render();
-	
+	Map* getMap() const {return mMap;};
 private:
-
+	Map* mMap;
 	MapGenerator mMapGenerator;
 	ResourceManager* mResources;
 };

@@ -46,6 +46,7 @@ sf::Vector2f MapCollider::tryMove(sf::Vector2f position, sf::Vector2f velocity, 
 
 	collisionBox.left = newPos.x - collisionBox.width / 2;
 	collisionBox.top = newPos.y - collisionBox.height / 2;
+
 	for (int iterY = (newPos.y - collisionBox.height / 2) / tileSize; iterY < (newPos.y + collisionBox.height / 2) / tileSize; iterY++)
 	{
 		for (int iterX = (newPos.x- collisionBox.width / 2) / tileSize; iterX < (newPos.x + collisionBox.width / 2) / tileSize; iterX++)
@@ -63,44 +64,76 @@ sf::Vector2f MapCollider::tryMove(sf::Vector2f position, sf::Vector2f velocity, 
 
 			if (collisionBox.intersects(tileBox, interRect))
 			{
-				int diffX = newPos.x - (tileBox.left + tileBox.width / 2);
-				int diffY = newPos.y - (tileBox.top + tileBox.height / 2);
-				
-				diffX = diffX / (collisionBox.width / 2 + tileBox.width / 2);
-				diffY = diffY / (collisionBox.height / 2 + tileBox.height / 2);
+				sf::Vector2f distance = distanceRectToRect(tileBox, collisionBox);
+				sf::Vector2f major = getMajorVector(distance);
 
-				if(std::abs(diffY) > std::abs(diffX))
+				//this tile is an internal edge if the next tile is also collidable.
+				//if this tile is NOT such a tile, then handle collision.
+				int nextTileX = iterX + major.x;
+				int nextTileY = iterY + major.y;
+				if ((*mMap)[nextTileX][nextTileY].getCollibable() == false)
 				{
-					if(diffY > 0)
+					//do not be tempted to use interRect, it won't move the position excactly right.
+					if (major.x < -.5)
 					{
-						newPos.y = tileBox.top - collisionBox.height / 2;
-						collisionBox.top = newPos.y - collisionBox.height / 2;
+						newPos.x = tileBox.left - collisionBox.width / 2;
+						collisionBox.left = newPos.x - collisionBox.width / 2;
 					}
-					else
-					{
-						newPos.y = tileBox.top + tileBox.height + collisionBox.height / 2;
-						collisionBox.top = newPos.y - collisionBox.height / 2;
-					}
-
-				}
-				else
-				{
-					if(diffY > 0)
-					{
-						newPos.x = tileBox.left - collisionBox.height / 2;
-						collisionBox.left = newPos.y - collisionBox.height / 2;
-					}
-					else
+					else if (major.x > .5)
 					{
 						newPos.x = tileBox.left + tileBox.width + collisionBox.width / 2;
 						collisionBox.left = newPos.x - collisionBox.width / 2;
 					}
-
+					else if (major.y < -.5)
+					{
+						newPos.y = tileBox.top - collisionBox.height / 2;
+						collisionBox.top = newPos.y - collisionBox.height / 2;
+					}
+					else if (major.y > .5)
+					{
+						newPos.y = tileBox.top + tileBox.height + collisionBox.height / 2;
+						collisionBox.top = newPos.y - collisionBox.height / 2;
+					}
 				}
+			
 			}
 		}
 	}
 
 	
 	return newPos;
+}
+
+/*	This returns the difference vector between two rectangles. Sort of.
+ *		Written: Sebastian Zander 13-01-18 23:21
+ *	This function will not work when the difference in size between the rectangles are too big.
+ */
+sf::Vector2f MapCollider::distanceRectToRect(sf::FloatRect r0, sf::FloatRect r1)
+{
+	//calculate the two centers
+	sf::Vector2f c0(r0.left + r0.width / 2, r0.top + r0.height / 2);
+	sf::Vector2f c1(r1.left + r1.width / 2, r1.top + r1.height / 2);
+	//calculate the diffence between the two centers.
+	sf::Vector2f diff = c1 - c0;
+
+	//scale the distance to take account for the width and height of the objects. THIS IS NOT PERFECT.
+	diff.x = diff.x / (r0.width / 2 + r1.width / 2);
+	diff.y = diff.y / (r0.height / 2 + r1.height / 2);
+
+	return diff;
+}
+
+/*	This function returns the major (unit) vector given a vector
+ *		Written: Sebastian Zander 13-01-18 23:48
+ */
+sf::Vector2f MapCollider::getMajorVector(sf::Vector2f vec)
+{
+	if (std::abs(vec.x) > std::abs(vec.y))
+	{
+		return sf::Vector2f((vec.x < 0 ? -1.0f : 1.0f), 0.0f);
+	}
+	else
+	{
+		return sf::Vector2f(0.0f, (vec.y < 0 ? -1.0f : 1.0f));
+	}
 }

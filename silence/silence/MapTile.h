@@ -15,7 +15,7 @@ public:
 	sf::Sprite& getSprite(size_t layer) {return mSprites[layer];};
 	const sf::Sprite& getSprite(size_t layer) const {return mSprites[layer];};
 	
-	void setCollidabe(bool collidable) {mCollidable = collidable;};
+	void setCollidable(bool collidable) {mCollidable = mCollidable || collidable;};
 	void setSprite(size_t layer, const sf::Vector2i& spriteSheedPos); 
 
 	void setOccupied(bool occupied) {mOccupied = occupied;};

@@ -2,7 +2,8 @@
 #include "MapCollider.h"
 #include "WindowManager.h"
 Game::Game()
-	:player(sf::Vector2f(200,200),MapCollider(new Map(50,50)))
+	:player(sf::Vector2f(200,200),
+	MapCollider(map.getMap()))
 	,cam(&player)
 {
 }
