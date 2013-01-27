@@ -10,6 +10,7 @@
 #include <SFML\Window\Keyboard.hpp>
 #include "EntityManager.h"
 #include <memory>
+#include "MusicManager.h"
 
 class StateManager;
 class PauseMenu;
@@ -33,7 +34,7 @@ private:
 	std::auto_ptr<Camera> mCam;
 	Player* mPlayer;
 	bool mAlive;
-
+	MusicManager* mMusic;
 };
 
 #endif
