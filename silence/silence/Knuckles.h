@@ -1,10 +1,10 @@
 #ifndef KNUCKLES_INCLUDE
 #define KNUCKLES_INCLUDE
-
+#include "Animation.h"
 #include "Weapon.h"
-
-class Animation;
+#include <SFML\System\Clock.hpp>
 class ResourceManager;
+class BulletKnuckles;
 
 class Knuckles : public Weapon
 
@@ -15,7 +15,7 @@ public:
 
 	std::shared_ptr<Entity> shoot();
 	sf::Sprite& getSprite();
-	std::shared_ptr<Entity> createBullet();
+	
 	sf::FloatRect getColBox();
 
 protected:
@@ -23,8 +23,23 @@ protected:
 	std::shared_ptr<Entity> getPlayer();
 
 private:
-	Animation mAnimation;
+	Animation mAnimIdle;
+	Animation mAnimAttackForward;
+	Animation mAnimAttackBack;
+	Animation mAnimAttackLeft;
+	Animation mAnimAttackRight;
 
+	Animation mAnimFel;
+
+	Animation* mCurrentAttack;
+
+	bool mAttacking;
+
+	sf::Clock mAttackTimer;
+
+	float mAttackSpeed;
+
+	int mKillCounter;
 };
 
 #endif

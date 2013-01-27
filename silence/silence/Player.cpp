@@ -4,7 +4,7 @@
 #include "WindowManager.h"
 #include "MapCollider.h"
 #include "MusicManager.h"
-
+#include "Knuckles.h"
 #include "Weapon.h"
 #include "AnimationEntity.h"
 #include <iostream>
@@ -193,10 +193,23 @@ void Player::setWep(std::shared_ptr<Weapon> weapon){
 }
 
 void Player::attack(){
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && mWeapon != nullptr){ //<----------------------------gör en stack här
+	
+	
+	std::shared_ptr<Knuckles> knuck;
+
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && mWeapon != nullptr){
+															//<----------------------------gör en stack här
 		std::shared_ptr<Entity> drop = mWeapon->shoot();
 		if (drop)
 			Drop(drop);
+	}
+	 if(mWeapon == nullptr)
+		 mWeapon = knuck;
+	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
+		std::shared_ptr<Entity> drop = mWeapon->shoot();
+		if (drop)
+			Drop(drop);
+		mWeapon == nullptr;
 	}
 }
 
