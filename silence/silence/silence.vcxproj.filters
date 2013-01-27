@@ -117,7 +117,11 @@
     <ClCompile Include="BulletKnuckles.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="IntroScreen.cpp">
+=======
+    <ClCompile Include="Kriminel.cpp">
+>>>>>>> sean
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -224,7 +228,11 @@
     <ClInclude Include="BulletKnuckles.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="IntroScreen.h">
+=======
+    <ClInclude Include="Kriminel.h">
+>>>>>>> sean
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

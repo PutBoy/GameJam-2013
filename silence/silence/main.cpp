@@ -37,6 +37,16 @@ void loadTextures()
 	r->loadTexture("MegaSuperHackerGuyDown", "images/machete_man_walk_forward_sprite_png.png",sf::IntRect(0,0,1280,128));
 	r->loadTexture("MegaSuperHackerGuyUp", "images/machete_man_walk_back_sprite_png.png",sf::IntRect(0,0,1280,128));
 
+	//Healthbar
+	r->loadTexture("healthbar", "images/hp_bar_png.png",sf::IntRect(0,0,1600,900));
+
+	//Kriminel
+	r->loadTexture("KriminelRigth", "images/BaronKriminell_walk_right_sprite_png.png",sf::IntRect(0,0,1920,192));
+	r->loadTexture("KriminelLeft", "images/BaronKriminell_walk_left_sprite_png.png",sf::IntRect(0,0,1920,192));
+	r->loadTexture("KriminelDown", "images/BaronKriminell_walk_forward_sprite_png.png",sf::IntRect(0,0,1920,192));
+	r->loadTexture("KriminelUp", "images/BaronKriminell_walk_backward_sprite_png.png",sf::IntRect(0,0,1920,192));
+
+
 	//knuckles
 	//r->loadTexture("Knuckles", "sökväg", sf::IntRect(0,0,500,500));
 

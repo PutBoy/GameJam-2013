@@ -5,6 +5,7 @@
 #include "StateManager.h"
 #include "PauseMenu.h"
 #include "MegaSuperHackerGuy.h"
+#include "Kriminel.h"
 #include "SpineMacePickup.h" //<------ ta bort
 #include <memory>
 
@@ -17,6 +18,9 @@ Game::Game()
 	mCam = std::auto_ptr<Camera>(new Camera(mPlayer, 200));
 	mEntityMan.AddPlayer(mPlayer);
 	mEntityMan.Add(std::make_shared<SpineMacePickup>(sf::Vector2f(400,400)/*, map.getMap()*/)); //<----------statisk position
+
+	mEntityMan.Add(std::make_shared<Kriminel>(sf::Vector2f(400,400), map.getMap())); //<----------statisk position
+
 	mMusic = MusicManager::getInstance();
 	mMusic->loadSound("battle", "sounds/Heartbeater_Battle.aif");
 }

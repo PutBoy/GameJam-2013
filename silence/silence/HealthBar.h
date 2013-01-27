@@ -4,6 +4,7 @@
 #include <SFML\System\Vector2.hpp>
 #include <SFML\Graphics.hpp>
 #include "WindowManager.h"
+#include "Animation.h"
 
 
 
@@ -16,6 +17,7 @@ public:
 	void render();
 private:
 	sf::RectangleShape mShape;
+	Animation mAnimation;
 	WindowManager* mWindow;
 };
 
