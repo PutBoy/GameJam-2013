@@ -29,7 +29,6 @@
 *.cache
 *.ilk
 *.log
-*.zip
 [Dd]ebug*/
 *.sbr
 Thumbs.db
