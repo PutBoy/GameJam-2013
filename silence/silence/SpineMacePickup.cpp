@@ -17,7 +17,6 @@ SpineMacePickup::SpineMacePickup(sf::Vector2f startPos, MapCollider m):
 
 SpineMacePickup::~SpineMacePickup()
 {
-	delete mAnimation;
 }
 
 void SpineMacePickup::update(){}

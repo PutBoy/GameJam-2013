@@ -32,13 +32,6 @@ Player::Player(sf::Vector2f startPos, MapCollider m): Entity(startPos), mMapColi
 
 Player::~Player(void)
 {
-	delete mDown;
-	delete mLeft;
-	delete mRigth;
-	delete mUp;
-
-	delete mDownIdle;
-
 }
 
 
