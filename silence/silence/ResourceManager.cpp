@@ -13,6 +13,7 @@ sf::Texture& ResourceManager::loadTexture(std::string key, std::string file, sf:
 	{
 		sf::Image image;
 		image.loadFromFile(file);
+
 		mImages.insert(imagePair(file, image));
 	}
 

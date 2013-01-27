@@ -2,6 +2,8 @@
 #define INCLUDED_SPINEMACE
 
 #include "Weapon.h"
+#include <SFML\System\Clock.hpp>
+
 
 class Animation;
 class ResourceManager;
@@ -18,7 +20,14 @@ public:
 	sf::FloatRect getColBox();
 
 private:
-	Animation* mAnimation;
+	Animation* mAnimIdle;
+	Animation* mAnimAttack;
+	Animation* mCurrentAnimation;
+	sf::Clock mAttackTimer;
+
+	float mAttackSpeed;
+
+
 	/*Animation* */
 
 };

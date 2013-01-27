@@ -163,7 +163,7 @@ void Player::setWep(Weapon* weapon){
 }
 
 void Player::attack(){
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && mWeapon != nullptr){ //<----------------------------gör en stack här
 		Drop(mWeapon->shoot());
 	}
 }

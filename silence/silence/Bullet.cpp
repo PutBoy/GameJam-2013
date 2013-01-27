@@ -1,7 +1,7 @@
 #include "Bullet.h"
 
 Bullet::Bullet(sf::Vector2f mpos, Entity* ent):
-Entity(mpos),
+	Entity(mpos),
 	mEnt(ent)
 
 {
@@ -10,5 +10,5 @@ Entity(mpos),
 }
 	
 Entity* Bullet::getEntity(){
-return mEnt;
+	return mEnt;
 }

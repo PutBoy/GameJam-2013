@@ -34,7 +34,9 @@ MegaSuperHackerGuy::~MegaSuperHackerGuy(void)
 
 void MegaSuperHackerGuy::update()
 {
-	
+	if (getHP() < 0.f)
+		kill();
+
 	sf::Vector2f move(0,0);
 	if(closeToMyEnemy)
 	{
