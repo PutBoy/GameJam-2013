@@ -8,8 +8,8 @@
 
 #include <iostream>
 
-SpineMacePickup::SpineMacePickup(sf::Vector2f startPos, MapCollider m):
-	Pickup(startPos, m), mAnimation("spinemace",150,1)
+SpineMacePickup::SpineMacePickup(sf::Vector2f startPos):
+	Pickup(startPos), mAnimation("spinemace",150,1)
 {
 	pushID("SpineMace");
 	mAnimation.setPosition(startPos);
