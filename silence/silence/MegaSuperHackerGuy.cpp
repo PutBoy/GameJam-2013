@@ -1,7 +1,9 @@
 #include "MegaSuperHackerGuy.h"
 #include "ResourceManager.h"
 
-MegaSuperHackerGuy::MegaSuperHackerGuy(sf::Vector2f spawnPos, MapCollider map):Enemy(spawnPos), mMap(map)
+
+MegaSuperHackerGuy::MegaSuperHackerGuy(sf::Vector2f spawnPos, MapCollider map):Enemy(spawnPos, 100.0f), mMap(map)
+
 {
 	ResourceManager* r = ResourceManager::getInstance();
 	r->loadTexture("MegaSuperHackerGuyRigth", "images/machete_man_walk_right_sprite_png.png",sf::IntRect(0,0,1280,128));
