@@ -1,6 +1,6 @@
 #include "Bullet.h"
 
-Bullet::Bullet(sf::Vector2f mpos, Entity* ent):
+Bullet::Bullet(sf::Vector2f mpos, std::shared_ptr<Entity> ent):
 	Entity(mpos),
 	mEnt(ent)
 
@@ -9,6 +9,6 @@ Bullet::Bullet(sf::Vector2f mpos, Entity* ent):
 
 }
 	
-Entity* Bullet::getEntity(){
+std::shared_ptr<Entity> Bullet::getEntity(){
 	return mEnt;
 }

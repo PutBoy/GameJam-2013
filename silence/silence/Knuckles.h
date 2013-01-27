@@ -10,17 +10,17 @@ class Knuckles : public Weapon
 
 {
 public:
-	Knuckles(Entity* player);
+	Knuckles(std::shared_ptr<Entity> player);
 	~Knuckles();
 
-	Entity* shoot();
+	std::shared_ptr<Entity> shoot();
 	sf::Sprite& getSprite();
-	Entity* createBullet();
+	std::shared_ptr<Entity> createBullet();
 	sf::FloatRect getColBox();
 
 protected:
 
-	Entity* getPlayer();
+	std::shared_ptr<Entity> getPlayer();
 
 private:
 	Animation* mAnimation;

@@ -6,16 +6,16 @@
 #include "PauseMenu.h"
 #include "MegaSuperHackerGuy.h"
 #include "SpineMacePickup.h" //<------ ta bort
-
+#include <memory>
 
 Game::Game()
 
 	:mAlive(true)
-	,mPlayer(new Player(sf::Vector2f(200,200),MapCollider(map.getMap())))
+	,mPlayer(std::make_shared<Player>(sf::Vector2f(200,200),MapCollider(map.getMap())))
 {
 	mCam = std::auto_ptr<Camera>(new Camera(mPlayer, 200));
 	mEntityMan.AddPlayer(mPlayer);
-	mEntityMan.Add(new SpineMacePickup(sf::Vector2f(400,400), map.getMap())); //<----------statisk position
+	mEntityMan.Add(std::make_shared<SpineMacePickup>(sf::Vector2f(400,400), map.getMap())); //<----------statisk position
 	mMusic = MusicManager::getInstance();
 	mMusic->loadSound("battle", "sounds/Heartbeater_Battle.aif");
 }
@@ -31,7 +31,7 @@ void Game::update()
 	{
 		mMusic->playSound("battle");
 	}
-	Entity* newEntity = spawnEnemy();
+	std::shared_ptr<Entity> newEntity = spawnEnemy();
 	if(mEnemySpawnTimer.getElapsedTime().asSeconds() > 1)
 	{
 		mEntityMan.Add(newEntity);
@@ -63,7 +63,7 @@ void Game::input(){
 	}
 }
 
-Entity* Game::spawnEnemy()
+std::shared_ptr<Entity> Game::spawnEnemy()
 {
 	
 	int enemyType = rand()%11;
@@ -85,7 +85,7 @@ Entity* Game::spawnEnemy()
 			spawnX = randX;
 			spawnY = mPlayer->getYpos()+460;
 		}
-		Entity* frog = new Frog(sf::Vector2f(spawnX,spawnY),map.getMap());
+		std::shared_ptr<Entity> frog = std::make_shared<Frog>(sf::Vector2f(spawnX,spawnY),map.getMap());
 		return frog;
 	}
 	else if(enemyType > 4 && enemyType <= 8)
@@ -100,7 +100,7 @@ Entity* Game::spawnEnemy()
 			spawnX = mPlayer->getXpos()-850;
 			spawnY = randY;
 		}
-		Entity* bat = new Bat(sf::Vector2f(spawnX,spawnY),map.getMap());
+		std::shared_ptr<Entity> bat = std::make_shared<Bat>(sf::Vector2f(spawnX,spawnY),map.getMap());
 		return bat;
 	}
 	else if(enemyType >= 9)
@@ -115,7 +115,7 @@ Entity* Game::spawnEnemy()
 			spawnX = randX;
 			spawnY = mPlayer->getYpos()+460;
 		}
-		Entity* megaGuy = new MegaSuperHackerGuy(sf::Vector2f(spawnX,spawnY),map.getMap());
+		std::shared_ptr<Entity> megaGuy = std::make_shared<MegaSuperHackerGuy>(sf::Vector2f(spawnX,spawnY),map.getMap());
 		return megaGuy;
 	}
 	

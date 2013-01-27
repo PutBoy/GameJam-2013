@@ -8,14 +8,14 @@ class BulletSpineMace : public Bullet
 
 {
 public:
-	BulletSpineMace(sf::Vector2f mpos, Entity* ent);
+	BulletSpineMace(sf::Vector2f mpos, std::shared_ptr<Entity> ent);
 	void update();
 	void render();
 
 	
-	void ResolveCollision(Entity* entity);
+	void ResolveCollision(std::shared_ptr<Entity> entity);
 	sf::FloatRect getColBox();
-	~BulletSpineMace();
+
 
 private:
 	sf::Vector2f mPos;

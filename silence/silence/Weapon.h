@@ -7,19 +7,17 @@
 
 class Weapon
 {
-	friend class Entity;
 public:
-	Weapon(Entity* player){mPlayer = player;}; //   <---------------correct med måsvingar ??
+	Weapon(std::shared_ptr<Entity> player){mPlayer = player;}; //   <---------------correct med måsvingar ??
 	virtual ~Weapon(){};
-	virtual Entity* shoot()=0;
-	virtual Entity* specialShoot()=0;
+	virtual std::shared_ptr<Entity> shoot()=0;
 	virtual sf::Sprite& getSprite()=0;
 	virtual sf::FloatRect getColBox()=0;
 protected:
-	Entity* getPlayer(){return mPlayer;};
+	std::shared_ptr<Entity> getPlayer(){return mPlayer;};
 private:
 	sf::Vector2f mDirection;
-	Entity* mPlayer;
+	std::shared_ptr<Entity> mPlayer;
 };
 
 #endif

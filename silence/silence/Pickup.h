@@ -19,7 +19,7 @@ public:
 	virtual void update()=0;
 	virtual void render()=0;
 	virtual sf::FloatRect getColBox()=0;
-	virtual void ResolveCollision(Entity* entity)=0;
+	virtual void ResolveCollision(std::shared_ptr<Entity> entity)=0;
 };
 
 

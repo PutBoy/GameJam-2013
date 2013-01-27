@@ -2,6 +2,7 @@
 #define INCLUDED_SPINEMACEPICKUP
 
 #include "Pickup.h"
+#include "Animation.h"
 
 class SpineMace;
 class Entity;
@@ -14,7 +15,7 @@ public:
 	void update();
 	void render();
 	sf::FloatRect getColBox();
-	void ResolveCollision(Entity* entity);
+	void ResolveCollision(std::shared_ptr<Entity> entity);
 private:
 	Animation* mAnimation;
 

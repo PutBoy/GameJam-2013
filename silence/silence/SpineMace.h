@@ -11,11 +11,10 @@ class BulletSpineMace;
 
 class SpineMace : public Weapon{
 public:
-	SpineMace(Entity* player);
+	SpineMace(std::shared_ptr<Entity> player);
 	~SpineMace();
 
-	Entity* shoot();
-	Entity* specialShoot();
+	std::shared_ptr<Entity> shoot();
 	sf::Sprite& getSprite();
 	sf::FloatRect getColBox();
 

@@ -17,7 +17,10 @@ SpineMacePickup::SpineMacePickup(sf::Vector2f startPos, MapCollider m):
 	mAnimation->setPosition(startPos);
 }
 
-SpineMacePickup::~SpineMacePickup(){}
+SpineMacePickup::~SpineMacePickup()
+{
+	delete mAnimation;
+}
 
 void SpineMacePickup::update(){}
 
@@ -33,10 +36,13 @@ sf::FloatRect SpineMacePickup::getColBox(){
 	return mAnimation->getSprite().getGlobalBounds();
 }
 
-void SpineMacePickup::ResolveCollision(Entity* entity){
+void SpineMacePickup::ResolveCollision(std::shared_ptr<Entity> entity){
 	if(entity->isID("Player") && sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
-			Player* player = static_cast<Player*>(entity);
-			player->setWep(new SpineMace(player)); // player går kanske ur scoope `?
-			kill();
+		std::shared_ptr<Player> player = std::dynamic_pointer_cast<Player>(entity);
+			if (player)
+			{
+				player->setWep(std::make_shared<SpineMace>(entity)); 
+				kill();
+			}
 		}
 }

@@ -7,19 +7,19 @@ class Bullet: public Entity
 
 public:
 
-	Bullet(sf::Vector2f mpos, Entity* ent);
+	Bullet(sf::Vector2f mpos, std::shared_ptr<Entity> ent);
 	
 	void update(){}
 	void render(){}
-	void ResolveCollision(Entity* entity){}
+	void ResolveCollision(std::shared_ptr<Entity> entity){}
 	virtual sf::FloatRect getColBox(){return sf::FloatRect(0,0,0,0);}
 
 protected: 
 
-	Entity* getEntity();
+	std::shared_ptr<Entity> getEntity();
 
 private:
-	Entity* mEnt;
+	std::shared_ptr<Entity> mEnt;
 
 };
 

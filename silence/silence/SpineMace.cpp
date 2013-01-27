@@ -3,7 +3,7 @@
 #include "ResourceManager.h"
 #include "BulletSpineMace.h"
 
-SpineMace::SpineMace(Entity* player): 
+SpineMace::SpineMace(std::shared_ptr<Entity> player): 
 	Weapon(player),
 	mAttackSpeed(0.5)
 {
@@ -19,23 +19,24 @@ SpineMace::SpineMace(Entity* player):
 }
 
 SpineMace::~SpineMace()
-{}
+{
+	delete mAnimIdle;
+	delete mAnimAttack;
+}
 
-Entity* SpineMace::shoot(){
+std::shared_ptr<Entity> SpineMace::shoot(){
 	if(mAttackTimer.getElapsedTime().asSeconds() > mAttackSpeed){
 		mCurrentAnimation = mAnimAttack;
-		return new BulletSpineMace(getPlayer()->getPos(), getPlayer()); //<------- kolla upp dennna ?
-		//return nullptr;
 		mAttackTimer.restart();
+		return std::make_shared<BulletSpineMace>(getPlayer()->getPos(), getPlayer()); //<------- kolla upp dennna ?
+
+
 	}else{
 		mCurrentAnimation = mAnimIdle;
+		return nullptr;
 	}
 }
 
-Entity* SpineMace::specialShoot(){
-	//return new BulletSpineMace(getPlayer()->getPos(), getPlayer()); //<------- kolla upp dennna ?
-	return nullptr;
-}
 
 sf::Sprite& SpineMace::getSprite(){
 	int pX = getPlayer()->getXpos();

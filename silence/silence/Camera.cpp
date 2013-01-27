@@ -1,7 +1,7 @@
 #include "Camera.h"
 #include "Entity.h"
 
-Camera::Camera(Entity* obj, int freeRoam): mObj(obj), mFreeRoam(freeRoam)
+Camera::Camera(std::shared_ptr<Entity> obj, int freeRoam): mObj(obj), mFreeRoam(freeRoam)
 {
 	mCamera.reset(sf::FloatRect(0,0,1600,900));
 	mCamera.setCenter(sf::Vector2f(mObj->getXpos() + 64, mObj->getYpos() + 64));

@@ -96,7 +96,7 @@ sf::FloatRect MegaSuperHackerGuy::getColBox()
 	return mCollisionBox;
 }
 
-void MegaSuperHackerGuy::ResolveCollision(Entity* entity)
+void MegaSuperHackerGuy::ResolveCollision(std::shared_ptr<Entity> entity)
 {
 	sf::Vector2f newPos(entity->getXpos(),entity->getYpos());
 	sf::Vector2f distance = distanceRectToRect(entity->getColBox(), mCollisionBox);

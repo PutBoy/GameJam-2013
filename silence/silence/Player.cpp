@@ -43,16 +43,18 @@ Player::Player(sf::Vector2f startPos, MapCollider m): Entity(startPos), mMapColi
 
 Player::~Player(void)
 {
+	delete mDown;
+	delete mLeft;
+	delete mRigth;
+	delete mUp;
+
+	delete mDownIdle;
+
 }
 
 
 void Player::update()
 {
-
-
-	//spelar-attack vanlig <-----------
-	attack();
-
 
 	sf::Vector2f distance; 
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
@@ -96,8 +98,12 @@ void Player::update()
 	mPos = sf::Vector2f(move.x, move.y - 32) ;
 
 	mCurrentAnim->update();
+	
+	//spelar-attack vanlig <-----------
+	attack();
+
 	if(mHP <= 0){
-	kill();
+		kill();
 	}
 }
 
@@ -124,9 +130,7 @@ return mDirection;
 }
 
 
-
-
-void Player::ResolveCollision(Entity* entity)
+void Player::ResolveCollision(std::shared_ptr<Entity> entity)
 {
 	sf::Vector2f newPos(entity->getXpos(),entity->getYpos());
 	sf::Vector2f distance = distanceRectToRect(entity->getColBox(), mCollisionBox);
@@ -157,13 +161,14 @@ void Player::ResolveCollision(Entity* entity)
 	entity->setPos(newPos);
 }
 
-void Player::setWep(Weapon* weapon){
-	
+void Player::setWep(std::shared_ptr<Weapon> weapon){
 	mWeapon = weapon;
 }
 
 void Player::attack(){
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && mWeapon != nullptr){ //<----------------------------gör en stack här
-		Drop(mWeapon->shoot());
+		std::shared_ptr<Entity> drop = mWeapon->shoot();
+		if (drop)
+			Drop(drop);
 	}
 }

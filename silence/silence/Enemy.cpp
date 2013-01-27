@@ -19,7 +19,7 @@ sf::Vector2f Enemy::getRandomMove()
 	return move;
 }
 
-void Enemy::ResolveCollision(Entity* entity)
+void Enemy::ResolveCollision(std::shared_ptr<Entity> entity)
 {}
 
 void Enemy::doDamage(float damage){

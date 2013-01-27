@@ -8,14 +8,14 @@ class Entity;
 class Camera
 {
 public:
-	Camera(Entity* obj, int freeRoam = 200);
+	Camera(std::shared_ptr<Entity> obj, int freeRoam = 200);
 	~Camera(void);
 	sf::View& getView();
 	void update();
 private:
 	sf::View mCamera;
 	int mFreeRoam;
-	Entity* mObj;	//Follow this! 
+	std::shared_ptr<Entity> mObj;	//Follow this! 
 	float mDelay;
 };
 

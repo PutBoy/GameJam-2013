@@ -7,19 +7,16 @@ EntityManager::EntityManager()
 
 
 EntityManager::~EntityManager(){
-	for (size_t i = 0; i < mEntities.size(); i++)
-	{
-		delete mEntities[i];
-	}
+
 }
 
-void EntityManager::AddPlayer(Entity* ent)
+void EntityManager::AddPlayer(std::shared_ptr<Entity> ent)
 {
 	mPlayer = ent;
 	mEntities.push_back(ent);
 }
 
-void EntityManager::Add(Entity* ent){
+void EntityManager::Add(std::shared_ptr<Entity> ent){
 
 	mEntities.push_back(ent);
 }
@@ -49,10 +46,7 @@ void EntityManager::Update(){
 }
 
 void EntityManager::AliveCheck(){
-	for(size_t i = 0; i < mGraveYard.size(); i++)
-	{
-		delete mGraveYard[i];
-	}
+
 	mGraveYard.clear();
 
 	for(EntityVector::size_type i = 0; i < mEntities.size(); i++){
@@ -85,9 +79,11 @@ void EntityManager::Collision(){
 
 	void EntityManager::Updatedrops(){
 		for(EntityVector::size_type i = 0; i < mEntities.size(); i++){
-			Entity* drop = mEntities[i]->getNextDrop();
+
+			std::shared_ptr<Entity> drop = mEntities[i]->getNextDrop();
 			while (drop != nullptr)
-			{
+			{			
+
 				mEntities.push_back(drop);
 				drop = mEntities[i]->getNextDrop();
 			}

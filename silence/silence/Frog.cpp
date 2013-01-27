@@ -9,6 +9,7 @@ Frog::Frog(sf::Vector2f spawnPos, MapCollider map): Enemy(spawnPos, 20), mMap(ma
 	r->loadTexture("FrogLeft", "images/frog-left.png",sf::IntRect(0,0,1280,128));
 	r->loadTexture("FrogDown", "images/frog-down.png",sf::IntRect(0,0,1280,128));
 	r->loadTexture("FrogUp", "images/frog-up.png",sf::IntRect(0,0,1280,128));
+	
 	mRigth = new Animation("FrogRigth",50,10);
 	mLeft = new Animation("FrogLeft",50,10);
 	mDown = new Animation("FrogDown",50,10);
@@ -27,6 +28,10 @@ Frog::Frog(sf::Vector2f spawnPos, MapCollider map): Enemy(spawnPos, 20), mMap(ma
 
 Frog::~Frog(void)
 {
+	delete mRigth;
+	delete mLeft;
+	delete mDown;
+	delete mUp;
 }
 
 void Frog::update()
@@ -91,7 +96,7 @@ sf::FloatRect Frog::getColBox()
 	return mCollisionBox;
 }
 
-void Frog::ResolveCollision(Entity* entity)
+void Frog::ResolveCollision(std::shared_ptr<Entity> entity)
 {
 	sf::Vector2f newPos(entity->getXpos(),entity->getYpos());
 	sf::Vector2f distance = distanceRectToRect(entity->getColBox(), mCollisionBox);

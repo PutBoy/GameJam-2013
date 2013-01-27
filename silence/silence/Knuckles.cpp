@@ -2,7 +2,7 @@
 #include "Animation.h"
 #include "ResourceManager.h"
 
-Knuckles::Knuckles(Entity* player):
+Knuckles::Knuckles(std::shared_ptr<Entity> player):
 Weapon(player)
 {
 	ResourceManager::getInstance()->loadTexture("Knuckles", "sökväg", sf::IntRect(0,0,500,500));
@@ -15,19 +15,19 @@ Knuckles::~Knuckles(void)
 {
 }
 
-Entity* Knuckles::shoot(){
-return false;
+std::shared_ptr<Entity> Knuckles::shoot(){
+	return nullptr;
 }
 
 sf::Sprite& Knuckles::getSprite(){
 	return mAnimation->getSprite();
 }
 
-Entity* Knuckles::createBullet(){
+std::shared_ptr<Entity> Knuckles::createBullet(){
 	return nullptr;
 }
 
-Entity* Knuckles::getPlayer(){
+std::shared_ptr<Entity> Knuckles::getPlayer(){
 	return nullptr;
 }
 

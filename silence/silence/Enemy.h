@@ -14,7 +14,7 @@ public:
 
 	virtual sf::FloatRect getColBox()=0;
 
-	virtual void ResolveCollision(Entity* entity);
+	virtual void ResolveCollision(std::shared_ptr<Entity> entity);
 protected:
 	float getHP();
 	float mHP;

@@ -1,6 +1,7 @@
 #ifndef INCLUDE_ENTITYMANAGER
 #define INCLUDE_ENTITYMANAGER
 #include <vector>
+#include <memory>
 
 	class Entity;
 
@@ -15,16 +16,16 @@
 
 	void Update();
 	void Draw();
-	void Add(Entity* Ent);
-	void AddPlayer(Entity* ent);
+	void Add(std::shared_ptr<Entity> ent);
+	void AddPlayer(std::shared_ptr<Entity> ent);
 	void AliveCheck();
 	void Collision();
 	void Updatedrops();
 
 	private:
 
-	Entity* mPlayer;
-	typedef std::vector <Entity*> EntityVector;
+	std::shared_ptr<Entity> mPlayer;
+	typedef std::vector <std::shared_ptr<Entity>> EntityVector;
 	EntityVector mEntities;
 	EntityVector mGraveYard;
 	};

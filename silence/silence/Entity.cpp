@@ -8,10 +8,6 @@ Entity::Entity(sf::Vector2f startPos): mPos(startPos)
 }
 
 Entity::~Entity(){
-	for(int i = 0; i < drops.size(); i++){
-	
-		delete drops[i];
-	}
 
 }
 
@@ -28,32 +24,34 @@ float Entity::getYpos()const
 
 
 
-void Entity::Drop(Entity* drop){
-	if(drop != nullptr){
-		drops.push_back(drop);
+void Entity::Drop(std::shared_ptr<Entity> drop){
+	if (drop.get() != (Entity*)(0xccccccd0))
+	{
+		if(drop.get() != nullptr){
+			drops.push_back(drop);
 	
+		}
 	}
 }
 
-Entity* Entity::getNextDrop(){
+std::shared_ptr<Entity> Entity::getNextDrop(){
 
-	Entity* ent = nullptr;
+	std::shared_ptr<Entity> ent = nullptr;
 	if(drops.size() == 0)
 		return nullptr;
 
-	ent = drops[drops.size() - 1];
+	ent = drops.back();
 	drops.pop_back();
 
 	return ent;
 
-
 }
 
-void Entity::closeToEnemy(Entity* en)
+void Entity::closeToEnemy(std::shared_ptr<Entity> ent)
 {
 	sf::Vector2f direction;
-	direction.x = (mPos.x) - en->getXpos();
-	direction.y = mPos.y - en->getYpos();
+	direction.x = (mPos.x) - ent->getXpos();
+	direction.y = mPos.y - ent->getYpos();
 	float length = ((direction.x*direction.x)+(direction.y*direction.y));
 	length = sqrt(length);
 	if(length < 1000)

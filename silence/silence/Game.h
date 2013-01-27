@@ -24,7 +24,7 @@ public:
 	void render();
 	void input();
 private:
-	Entity* spawnEnemy();
+	std::shared_ptr<Entity> spawnEnemy();
 
 	MapManager map;
 	EntityManager mEntityMan;
@@ -32,7 +32,7 @@ private:
 	sf::Clock mEnemySpawnTimer;
 
 	std::auto_ptr<Camera> mCam;
-	Player* mPlayer;
+	std::shared_ptr<Player> mPlayer;
 	bool mAlive;
 	MusicManager* mMusic;
 };

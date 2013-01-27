@@ -6,14 +6,15 @@
 #include <SFML\Graphics\Rect.hpp>
 #include <set>
 #include <string>
+#include <memory>
 
 class Entity
 {
 public:
 	Entity(sf::Vector2f startPos);
 	virtual ~Entity();
-	Entity* getNextDrop();
-	void Drop(Entity* drop);
+	std::shared_ptr<Entity> getNextDrop();
+	void Drop(std::shared_ptr<Entity> drop);
 	
 	bool isDead() {return mIsDead;};
 	float getXpos()const;
@@ -21,14 +22,14 @@ public:
 
 	sf::Vector2f getPos();
 
-	virtual void update()=0;
-	virtual void render()=0;
+	virtual void update(){};
+	virtual void render(){};
 	bool isID(std::string ID);
 	void setPos(sf::Vector2f);
 	virtual sf::FloatRect getColBox()=0;
-	virtual void closeToEnemy(Entity* en);
+	virtual void closeToEnemy(std::shared_ptr<Entity> ent);
 
-	virtual void ResolveCollision(Entity* entity)=0;
+	virtual void ResolveCollision(std::shared_ptr<Entity>) = 0;
 
 protected:
 	void kill() {mIsDead = true;};
@@ -43,7 +44,9 @@ protected:
 	sf::Vector2f getMajorVector(sf::Vector2f vec);
 private:
 	bool mIsDead;
-	std::vector <Entity*> drops;
+	std::vector<std::shared_ptr<Entity>> drops;
+
+
 	std::set<std::string> IDset;
 	
 };

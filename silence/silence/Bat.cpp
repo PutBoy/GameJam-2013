@@ -91,7 +91,7 @@ sf::FloatRect Bat::getColBox()
 	return mCollisionBox;
 }
 
-void Bat::ResolveCollision(Entity* entity)
+void Bat::ResolveCollision(std::shared_ptr<Entity> entity)
 {
 	sf::Vector2f newPos(entity->getXpos(),entity->getYpos());
 	sf::Vector2f distance = distanceRectToRect(entity->getColBox(), mCollisionBox);

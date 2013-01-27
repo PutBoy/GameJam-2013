@@ -19,13 +19,13 @@ public:
 	void doDamage(float damage);
 
 
-	void setWep(Weapon* weapon);
+	void setWep(std::shared_ptr<Weapon> weapon);
 
 protected:
 	sf::Vector2f getDirection(); // <---------------ingen aning ? 
 
 	virtual sf::FloatRect getColBox();
-	virtual void ResolveCollision(Entity* entity);
+	virtual void ResolveCollision(std::shared_ptr<Entity> entity);
 
 	void attack();
 	
@@ -48,7 +48,7 @@ private:
 	WindowManager* mWindow;
 	float mHP;
 
-	Weapon* mWeapon;
+	std::shared_ptr<Weapon> mWeapon;
 };
 
 #endif
