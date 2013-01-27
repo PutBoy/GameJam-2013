@@ -13,6 +13,7 @@ public:
 	~SpineMace();
 
 	Entity* shoot();
+	Entity* specialShoot();
 	sf::Sprite& getSprite();
 	sf::FloatRect getColBox();
 

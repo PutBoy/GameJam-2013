@@ -22,7 +22,7 @@ SpineMacePickup::~SpineMacePickup(){}
 void SpineMacePickup::update(){}
 
 void SpineMacePickup::render(){
-	WindowManager::getInstance()->renderToCanvas(mAnimation->getSprite(), 0);
+	WindowManager::getInstance()->renderToCanvas(mAnimation->getSprite(), -1);
 }
 
 
@@ -34,9 +34,8 @@ sf::FloatRect SpineMacePickup::getColBox(){
 }
 
 void SpineMacePickup::ResolveCollision(Entity* entity){
-		if(entity->isID("Player")){
+	if(entity->isID("Player") && sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
 			Player* player = static_cast<Player*>(entity);
-
 			player->setWep(new SpineMace(player)); // player går kanske ur scoope `?
 		}
 }

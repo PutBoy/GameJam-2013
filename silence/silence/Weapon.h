@@ -12,6 +12,7 @@ public:
 	Weapon(Entity* player){mPlayer = player;}; //   <---------------correct med måsvingar ??
 	virtual ~Weapon(){};
 	virtual Entity* shoot()=0;
+	virtual Entity* specialShoot()=0;
 	virtual sf::Sprite& getSprite()=0;
 	virtual sf::FloatRect getColBox()=0;
 protected:

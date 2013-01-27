@@ -18,6 +18,11 @@ Entity* SpineMace::shoot(){
 	return nullptr;
 }
 
+Entity* SpineMace::specialShoot(){
+	//return new BulletSpineMace(getPlayer()->getPos(), getPlayer()); //<------- kolla upp dennna ?
+	return nullptr;
+}
+
 sf::Sprite& SpineMace::getSprite(){
 	int pX = getPlayer()->getXpos();
 	int pY = getPlayer()->getYpos();
