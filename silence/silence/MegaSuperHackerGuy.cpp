@@ -3,7 +3,7 @@
 #include <memory>
 #include "DeathAnimation.h"
 #include "SpineMacePickup.h"
-
+#include "Player.h"
 
 MegaSuperHackerGuy::MegaSuperHackerGuy(sf::Vector2f spawnPos, MapCollider map):Enemy(spawnPos, 100.0f), mMap(map)
 	, mRigth("MegaSuperHackerGuyRigth",50,10) , mLeft("MegaSuperHackerGuyLeft",50,10), 
@@ -102,4 +102,8 @@ void MegaSuperHackerGuy::ResolveCollision(std::shared_ptr<Entity> entity)
 		entbox.top = mPos.y - mCollisionBox.height / 2;
 	}
 	entity->setPos(newPos);
+
+	std::shared_ptr<Player> play = std::dynamic_pointer_cast<Player>(entity);
+	if(std::dynamic_pointer_cast<Player>(entity))
+		play->doDamage(0.3);
 }

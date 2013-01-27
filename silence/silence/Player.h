@@ -6,6 +6,8 @@
 #include "MapCollider.h"
 #include "HealthBar.h"
 #include <stack>
+#include "AnimationEntity.h"
+
 class Weapon;
 class WindowManager;
 
@@ -17,14 +19,13 @@ public:
 	virtual void update();
 	virtual void render();
 	void doDamage(float damage);
-
+	
 	sf::Vector2f getDirection();
 
 	sf::Vector2f getDir(); //<---------------seans
 
-
+	sf::Clock& deadforTime();
 	void setWep(std::shared_ptr<Weapon> weapon);
-
 protected:
 
 	virtual sf::FloatRect getColBox();
@@ -44,6 +45,7 @@ private:
 	Animation mUpIdle;
 	Animation mLeftIdle;
 	Animation mRigthIdle;
+	AnimationEntity* mDeathAnim;
 
 	Animation* mCurrentAnim;
 
@@ -58,6 +60,7 @@ private:
 
 	std::shared_ptr<Weapon> mWeapon;
 
+	sf::Clock deathTimer;
 	HealthBar* mHealthBar;
 
 	sf::Vector2f mDir; //<------------seanass

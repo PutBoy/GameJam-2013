@@ -2,7 +2,7 @@
 #include "ResourceManager.h"
 #include "DeathAnimation.h"
 #include <memory>
-
+#include "Player.h"
 
 Frog::Frog(sf::Vector2f spawnPos, MapCollider map): Enemy(spawnPos, 20), mMap(map),
 	mRigth("FrogRigth",50,10) , mLeft("FrogLeft",50,10) , mDown("FrogDown",50,10) , mUp("FrogUp",25,10)
@@ -96,4 +96,8 @@ void Frog::ResolveCollision(std::shared_ptr<Entity> entity)
 		entbox.top = mPos.y - mCollisionBox.height / 2;
 	}
 	entity->setPos(newPos);
+
+	std::shared_ptr<Player> play = std::dynamic_pointer_cast<Player>(entity);
+	if(std::dynamic_pointer_cast<Player>(entity))
+		play->doDamage(0.1);
 }
