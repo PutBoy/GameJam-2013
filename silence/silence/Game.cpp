@@ -4,7 +4,7 @@
 #include "Entity.h"
 #include "StateManager.h"
 #include "PauseMenu.h"
-
+#include "MegaSuperHackerGuy.h"
 #include "SpineMacePickup.h" //<------ ta bort
 
 Game::Game()
@@ -62,38 +62,57 @@ void Game::input(){
 Entity* Game::spawnEnemy()
 {
 	
-	int enemyType = rand()%2;
+	int enemyType = rand()%11;
 	int randomSide = rand()%2;
 	int spawnX,spawnY;
-	if(enemyType == 0)
+
+	int randX = rand()%1600+ mPlayer->getXpos();
+	int randY = rand()%900+ mPlayer->getYpos();
+
+	if(enemyType <= 4)
 	{
 		if(randomSide == 0)
 		{
-			spawnX = rand()%1600;
-			spawnY = mPlayer->getYpos()-500;
+			spawnX = randX;
+			spawnY = mPlayer->getYpos()-460;
 		}
 		else
 		{
-			spawnX = rand()%1600;
-			spawnY = mPlayer->getYpos()+500;
+			spawnX = randX;
+			spawnY = mPlayer->getYpos()+460;
 		}
 		Entity* frog = new Frog(sf::Vector2f(spawnX,spawnY),map.getMap());
 		return frog;
 	}
-	else if(enemyType == 1)
+	else if(enemyType > 4 && enemyType <= 8)
 	{
 		if(randomSide == 0)
 		{
-			spawnX = mPlayer->getXpos()+900;
-			spawnY = rand()%900;
+			spawnX = mPlayer->getXpos()+850;
+			spawnY = randY;
 		}
 		else
 		{
-			spawnX = mPlayer->getXpos()-900;
-			spawnY = rand()%900;
+			spawnX = mPlayer->getXpos()-850;
+			spawnY = randY;
 		}
 		Entity* bat = new Bat(sf::Vector2f(spawnX,spawnY),map.getMap());
 		return bat;
+	}
+	else if(enemyType >= 9)
+	{
+		if(randomSide == 0)
+		{
+			spawnX = mPlayer->getXpos()+850;
+			spawnY = randY;
+		}
+		else
+		{
+			spawnX = randX;
+			spawnY = mPlayer->getYpos()+460;
+		}
+		Entity* megaGuy = new MegaSuperHackerGuy(sf::Vector2f(spawnX,spawnY),map.getMap());
+		return megaGuy;
 	}
 	
 }

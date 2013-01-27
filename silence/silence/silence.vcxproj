@@ -96,6 +96,7 @@
     <ClCompile Include="MapGenerator.cpp" />
     <ClCompile Include="MapManager.cpp" />
     <ClCompile Include="MapTile.cpp" />
+    <ClCompile Include="MegaSuperHackerGuy.cpp" />
     <ClCompile Include="PauseMenu.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
@@ -123,6 +124,7 @@
     <ClInclude Include="MapGenerator.h" />
     <ClInclude Include="MapManager.h" />
     <ClInclude Include="MapTile.h" />
+    <ClInclude Include="MegaSuperHackerGuy.h" />
     <ClInclude Include="PauseMenu.h" />
     <ClInclude Include="Pickup.h" />
     <ClInclude Include="Player.h" />
