@@ -29,5 +29,5 @@ void BulletKnuckles::ResolveCollision(std::shared_ptr<Entity> entity){
 }
 
 sf::FloatRect BulletKnuckles::getColBox(){
-	return sf::FloatRect(getPos().x - 64, getPos().y - 64, 128, 128); 
+	return sf::FloatRect(getPos().x - 64, getPos().y - 64, 256, 256); 
 }
