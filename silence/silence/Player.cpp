@@ -12,7 +12,9 @@
 
 Player::Player(sf::Vector2f startPos, MapCollider m): Entity(startPos), mMapColider(m),
 	mWeapon(nullptr), 
-	mDown("down",150,10) ,mLeft("left",150,10) , mRigth("right",150,10) ,mUp("up",150,10), mDownIdle("downIdle", 150, 10)
+	mDown("down",150,10) ,mLeft("left",150,10) , mRigth("right",150,10) ,mUp("up",150,10), 
+	mDownIdle("downIdle", 150, 10)
+	,mUpIdle("BackIdle1",500,1), mLeftIdle("leftIdle",500,1), mRigthIdle("rigthIdle1",500,1)
 {
 	pushID("Player");
 	mHP = 100;
@@ -68,8 +70,21 @@ void Player::update()
 
 
 	//idle animations
-	if(mCurrentAnim == &mDown && distance.y == 0){
+	if(mCurrentAnim == &mDown && distance.y == 0)
+	{
 		mCurrentAnim = &mDownIdle;
+	}
+	else if(mCurrentAnim == &mUp && distance.y == 0)
+	{
+		mCurrentAnim = &mUpIdle;
+	}
+	if(mCurrentAnim == &mLeft && distance.x == 0)
+	{
+		mCurrentAnim = &mLeftIdle;
+	}
+	else if(mCurrentAnim == &mRigth && distance.x == 0)
+	{
+		mCurrentAnim = &mRigth;
 	}
 
 	mPos += distance;

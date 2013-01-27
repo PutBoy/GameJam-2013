@@ -23,6 +23,9 @@ void loadTextures()
 	r->loadTexture("right","priest_walk_right_sprite.png",sf::IntRect(0,0,1280,128));
 	r->loadTexture("up","priest_walk_back_sprite.png",sf::IntRect(0,0,1280,128));
 	r->loadTexture("downIdle", "priest_stand_still_sprite.png", sf::IntRect(0,0,1280,128));
+	r->loadTexture("leftIdle", "images/priest_idle_left_png.png", sf::IntRect(0,0,128,128));
+	r->loadTexture("rigthIdle1", "images/priest_idle_rigth_png.png", sf::IntRect(0,0,127,127));
+	r->loadTexture("BackIdle1", "images/priest_idle_back_png.png", sf::IntRect(0,0,127,127));
 
 	//Megasuperhackerguy
 	r->loadTexture("MegaSuperHackerGuyRigth", "images/machete_man_walk_right_sprite_png.png",sf::IntRect(0,0,1280,128));

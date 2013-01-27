@@ -38,6 +38,9 @@ private:
 	Animation mUp;
 
 	Animation mDownIdle;
+	Animation mUpIdle;
+	Animation mLeftIdle;
+	Animation mRigthIdle;
 
 	Animation* mCurrentAnim;
 
