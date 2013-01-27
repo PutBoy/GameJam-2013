@@ -11,7 +11,7 @@ class Weapon
 public:
 	Weapon(Entity* player){mPlayer = player;}; //   <---------------correct med måsvingar ??
 	virtual ~Weapon(){};
-	virtual bool shoot()=0;
+	virtual Entity* shoot()=0;
 	virtual sf::Sprite& getSprite()=0;
 	virtual Entity* createBullet()=0;
 	virtual sf::FloatRect getColBox()=0;

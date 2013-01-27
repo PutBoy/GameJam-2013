@@ -17,6 +17,9 @@ public:
 	
 	float getXpos()const;
 	float getYpos()const;
+
+	sf::Vector2f getPos();
+
 	virtual void update()=0;
 	virtual void render()=0;
 	bool isID(std::string ID);
