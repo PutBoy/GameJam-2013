@@ -7,6 +7,7 @@
 #include "MegaSuperHackerGuy.h"
 #include "SpineMacePickup.h" //<------ ta bort
 
+
 Game::Game()
 
 	:mAlive(true)
@@ -15,6 +16,8 @@ Game::Game()
 	mCam = std::auto_ptr<Camera>(new Camera(mPlayer, 200));
 	mEntityMan.AddPlayer(mPlayer);
 	mEntityMan.Add(new SpineMacePickup(sf::Vector2f(400,400), map.getMap())); //<----------statisk position
+	mMusic = MusicManager::getInstance();
+	mMusic->loadSound("battle", "sounds/Heartbeater_Battle.aif");
 }
 
 bool Game::isAlive()
@@ -24,12 +27,14 @@ bool Game::isAlive()
 
 void Game::update()
 {
-	//Entity* newEntity = spawnEnemy();
+	if(!mMusic->isThisPlaying("battle"))
+	{
+		mMusic->playSound("battle");
+	}
+	Entity* newEntity = spawnEnemy();
 	if(mEnemySpawnTimer.getElapsedTime().asSeconds() > 1)
 	{
-		
-		
-		//mEntityMan.Add(newEntity);
+		mEntityMan.Add(newEntity);
 		mEnemySpawnTimer.restart();
 	}
 	mEntityMan.Update();
@@ -52,9 +57,11 @@ void Game::render()
 
 void Game::input(){
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::P)){
+		mMusic->pauseSound("battle");
 		StateManager::getInstance()->add(new PauseMenu());
 	}
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
+		mMusic->stopSound("battle");
 		mAlive = false;
 	}
 }

@@ -105,6 +105,9 @@
     <ClCompile Include="Bullet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MusicManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WindowManager.h">
@@ -188,10 +191,11 @@
     <ClInclude Include="MegaSuperHackerGuy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BulletSpineMace.h">
+   <ClInclude Include="BulletSpineMace.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Bullet.h">
+   <ClInclude Include="MusicManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
