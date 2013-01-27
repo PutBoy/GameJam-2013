@@ -22,7 +22,7 @@ private:
 	bool placeWalkWay(const sf::Vector2i& start, const sf::Vector2i stop);
 	void placeRoadTile(const sf::Vector2i& walkWayPos, Direction direction, Direction prevDirection);
 
-	void placeStone(int x, int y);
+	void placeDoodad(int x, int y);
 	void placeHut(int x, int y);
 	void placeTree(int x, int y);
 

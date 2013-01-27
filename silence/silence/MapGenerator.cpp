@@ -56,121 +56,14 @@ void MapGenerator::generateNew(size_t w, size_t h)
 	
 	for (int i = 0; i < w + h / 2; i++)
 	{
-		placeStone(std::rand() % mMap.getWidth(), std::rand() % mMap.getHeight());
-	}
-
-	for (int i = 0; i < w + h / 2; i++)
-	{
 		placeHut(std::rand() % mMap.getWidth(), std::rand() % mMap.getHeight());
-	}
-
-	for (int i = 0; i < w + h / 2; i++)
-	{
 		placeTree(std::rand() % mMap.getWidth(), std::rand() % mMap.getHeight());
+		placeDoodad(std::rand() % mMap.getWidth(), std::rand() % mMap.getHeight());
 	}
 }
-
-void MapGenerator::placeStone(int x, int y)
+void MapGenerator::placeDoodad(int x, int y)
 {
-	int width = std::rand() % 3 + 3;
-	int height = std::rand() % 3 + 3;
-
-
-	sf::IntRect stoneRect(x - width / 2, y - height / 2, width, height );
-	
-	if (width % 2 == 0)
-		x-=1;
-	if (height % 2 == 0)
-		y-=1;
-	
-	if (isClear(stoneRect))
-	{
-		//first occupy wall street
-		for (int i = stoneRect.left; i < stoneRect.left + stoneRect.width; i++)
-		{
-			for (int j = stoneRect.top; j < stoneRect.top + stoneRect.height; j++)
-			{
-				int tileX = i;
-				int tileY = j;
-
-				if (tileX >= 0 && tileX < mMap.getWidth() &&
-					tileY >= 0 && tileY < mMap.getHeight())
-				{
-					mMap[tileX][tileY].setOccupied(true);
-				}
-			}
-		}
-
-		//then fill in the middle
-		for (int i = stoneRect.left + 1; i < stoneRect.left + stoneRect.width - 1; i++)
-		{
-			for (int j = stoneRect.top + 1; j < stoneRect.top + stoneRect.height - 1; j++)
-			{
-				int tileX = i;
-				int tileY = j;
-
-				if (tileX >= 0 && tileX < mMap.getWidth() &&
-					tileY >= 0 && tileY < mMap.getHeight())
-				{
-					mMap[tileX][tileY].setSprite(1, sf::Vector2i(3, 6));
-					mMap[tileX][tileY].setCollidable(true);
-				}
-			}
-		}
-
-		//then fill in the fuckers!
-		for (int i = stoneRect.left + 1; i < stoneRect.left + stoneRect.width - 1; i++)
-		{
-			int tileX = i;
-			int tileY = stoneRect.top;
-
-			if (tileX >= 0 && tileX < mMap.getWidth() &&
-				tileY >= 0 && tileY < mMap.getHeight())
-			{
-				mMap[tileX][tileY].setSprite(1, sf::Vector2i(3, 5));
-				mMap[tileX][tileY].setCollidable(false);
-			}
-		}
-
-		for (int i = stoneRect.left + 1; i < stoneRect.left + stoneRect.width - 1; i++)
-		{
-			int tileX = i;
-			int tileY = stoneRect.top + stoneRect.height - 1;
-
-			if (tileX >= 0 && tileX < mMap.getWidth() &&
-				tileY >= 0 && tileY < mMap.getHeight())
-			{
-				mMap[tileX][tileY].setSprite(1, sf::Vector2i(3, 7));
-				mMap[tileX][tileY].setCollidable(false);
-			}
-		}
-
-		for (int i = stoneRect.top + 1; i < stoneRect.top + stoneRect.height - 1; i++)
-		{
-			int tileX = stoneRect.left;
-			int tileY = i;
-
-			if (tileX >= 0 && tileX < mMap.getWidth() &&
-				tileY >= 0 && tileY < mMap.getHeight())
-			{
-				mMap[tileX][tileY].setSprite(1, sf::Vector2i(4, 7));
-				mMap[tileX][tileY].setCollidable(false);
-			}
-		}
-
-		for (int i = stoneRect.top + 1; i < stoneRect.top + stoneRect.height - 1; i++)
-		{
-			int tileX = stoneRect.left + stoneRect.width - 1;
-			int tileY = i;
-
-			if (tileX >= 0 && tileX < mMap.getWidth() &&
-				tileY >= 0 && tileY < mMap.getHeight())
-			{
-				mMap[tileX][tileY].setSprite(1, sf::Vector2i(4, 6));
-				mMap[tileX][tileY].setCollidable(false);
-			}
-		}
-	}
+	 
 }
 
 void MapGenerator::placeHut(int x, int y)

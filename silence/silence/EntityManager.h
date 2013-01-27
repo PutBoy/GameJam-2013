@@ -26,7 +26,6 @@
 	Entity* mPlayer;
 	typedef std::vector <Entity*> EntityVector;
 	EntityVector mEntities;
-
 	};
 
 #endif
