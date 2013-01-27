@@ -15,7 +15,10 @@ void loadTextures()
 	//Spinemace
 	r->loadTexture("spinemace","bonemace_idle_png.png", sf::IntRect(0,0,256,256));	
 	r->loadTexture("spinemaceIdle", "bonemace_idle_png.png", sf::IntRect(0,0,256,256));
-	r->loadTexture("spinemaceAttackForward", "images/bonemace_forward_strike_sprite_png.png", sf::IntRect(0, 0, 256, 2560));
+	r->loadTexture("spinemaceAttackForward", "images/bonemace_forward_strike_sprite_png.png", sf::IntRect(0, 0, 2560, 256));
+	r->loadTexture("spinemaceAttackLeft", "images/bonemace_left_strike_sprite_png.png", sf::IntRect(0, 0, 2560, 256));
+	r->loadTexture("spinemaceAttackRight", "images/bonemace_right_strike_sprite_png.png", sf::IntRect(0, 0, 2560, 256));
+	r->loadTexture("spinemaceAttackBack", "images/bonemace_back_strike_sprite_png.png", sf::IntRect(0, 0, 2560, 256));
 	//Player
 	r->loadTexture("down","priest_walk_forward_sprite.png",sf::IntRect(0,0,1280,128));
 	r->loadTexture("left","priest_walk_left_sprite.png",sf::IntRect(0,0,1280,128));

@@ -7,6 +7,8 @@
 
 #include "Weapon.h"
 
+#include <iostream>
+
 
 Player::Player(sf::Vector2f startPos, MapCollider m): Entity(startPos), mMapColider(m),
 	mWeapon(nullptr), 
@@ -38,7 +40,10 @@ Player::~Player(void)
 void Player::update()
 {
 
-	sf::Vector2f distance; 
+	sf::Vector2f distance;
+
+	
+
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		mCurrentAnim = &mRigth;
@@ -101,6 +106,8 @@ void Player::update()
 	
 	sf::Vector2f move = mMapColider.tryMove(sf::Vector2f(mPos.x, mPos.y + 32), distance, mCollisionBox);
 	mPos = sf::Vector2f(move.x, move.y - 32) ;
+
+	mDir = distance;
 
 	mCurrentAnim->update();
 
@@ -178,4 +185,9 @@ void Player::attack(){
 		if (drop)
 			Drop(drop);
 	}
+}
+
+
+sf::Vector2f Player::getDir(){
+	return mDir;
 }

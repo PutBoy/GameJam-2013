@@ -19,7 +19,11 @@ public:
 
 private:
 	Animation mAnimIdle;
-	Animation mAnimAttack;
+	Animation mAnimAttackForward;
+	Animation mAnimAttackBack;
+	Animation mAnimAttackLeft;
+	Animation mAnimAttackRight;
+	Animation* mCurrentAttack;
 
 	bool mAttacking;
 

@@ -20,6 +20,8 @@ public:
 
 	sf::Vector2f getDirection();
 
+	sf::Vector2f getDir(); //<---------------seans
+
 
 	void setWep(std::shared_ptr<Weapon> weapon);
 
@@ -57,6 +59,8 @@ private:
 	std::shared_ptr<Weapon> mWeapon;
 
 	HealthBar* mHealthBar;
+
+	sf::Vector2f mDir; //<------------seanass
 
 };
 
