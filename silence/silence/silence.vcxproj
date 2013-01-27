@@ -84,6 +84,7 @@
     <ClCompile Include="AnimationEntity.cpp" />
     <ClCompile Include="Bat.cpp" />
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="BulletKnuckles.cpp" />
     <ClCompile Include="BulletSpineMace.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Enemy.cpp" />
@@ -117,6 +118,7 @@
     <ClInclude Include="AnimationEntity.h" />
     <ClInclude Include="Bat.h" />
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="BulletKnuckles.h" />
     <ClInclude Include="BulletSpineMace.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="DeathAnimation.h" />

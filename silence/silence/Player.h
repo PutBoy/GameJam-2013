@@ -5,7 +5,7 @@
 #include "Animation.h"
 #include "MapCollider.h"
 #include "HealthBar.h"
-
+#include <stack>
 class Weapon;
 class WindowManager;
 
