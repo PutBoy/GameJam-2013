@@ -41,7 +41,7 @@ sf::FloatRect BulletSpineMace::getColBox(){
 	sf::Vector2f dir = (std::dynamic_pointer_cast<Player>(getEntity()))->getDir();
 
 	if(dir.x >= 1){
-		return sf::FloatRect(getPos().x + 128, getPos().y - 128, 200, 200);
+		return sf::FloatRect(getPos().x - 128, getPos().y - 128, 200, 200);
 	}else if(dir.x <= -1){
 		return sf::FloatRect(getPos().x - 128, getPos().y - 128, 200, 200);
 	}else if(dir.y >= 1){
@@ -51,7 +51,7 @@ sf::FloatRect BulletSpineMace::getColBox(){
 	}
 	else
 	{
-		return sf::FloatRect(getPos().x - 128, getPos().y - 128, 128, 128); 
+		return sf::FloatRect(getPos().x - 128, getPos().y - 128, 256, 256); 
 	}
 
 }

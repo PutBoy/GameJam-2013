@@ -6,7 +6,7 @@
 #include "MusicManager.h"
 
 #include "Weapon.h"
-
+#include "AnimationEntity.h"
 #include <iostream>
 
 
@@ -15,6 +15,7 @@ Player::Player(sf::Vector2f startPos, MapCollider m): Entity(startPos), mMapColi
 	mDown("down",150,10) ,mLeft("left",150,10) , mRigth("right",150,10) ,mUp("up",150,10), 
 	mDownIdle("downIdle", 150, 10)
 	,mUpIdle("BackIdle1",500,1), mLeftIdle("leftIdle",500,1), mRigthIdle("rigthIdle1",500,1)
+	
 {
 	pushID("Player");
 	mHP = 100;
@@ -29,6 +30,7 @@ Player::Player(sf::Vector2f startPos, MapCollider m): Entity(startPos), mMapColi
 	mCollisionBox.left = mPos.x - mCollisionBox.width / 2;
 	mCollisionBox.top = mPos.y - mCollisionBox.height / 2  - 64;
 	mHealthBar = new HealthBar();
+	mDeathAnim = new AnimationEntity(mPos,"deathanimationenemy",10,10);
 }
 
 
@@ -116,8 +118,10 @@ void Player::update()
 
 	mHealthBar->update(mHP);
 
-	if(mHP <= 0){
+	if(mHP <= 0 && !isDead()){
+		deathTimer.restart();
 		kill();
+
 	}
 }
 
@@ -127,7 +131,12 @@ void Player::render()
 	mWindow->renderToCanvas(mCurrentAnim->getSprite(), 0);
 	if(mWeapon != nullptr){
 		mWindow->renderToCanvas(mWeapon->getSprite(), 1);
-	};
+	}
+	if(mHP <= 0)
+	{
+		mDeathAnim->update();
+		mDeathAnim->render();
+	}
 	mHealthBar->render();
 }
 
@@ -143,6 +152,10 @@ sf::Vector2f Player::getDirection(){
 	return mDirection;
 }
 
+sf::Clock& Player::deadforTime()
+{
+	return deathTimer;
+}
 
 void Player::ResolveCollision(std::shared_ptr<Entity> entity)
 {

@@ -62,6 +62,11 @@ void Game::input(){
 		mMusic->stopSound("battle");
 		mAlive = false;
 	}
+	if(mPlayer->isDead() && mPlayer->deadforTime().getElapsedTime().asSeconds() > 2)
+	{
+		mMusic->pauseSound("battle");
+		mAlive = false;
+	}
 }
 
 std::shared_ptr<Entity> Game::spawnEnemy()
