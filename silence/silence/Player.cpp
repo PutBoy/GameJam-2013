@@ -3,12 +3,10 @@
 #include "ResourceManager.h"
 #include "WindowManager.h"
 #include "MapCollider.h"
-
-
+#include "MusicManager.h"
 
 #include "Weapon.h"
 
-#include <iostream>
 
 Player::Player(sf::Vector2f startPos, MapCollider m): Entity(startPos), mMapColider(m),
 	mWeapon(nullptr), 
@@ -58,6 +56,8 @@ void Player::update()
 		mCurrentAnim = &mUp;
 		distance.y -= mYvel;
 		mDirection = sf::Vector2f(0.0,mYvel);
+	
+
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
@@ -65,10 +65,18 @@ void Player::update()
 		distance.y += mYvel;
 		mDirection = sf::Vector2f(0.0,mYvel);
 	}
-	
-	
 
 
+	
+	float length = ((mDirection.x*mDirection.x)+(mDirection.y*mDirection.y));
+	length = sqrt(length);
+	if(length == 0.0) length = 0.0001f;
+
+	mDirection.x = mDirection.x/length;
+	mDirection.y = mDirection.y/length;
+
+	
+	
 	//idle animations
 	if(mCurrentAnim == &mDown && distance.y == 0)
 	{
@@ -124,9 +132,8 @@ sf::FloatRect Player::getColBox(){
 	return mCollisionBox;
 }
 
-sf::Vector2f Player::getDirection(){ // <------------vet ej om denna ska vara här ?
-
-return mDirection;
+sf::Vector2f Player::getDirection(){ 
+	return mDirection;
 }
 
 

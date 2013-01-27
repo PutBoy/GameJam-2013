@@ -15,8 +15,7 @@ void loadTextures()
 	//Spinemace
 	r->loadTexture("spinemace","bonemace_idle_png.png", sf::IntRect(0,0,256,256));	
 	r->loadTexture("spinemaceIdle", "bonemace_idle_png.png", sf::IntRect(0,0,256,256));
-	r->loadTexture("spinemaceAttack", "paint_spinemace.png", sf::IntRect(0,0,256,256));
-
+	r->loadTexture("spinemaceAttackForward", "images/bonemace_forward_strike_sprite_png.png", sf::IntRect(0, 0, 256, 2560));
 	//Player
 	r->loadTexture("down","priest_walk_forward_sprite.png",sf::IntRect(0,0,1280,128));
 	r->loadTexture("left","priest_walk_left_sprite.png",sf::IntRect(0,0,1280,128));
@@ -24,7 +23,7 @@ void loadTextures()
 	r->loadTexture("up","priest_walk_back_sprite.png",sf::IntRect(0,0,1280,128));
 	r->loadTexture("downIdle", "priest_stand_still_sprite.png", sf::IntRect(0,0,1280,128));
 	r->loadTexture("leftIdle", "images/priest_idle_left_png.png", sf::IntRect(0,0,128,128));
-	r->loadTexture("rigthIdle1", "images/priest_idle_rigth_png.png", sf::IntRect(0,0,127,127));
+	r->loadTexture("rigthIdle1", "images/priest_idle_right_png.png", sf::IntRect(0,0,127,127));
 	r->loadTexture("BackIdle1", "images/priest_idle_back_png.png", sf::IntRect(0,0,127,127));
 
 	//Megasuperhackerguy
@@ -49,7 +48,8 @@ void loadTextures()
 	r->loadTexture("BatDown", "images/fladdermus-sprite.png",sf::IntRect(0,0,1280,128));
 
 	//AnimationEntities
-	r->loadTexture("deathanimationenemy", "death_animation_enemy_png.png",sf::IntRect(0,0,2580,258));
+	r->loadTexture("deathanimationenemy", "images/death_animation_enemy_png.png",sf::IntRect(0,0,2580,258));
+
 
 }
 

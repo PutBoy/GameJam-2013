@@ -18,11 +18,12 @@ public:
 	virtual void render();
 	void doDamage(float damage);
 
+	sf::Vector2f getDirection();
+
 
 	void setWep(std::shared_ptr<Weapon> weapon);
 
 protected:
-	sf::Vector2f getDirection(); // <---------------ingen aning ? 
 
 	virtual sf::FloatRect getColBox();
 	virtual void ResolveCollision(std::shared_ptr<Entity> entity);

@@ -54,12 +54,16 @@ void MapGenerator::generateNew(size_t w, size_t h)
 		std::srand(static_cast<unsigned int>(std::clock()));
 	}
 	
-	for (int i = 0; i < w + h / 2; i++)
+	for (int i = 0; (i < w + h / 2) * 5; i++)
 	{
 		placeHut(std::rand() % mMap.getWidth(), std::rand() % mMap.getHeight());
 		placeTree(std::rand() % mMap.getWidth(), std::rand() % mMap.getHeight());
 		placeDoodad(std::rand() % mMap.getWidth(), std::rand() % mMap.getHeight());
+		placeDoodad(std::rand() % mMap.getWidth(), std::rand() % mMap.getHeight());
 		placeKrimsKrams(std::rand() % mMap.getWidth(), std::rand() % mMap.getHeight());
+		placeKrimsKrams(std::rand() % mMap.getWidth(), std::rand() % mMap.getHeight());
+
+
 	}
 }
 
@@ -469,7 +473,7 @@ bool MapGenerator::placeWalkWay(const sf::Vector2i& start, const sf::Vector2i st
 		}
 	};
 	
-		
+
 	Direction currentDir = NONE;
 
 	bool done = false;
