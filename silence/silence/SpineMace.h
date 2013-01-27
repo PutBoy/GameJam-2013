@@ -5,19 +5,20 @@
 
 class Animation;
 class ResourceManager;
+class BulletSpineMace;
 
 class SpineMace : public Weapon{
 public:
 	SpineMace(Entity* player);
 	~SpineMace();
 
-	bool shoot();
+	Entity* shoot();
 	sf::Sprite& getSprite();
-	Entity* createBullet();
 	sf::FloatRect getColBox();
 
 private:
 	Animation* mAnimation;
+	Animation* 
 
 };
 

@@ -1,6 +1,7 @@
 #include "SpineMace.h"
 #include "Animation.h"
 #include "ResourceManager.h"
+#include "BulletSpineMace.h"
 
 SpineMace::SpineMace(Entity* player): 
 	Weapon(player)
@@ -12,8 +13,8 @@ SpineMace::SpineMace(Entity* player):
 SpineMace::~SpineMace()
 {}
 
-bool SpineMace::shoot(){
-	return false;
+Entity* SpineMace::shoot(){
+	return new BulletSpineMace(getPlayer()->getPos(), getPlayer()); //<------- kolla upp dennna ?
 }
 
 sf::Sprite& SpineMace::getSprite(){
@@ -26,11 +27,6 @@ sf::Sprite& SpineMace::getSprite(){
 
 	return mAnimation->getSprite();
 }
-
-Entity* SpineMace::createBullet(){
-	return nullptr;
-}
-
 
 sf::FloatRect SpineMace::getColBox(){
 	return mAnimation->getSprite().getGlobalBounds();

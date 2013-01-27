@@ -48,8 +48,11 @@ Player::~Player(void)
 
 void Player::update()
 {
-	//Bullet* bullet = gun->shoot();
-	//Drop(bullet);
+
+
+	//spelar-attack vanlig <-----------
+	attack();
+
 
 	sf::Vector2f distance; 
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
@@ -104,16 +107,6 @@ void Player::render()
 	};
 }
 
-float Player::getHP(){
-	return 0.0f;
-}
-
-float Player::getDamage(){
-	return 0.0f;
-}
-
-void Player::setHP(float damage){
-}
 
 sf::FloatRect Player::getColBox(){
 	return mCollisionBox;
@@ -161,4 +154,10 @@ void Player::ResolveCollision(Entity* entity)
 void Player::setWep(Weapon* weapon){
 	
 	mWeapon = weapon;
+}
+
+void Player::attack(){
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
+		Drop(mWeapon->shoot());
+	}
 }

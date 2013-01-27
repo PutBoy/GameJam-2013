@@ -28,6 +28,8 @@ protected:
 	virtual void setHP(float damage);
 	virtual sf::FloatRect getColBox();
 	virtual void ResolveCollision(Entity* entity);
+
+	void attack();
 	
 
 private:

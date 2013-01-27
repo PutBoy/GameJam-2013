@@ -122,3 +122,7 @@ sf::Vector2f Entity::getMajorVector(sf::Vector2f vec)
 	}
 
 }
+
+sf::Vector2f Entity::getPos(){
+	return mPos;
+}
