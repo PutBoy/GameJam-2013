@@ -4,6 +4,7 @@
 #include <SFML\Graphics\Sprite.hpp>
 
 #include "Entity.h"
+#include "Animation.h"
 
 class Weapon
 {

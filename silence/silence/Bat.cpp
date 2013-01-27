@@ -2,18 +2,9 @@
 #include "ResourceManager.h"
 
 Bat::Bat(sf::Vector2f spawnPos, MapCollider map): Enemy(spawnPos, 20), mMap(map)
+	,mLeft("BatLeft",50,10), mRigth("BatRigth",50,10), mUp("BatUp",50,10), mDown("BatDown",50,10)
 {
-	ResourceManager* r = ResourceManager::getInstance();
-	r->loadTexture("BatLeft", "images/fladdemus-sida.png",sf::IntRect(0,0,1280,128));
-	r->loadTexture("BatRigth", "images/fladdermus-sida2.png",sf::IntRect(0,0,1280,128));
-	r->loadTexture("BatUp", "images/fladdermus-upp.png",sf::IntRect(0,0,1280,128));
-	r->loadTexture("BatDown", "images/fladdermus-sprite.png",sf::IntRect(0,0,1280,128));
-	mLeft = new Animation("BatLeft",50,10);
-	mRigth = new Animation("BatRigth",50,10);
-	mUp = new Animation("BatUp",50,10);
-	mDown = new Animation("BatDown",50,10);
-
-	mCurrentAnim = mRigth;
+	mCurrentAnim = &mRigth;
 	mWindow = WindowManager::getInstance();
 
 	mCollisionBox.height = 64;
@@ -42,13 +33,13 @@ void Bat::update()
 	}
 
 	if(move.x > 0 && move.x > move.y)
-		mCurrentAnim = mRigth;//
+		mCurrentAnim = &mRigth;//
 	else if(move.x < 0 && move.x < move.y)
-		mCurrentAnim = mLeft;
+		mCurrentAnim = &mLeft;
 	if(move.y > 0 && move.x < move.y)
-		mCurrentAnim = mDown;//
+		mCurrentAnim = &mDown;//
 	else if(move.y < 0 && move.x > move.y)
-		mCurrentAnim = mUp;
+		mCurrentAnim = &mUp;
 	
 	mPos += move;
 	mCollisionBox.left = mPos.x - mCollisionBox.width / 2;

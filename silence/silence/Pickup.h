@@ -3,8 +3,8 @@
 
 #include "MapCollider.h"
 #include "Entity.h"
+#include "Animation.h"
 
-class Animation;
 class ResourceManager;
 class WindowManager;
 

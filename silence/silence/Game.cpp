@@ -13,6 +13,7 @@ Game::Game()
 	:mAlive(true)
 	,mPlayer(std::make_shared<Player>(sf::Vector2f(200,200),MapCollider(map.getMap())))
 {
+	
 	mCam = std::auto_ptr<Camera>(new Camera(mPlayer, 200));
 	mEntityMan.AddPlayer(mPlayer);
 	mEntityMan.Add(std::make_shared<SpineMacePickup>(sf::Vector2f(400,400), map.getMap())); //<----------statisk position

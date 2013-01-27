@@ -26,6 +26,7 @@ public:
 private:
 	std::shared_ptr<Entity> spawnEnemy();
 
+	//void loadTextures();
 	MapManager map;
 	EntityManager mEntityMan;
 	

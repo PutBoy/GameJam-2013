@@ -11,25 +11,14 @@
 #include <iostream>
 
 Player::Player(sf::Vector2f startPos, MapCollider m): Entity(startPos), mMapColider(m),
-	mWeapon(nullptr)
+	mWeapon(nullptr), 
+	mDown("down",150,10) ,mLeft("left",150,10) , mRigth("right",150,10) ,mUp("up",150,10), mDownIdle("downIdle", 150, 10)
 {
 	pushID("Player");
 	mHP = 100;
-	ResourceManager* r = ResourceManager::getInstance();
-	r->loadTexture("down","priest_walk_forward_sprite.png",sf::IntRect(0,0,1280,128));
-	r->loadTexture("left","priest_walk_left_sprite.png",sf::IntRect(0,0,1280,128));
-	r->loadTexture("right","priest_walk_right_sprite.png",sf::IntRect(0,0,1280,128));
-	r->loadTexture("up","priest_walk_back_sprite.png",sf::IntRect(0,0,1280,128));
-	r->loadTexture("downIdle", "priest_stand_still_sprite.png", sf::IntRect(0,0,1280,128));
 
-	mDown = new Animation("down",150,10);
-	mLeft = new Animation("left",150,10);
-	mRigth = new Animation("right",150,10);
-	mUp = new Animation("up",150,10);
-
-	mDownIdle = new Animation("downIdle", 150, 10);
 	mDirection = sf::Vector2f(0.0, mYvel);
-	mCurrentAnim = mDown;
+	mCurrentAnim = &mDown;
 	mYvel = mXvel = 5;
 	mWindow = WindowManager::getInstance();
 
@@ -59,25 +48,25 @@ void Player::update()
 	sf::Vector2f distance; 
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
-		mCurrentAnim = mRigth;
+		mCurrentAnim = &mRigth;
 		distance.x += mXvel;
 		mDirection = sf::Vector2f(mXvel,0.0);
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
-		mCurrentAnim = mLeft;
+		mCurrentAnim = &mLeft;
 		distance.x -= mXvel;
 		mDirection = sf::Vector2f(mXvel,0.0);
 	}
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
-		mCurrentAnim = mUp;
+		mCurrentAnim = &mUp;
 		distance.y -= mYvel;
 		mDirection = sf::Vector2f(0.0,mYvel);
 	}
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
-		mCurrentAnim = mDown;
+		mCurrentAnim = &mDown;
 		distance.y += mYvel;
 		mDirection = sf::Vector2f(0.0,mYvel);
 	}
@@ -86,8 +75,8 @@ void Player::update()
 
 
 	//idle animations
-	if(mCurrentAnim == mDown && distance.y == 0){
-		mCurrentAnim = mDownIdle;
+	if(mCurrentAnim == &mDown && distance.y == 0){
+		mCurrentAnim = &mDownIdle;
 	}
 
 	mPos += distance;

@@ -5,35 +5,29 @@
 
 SpineMace::SpineMace(std::shared_ptr<Entity> player): 
 	Weapon(player),
-	mAttackSpeed(0.5)
+	mAttackSpeed(0.5),
+	mAnimIdle("spinemaceIdle", 150, 1), mAnimAttack("spinemaceAttack", 100, 10)
 {
-
-	ResourceManager* r = ResourceManager::getInstance();
-
-	r->loadTexture("spinemaceIdle", "bonemace_idle_png.png", sf::IntRect(0,0,256,256));
-	r->loadTexture("spinemaceAttack", "paint_spinemace.png", sf::IntRect(0,0,256,256));
-
-	mAnimIdle = new Animation("spinemaceIdle", 150, 1);
-	mAnimAttack = new Animation("spinemaceAttack", 100, 10);
-	mCurrentAnimation = mAnimIdle;
+	mCurrentAnimation = &mAnimIdle;
 }
 
 SpineMace::~SpineMace()
 {
-	delete mAnimIdle;
-	delete mAnimAttack;
+
 }
 
 std::shared_ptr<Entity> SpineMace::shoot(){
 	if(mAttackTimer.getElapsedTime().asSeconds() > mAttackSpeed){
-		mCurrentAnimation = mAnimAttack;
+
+		mCurrentAnimation = &mAnimAttack;
 		mAttackTimer.restart();
 		return std::make_shared<BulletSpineMace>(getPlayer()->getPos(), getPlayer()); //<------- kolla upp dennna ?
 
 
 	}else{
-		mCurrentAnimation = mAnimIdle;
+		mCurrentAnimation = &mAnimIdle;
 		return nullptr;
+
 	}
 }
 

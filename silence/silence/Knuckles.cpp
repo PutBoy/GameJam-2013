@@ -2,11 +2,11 @@
 #include "Animation.h"
 #include "ResourceManager.h"
 
+
 Knuckles::Knuckles(std::shared_ptr<Entity> player):
-Weapon(player)
+Weapon(player), mAnimation("Knuckles", 150, 10)
+
 {
-	ResourceManager::getInstance()->loadTexture("Knuckles", "sökväg", sf::IntRect(0,0,500,500));
-	mAnimation = new Animation("Knuckles", 150, 10);
 
 }
 
@@ -20,7 +20,7 @@ std::shared_ptr<Entity> Knuckles::shoot(){
 }
 
 sf::Sprite& Knuckles::getSprite(){
-	return mAnimation->getSprite();
+	return mAnimation.getSprite();
 }
 
 std::shared_ptr<Entity> Knuckles::createBullet(){
@@ -32,5 +32,5 @@ std::shared_ptr<Entity> Knuckles::getPlayer(){
 }
 
 sf::FloatRect Knuckles::getColBox(){
-	return mAnimation->getSprite().getGlobalBounds();
+	return mAnimation.getSprite().getGlobalBounds();
 }

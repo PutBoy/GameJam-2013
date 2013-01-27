@@ -17,7 +17,7 @@ public:
 	sf::FloatRect getColBox();
 	void ResolveCollision(std::shared_ptr<Entity> entity);
 private:
-	Animation* mAnimation;
+	Animation mAnimation;
 
 };
 

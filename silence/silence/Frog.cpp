@@ -2,20 +2,10 @@
 #include "ResourceManager.h"
 
 
-Frog::Frog(sf::Vector2f spawnPos, MapCollider map): Enemy(spawnPos, 20), mMap(map)
+Frog::Frog(sf::Vector2f spawnPos, MapCollider map): Enemy(spawnPos, 20), mMap(map),
+	mRigth("FrogRigth",50,10) , mLeft("FrogLeft",50,10) , mDown("FrogDown",50,10) , mUp("FrogUp",25,10)
 {
-	ResourceManager* r = ResourceManager::getInstance();
-	r->loadTexture("FrogRigth", "images/frog-right.png",sf::IntRect(0,0,1280,128));
-	r->loadTexture("FrogLeft", "images/frog-left.png",sf::IntRect(0,0,1280,128));
-	r->loadTexture("FrogDown", "images/frog-down.png",sf::IntRect(0,0,1280,128));
-	r->loadTexture("FrogUp", "images/frog-up.png",sf::IntRect(0,0,1280,128));
-	
-	mRigth = new Animation("FrogRigth",50,10);
-	mLeft = new Animation("FrogLeft",50,10);
-	mDown = new Animation("FrogDown",50,10);
-	mUp = new Animation("FrogUp",25,10);
-
-	mCurrentAnim = mRigth;
+	mCurrentAnim = &mRigth;
 	mWindow = WindowManager::getInstance();
 
 	mCollisionBox.height = 64;
@@ -28,10 +18,7 @@ Frog::Frog(sf::Vector2f spawnPos, MapCollider map): Enemy(spawnPos, 20), mMap(ma
 
 Frog::~Frog(void)
 {
-	delete mRigth;
-	delete mLeft;
-	delete mDown;
-	delete mUp;
+
 }
 
 void Frog::update()
@@ -47,13 +34,13 @@ void Frog::update()
 	}
 
 	if(move.x > 0 && move.x > move.y)
-		mCurrentAnim = mRigth;//
+		mCurrentAnim = &mRigth;//
 	else if(move.x < 0 && move.x < move.y)
-		mCurrentAnim = mLeft;
+		mCurrentAnim = &mLeft;
 	if(move.y > 0 && move.x < move.y)
-		mCurrentAnim = mDown;//
+		mCurrentAnim = &mDown;//
 	else if(move.y < 0 && move.x > move.y)
-		mCurrentAnim = mUp;
+		mCurrentAnim = &mUp;
 
 	mPos += move;
 	mCollisionBox.left = mPos.x - mCollisionBox.width / 2;

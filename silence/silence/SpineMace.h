@@ -5,7 +5,6 @@
 #include <SFML\System\Clock.hpp>
 
 
-class Animation;
 class ResourceManager;
 class BulletSpineMace;
 
@@ -19,8 +18,8 @@ public:
 	sf::FloatRect getColBox();
 
 private:
-	Animation* mAnimIdle;
-	Animation* mAnimAttack;
+	Animation mAnimIdle;
+	Animation mAnimAttack;
 	Animation* mCurrentAnimation;
 	sf::Clock mAttackTimer;
 

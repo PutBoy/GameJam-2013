@@ -23,7 +23,7 @@ protected:
 	std::shared_ptr<Entity> getPlayer();
 
 private:
-	Animation* mAnimation;
+	Animation mAnimation;
 
 };
 
