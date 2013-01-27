@@ -48,11 +48,12 @@ void EntityManager::AliveCheck(){
 
 	for(EntityVector::size_type i = 0; i < mEntities.size(); i++){
 	
-		//if(mEntities[i]->getHP() <= 0){
-		//	mEntities[i] = mEntities.back();
-		//	mEntities.pop_back();
+		if(mEntities[i]->isDead() == true){
+			delete mEntities[i];
+			mEntities[i] = mEntities.back();
+			mEntities.pop_back();
 
-		//}
+		}
 	}
 }
 

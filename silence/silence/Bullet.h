@@ -7,18 +7,19 @@ class Bullet: public Entity
 
 public:
 
-	Bullet();
-	~Bullet(void);
-	void update();
-	void render();
-	std::string isID(std::string ID);
-	sf::FloatRect getColBox();
-	void closeToEnemy(Entity* en);
+	Bullet(sf::Vector2f mpos, Entity* ent);
+	
+	void update(){}
+	void render(){}
+	void ResolveCollision(Entity* entity){}
+	virtual sf::FloatRect getColBox(){return sf::FloatRect(0,0,0,0);}
 
+protected: 
 
-
+	Entity* getEntity();
 
 private:
+	Entity* mEnt;
 
 };
 

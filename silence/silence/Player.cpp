@@ -14,7 +14,7 @@ Player::Player(sf::Vector2f startPos, MapCollider m): Entity(startPos), mMapColi
 	mWeapon(nullptr)
 {
 	pushID("Player");
-
+	mHP = 100;
 	ResourceManager* r = ResourceManager::getInstance();
 	r->loadTexture("down","priest_walk_forward_sprite.png",sf::IntRect(0,0,1280,128));
 	r->loadTexture("left","priest_walk_left_sprite.png",sf::IntRect(0,0,1280,128));
@@ -96,6 +96,9 @@ void Player::update()
 	mPos = move;
 
 	mCurrentAnim->update();
+	if(mHP <= 0){
+	kill();
+	}
 }
 
 void Player::render()
@@ -107,15 +110,8 @@ void Player::render()
 	};
 }
 
-float Player::getHP(){
-	return 0.0f;
-}
-
-float Player::getDamage(){
-	return 0.0f;
-}
-
-void Player::setHP(float damage){
+void Player::doDamage(float damage){
+mHP -= damage;
 }
 
 sf::FloatRect Player::getColBox(){
