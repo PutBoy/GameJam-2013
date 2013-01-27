@@ -20,7 +20,8 @@ void BulletSpineMace::render(){
 void BulletSpineMace::ResolveCollision(std::shared_ptr<Entity> entity){
 	if (isDead())
 		return;
-	if(entity->isID("Enemy")){
+	if(entity->isID("Enemy"))
+	{
 		std::shared_ptr<Enemy> enemy = std::dynamic_pointer_cast<Enemy>(entity);
 		if(enemy){
 			enemy->doDamage(9001);
