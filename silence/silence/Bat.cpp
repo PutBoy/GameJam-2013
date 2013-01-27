@@ -115,7 +115,4 @@ void Bat::ResolveCollision(std::shared_ptr<Entity> entity)
 	if(std::dynamic_pointer_cast<Player>(entity))
 		play->doDamage(0.1);
 
-	if(std::dynamic_pointer_cast<Player>(entity));
-
-
 }
