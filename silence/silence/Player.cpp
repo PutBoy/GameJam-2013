@@ -37,7 +37,7 @@ Player::Player(sf::Vector2f startPos, MapCollider m): Entity(startPos), mMapColi
 	mCollisionBox.width = 64;
 	mCollisionBox.left = mPos.x - mCollisionBox.width / 2;
 	mCollisionBox.top = mPos.y - mCollisionBox.height / 2  - 64;
-	
+	mHealthBar = new HealthBar();
 }
 
 
@@ -98,9 +98,11 @@ void Player::update()
 	mPos = sf::Vector2f(move.x, move.y - 32) ;
 
 	mCurrentAnim->update();
-	
+
 	//spelar-attack vanlig <-----------
 	attack();
+
+	mHealthBar->update(mHP);
 
 	if(mHP <= 0){
 		kill();
@@ -114,6 +116,7 @@ void Player::render()
 	if(mWeapon != nullptr){
 		mWindow->renderToCanvas(mWeapon->getSprite(), 1);
 	};
+	mHealthBar->render();
 }
 
 void Player::doDamage(float damage){

@@ -119,4 +119,5 @@ std::shared_ptr<Entity> Game::spawnEnemy()
 		return megaGuy;
 	}
 	
+	return nullptr;
 }
