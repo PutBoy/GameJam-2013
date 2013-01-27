@@ -21,12 +21,13 @@ void BulletSpineMace::ResolveCollision(std::shared_ptr<Entity> entity){
 	if(entity->isID("Enemy")){
 		std::shared_ptr<Enemy> enemy = std::dynamic_pointer_cast<Enemy>(entity);
 		if(enemy){
-			enemy->doDamage(5);
+			enemy->doDamage(9001);
+			kill();
 		}
 	}
 }
 
 sf::FloatRect BulletSpineMace::getColBox(){
-	return Bullet::getColBox();
+	return sf::FloatRect(getPos().x - 64, getPos().y - 64, 128, 128); 
 
 }

@@ -16,9 +16,10 @@ public:
 
 	virtual void ResolveCollision(std::shared_ptr<Entity> entity);
 protected:
-	float getHP();
+	float getHP() {return mHP;};
+
+private:
 	float mHP;
-	sf::Vector2f getRandomMove();
 };
 
 #endif

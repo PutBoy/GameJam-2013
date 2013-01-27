@@ -32,7 +32,7 @@ void Bat::update()
 {
 
 	if (getHP() < 0.f)
-	kill();
+		kill();
 
 	sf::Vector2f move(0,0);
 	if(closeToMyEnemy)
@@ -64,11 +64,6 @@ void Bat::render()
 {
 	mCurrentAnim->setPosition(mPos - sf::Vector2f(64, 96));
 	mWindow->renderToCanvas(mCurrentAnim->getSprite(), 0);
-}
-
-float Bat::getHP()
-{
-	return 0.f;
 }
 
 std::string Bat::isID(std::string ID)

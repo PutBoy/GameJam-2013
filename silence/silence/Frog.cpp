@@ -71,11 +71,6 @@ void Frog::render()
 	mWindow->renderToCanvas(mCurrentAnim->getSprite(), 0);
 }
 
-float Frog::getHP()
-{
-	return 0.f;
-}
-
 std::string Frog::isID(std::string ID)
 {
 	return "Frog";

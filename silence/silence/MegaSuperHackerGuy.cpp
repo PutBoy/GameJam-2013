@@ -33,7 +33,6 @@ MegaSuperHackerGuy::~MegaSuperHackerGuy(void)
 }
 
 
-
 void MegaSuperHackerGuy::update()
 {
 	if (getHP() < 0.f)
@@ -69,26 +68,6 @@ void MegaSuperHackerGuy::render()
 {
 	mCurrentAnim->setPosition(mPos - sf::Vector2f(64, 96));
 	mWindow->renderToCanvas(mCurrentAnim->getSprite(), 0);
-}
-
-float MegaSuperHackerGuy::getHP()
-{
-	return 0.f;
-}
-
-std::string MegaSuperHackerGuy::isID(std::string ID)
-{
-	return "Frog";
-}
-
-float MegaSuperHackerGuy::getDamage()
-{
-	return 0.f;
-}
-
-void MegaSuperHackerGuy::setHP(float damage)
-{
-
 }
 
 sf::FloatRect MegaSuperHackerGuy::getColBox()

@@ -13,7 +13,7 @@ public:
 	~Frog(void);
 	virtual void update();
 	virtual void render();
-	virtual float getHP();
+
 	virtual std::string isID(std::string ID);
 	virtual float getDamage();
 	virtual void setHP(float damage);
