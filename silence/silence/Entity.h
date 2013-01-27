@@ -22,8 +22,8 @@ public:
 
 	sf::Vector2f getPos();
 
-	virtual void update(){};
-	virtual void render(){};
+	virtual void update()=0;
+	virtual void render()=0;
 	bool isID(std::string ID);
 	void setPos(sf::Vector2f);
 	virtual sf::FloatRect getColBox()=0;

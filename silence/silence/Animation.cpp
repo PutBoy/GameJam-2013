@@ -4,7 +4,8 @@
 Animation::Animation(const std::string& stringName, int frameTime, int frames):
 	mFrameTime(frameTime),
 	mFrames(frames),
-	mCurrentFrame(0)
+	mCurrentFrame(0),
+	mLoopAmounts(0)
 	
 {
 	
@@ -31,6 +32,7 @@ void Animation::update(){
 		// slut på animation
 		if(mCurrentFrame >= mFrames){
 			mCurrentFrame = 0;
+			mLoopAmounts++;
 		}
 
 		sf::IntRect currentRect = mSprite.getTextureRect();

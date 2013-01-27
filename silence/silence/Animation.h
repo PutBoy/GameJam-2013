@@ -17,6 +17,8 @@ public:
 	void update();
 	void setPosition(sf::Vector2f& pos);
 
+	size_t loopAmounts() {return mLoopAmounts;};
+
 	const sf::Sprite& getSprite() const;
 	sf::Sprite& getSprite();
 
@@ -27,6 +29,7 @@ private:
 	int mFrames;
 	int mCurrentFrame;
 
+	size_t mLoopAmounts;
 	sf::Sprite mSprite;
 };
 
