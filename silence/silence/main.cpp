@@ -50,6 +50,10 @@ void loadTextures()
 	//knuckles
 	//r->loadTexture("Knuckles", "sökväg", sf::IntRect(0,0,500,500));
 
+
+	//winscreen
+	r->loadTexture("WinScreen", "images/win_screen_png.png",sf::IntRect(0,0,1600,900));
+
 	//Frog
 	r->loadTexture("FrogRigth", "images/frog-right.png",sf::IntRect(0,0,1280,128));
 	r->loadTexture("FrogLeft", "images/frog-left.png",sf::IntRect(0,0,1280,128));
