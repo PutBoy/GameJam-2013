@@ -96,9 +96,6 @@
     <ClCompile Include="KnucklesPickUp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Weapon.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MegaSuperHackerGuy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

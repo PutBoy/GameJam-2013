@@ -18,7 +18,7 @@ public:
 
 private:
 	Animation* mAnimation;
-	Animation* 
+	/*Animation* */
 
 };
 

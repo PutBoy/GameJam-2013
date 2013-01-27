@@ -15,7 +15,7 @@ Knuckles::~Knuckles(void)
 {
 }
 
-bool Knuckles::shoot(){
+Entity* Knuckles::shoot(){
 return false;
 }
 

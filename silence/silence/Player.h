@@ -16,7 +16,6 @@ public:
 	~Player(void);
 	virtual void update();
 	virtual void render();
-	virtual float getHP();
 
 
 	void setWep(Weapon* weapon);
@@ -24,8 +23,6 @@ public:
 protected:
 	sf::Vector2f getDirection(); // <---------------ingen aning ? 
 
-	virtual float getDamage();
-	virtual void setHP(float damage);
 	virtual sf::FloatRect getColBox();
 	virtual void ResolveCollision(Entity* entity);
 

@@ -13,7 +13,6 @@ public:
 	virtual ~Weapon(){};
 	virtual Entity* shoot()=0;
 	virtual sf::Sprite& getSprite()=0;
-	virtual Entity* createBullet()=0;
 	virtual sf::FloatRect getColBox()=0;
 protected:
 	Entity* getPlayer(){return mPlayer;};

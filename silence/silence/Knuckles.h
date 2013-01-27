@@ -13,7 +13,7 @@ public:
 	Knuckles(Entity* player);
 	~Knuckles();
 
-	bool shoot();
+	Entity* shoot();
 	sf::Sprite& getSprite();
 	Entity* createBullet();
 	sf::FloatRect getColBox();
