@@ -19,7 +19,7 @@ Game::Game()
 	mEntityMan.AddPlayer(mPlayer);
 	mEntityMan.Add(std::make_shared<SpineMacePickup>(sf::Vector2f(400,400)/*, map.getMap()*/)); //<----------statisk position
 
-	mEntityMan.Add(std::make_shared<Kriminel>(sf::Vector2f(400,400), map.getMap())); //<----------statisk position
+	mEntityMan.Add(std::make_shared<Kriminel>(sf::Vector2f(15000,15000), map.getMap())); //<----------statisk position
 
 	mMusic = MusicManager::getInstance();
 	mMusic->loadSound("battle", "sounds/Heartbeater_Battle.aif");
