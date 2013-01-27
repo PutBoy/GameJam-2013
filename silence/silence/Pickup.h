@@ -11,10 +11,7 @@ class WindowManager;
 
 class Pickup : public Entity{
 public:
-	Pickup(sf::Vector2f startPos, MapCollider m):Entity(startPos)
-		{
-			mPos = m.tryMove(mPos, sf::Vector2f(0, 1), sf::FloatRect(mPos.x - 32, mPos.y - 32, 64, 64));
-		};
+	Pickup(sf::Vector2f startPos):Entity(startPos){};
 	virtual ~Pickup(){};
 	virtual void update()=0;
 	virtual void render()=0;

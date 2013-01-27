@@ -25,11 +25,16 @@ private:
 	Animation mAnimAttackRight;
 	Animation* mCurrentAttack;
 
+	Animation mAnimFel;
+
+	
 	bool mAttacking;
 
 	sf::Clock mAttackTimer;
 
 	float mAttackSpeed;
+
+	int mKillCounter;
 
 
 	/*Animation* */

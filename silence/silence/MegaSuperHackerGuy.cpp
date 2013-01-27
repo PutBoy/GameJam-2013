@@ -2,6 +2,8 @@
 #include "ResourceManager.h"
 #include <memory>
 #include "DeathAnimation.h"
+#include "SpineMacePickup.h"
+
 
 MegaSuperHackerGuy::MegaSuperHackerGuy(sf::Vector2f spawnPos, MapCollider map):Enemy(spawnPos, 100.0f), mMap(map)
 	, mRigth("MegaSuperHackerGuyRigth",50,10) , mLeft("MegaSuperHackerGuyLeft",50,10), 
@@ -30,6 +32,7 @@ void MegaSuperHackerGuy::update()
 	if (getHP() < 0.f)
 	{
 		Drop(std::make_shared<DeathAnimation>(mPos, 1.f));
+		Drop(std::make_shared<SpineMacePickup>(mPos));
 		kill();
 	}
 

@@ -12,12 +12,15 @@
 SpineMace::SpineMace(std::shared_ptr<Entity> player): 
 	Weapon(player),
 	mAttackSpeed(1),
+	
 	mAnimIdle("spinemaceIdle", 150, 1),
 	mAnimAttackForward("spinemaceAttackForward", 50, 10),
 	mAnimAttackLeft("spinemaceAttackLeft", 50, 10),
 	mAnimAttackRight("spinemaceAttackRight", 50, 10),
 	mAnimAttackBack("spinemaceAttackBack", 50, 10),
-	mCurrentAttack(&mAnimAttackLeft)
+	mAnimFel("nullptr", 1, 1),
+	mCurrentAttack(&mAnimAttackLeft),
+	mKillCounter(10)
 {
 	mAttacking = false;
 }
@@ -28,7 +31,6 @@ SpineMace::~SpineMace()
 }
 
 std::shared_ptr<Entity> SpineMace::shoot(){
-	sf::Vector2f vec = (std::dynamic_pointer_cast<Player>(getPlayer()))->getDirection();
 	
 	sf::Vector2f dir = (std::dynamic_pointer_cast<Player>(getPlayer()))->getDir();
 
@@ -48,8 +50,14 @@ std::shared_ptr<Entity> SpineMace::shoot(){
 		musica->loadSound("ljud","Enemy_hit1.wav");
 		musica->playSound("ljud");
 		mAttacking = true;
-		mCurrentAttack->restart();
 
+		mKillCounter--;
+		if(mKillCounter <= 0){
+			mAnimIdle = mAnimFel;
+			return nullptr;
+		}
+
+		mCurrentAttack->restart();
 		mAttackTimer.restart();
 		return std::make_shared<BulletSpineMace>(getPlayer()->getPos(), getPlayer()); //<------- kolla upp dennna ?
 
