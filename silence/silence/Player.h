@@ -4,7 +4,7 @@
 #include "Entity.h"
 #include "Animation.h"
 #include "MapCollider.h"
-
+#include "HealthBar.h"
 
 class Weapon;
 class WindowManager;
@@ -49,6 +49,8 @@ private:
 	float mHP;
 
 	Weapon* mWeapon;
+
+	HealthBar* mHealthBar;
 };
 
 #endif
