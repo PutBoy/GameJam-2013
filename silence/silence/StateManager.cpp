@@ -20,6 +20,7 @@ StateManager::~StateManager()
 
 void StateManager::add(State* state){
 	mStack.push(state);
+	clock.restart();
 }
 
 void StateManager::update(){

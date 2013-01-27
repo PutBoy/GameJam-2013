@@ -63,7 +63,28 @@ void MapGenerator::generateNew(size_t w, size_t h)
 }
 void MapGenerator::placeDoodad(int x, int y)
 {
-	 
+
+	sf::IntRect doodadRect(x, y, 1, 1);
+
+	if (isClear(doodadRect))
+	{
+		std::vector<sf::Vector2i> doodadSprites;
+		doodadSprites.push_back(sf::Vector2i(2, 4));
+		doodadSprites.push_back(sf::Vector2i(3, 4));
+		doodadSprites.push_back(sf::Vector2i(3, 5));
+		doodadSprites.push_back(sf::Vector2i(3, 6));
+		doodadSprites.push_back(sf::Vector2i(3, 8));
+		doodadSprites.push_back(sf::Vector2i(4, 8));
+
+		if (x >= 0 && x < mMap.getWidth() &&
+			y >= 0 && y < mMap.getHeight())
+		{
+			mMap[x][y].setSprite(1, doodadSprites[std::rand() % doodadSprites.size()]);
+		}
+
+	}
+	
+
 }
 
 void MapGenerator::placeHut(int x, int y)

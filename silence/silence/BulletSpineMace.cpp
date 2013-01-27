@@ -31,7 +31,7 @@ void BulletSpineMace::ResolveCollision(Entity* entity){
 	if(entity->isID("Enemy")){
 		Enemy* enemy = dynamic_cast<Enemy*>(entity);
 		if(enemy){
-		enemy->doDamage(5);
+			enemy->doDamage(5);
 		}
 	}
 }

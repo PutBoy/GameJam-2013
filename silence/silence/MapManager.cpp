@@ -14,7 +14,7 @@ MapManager::MapManager()
 
 void MapManager::render()
 {
-	int bufferdepth[3] = {-2 , -1 , 2};
+	int bufferdepth[3] = {-3 , -2 , 3};
 
 	Map& map = mMapGenerator.getMap();
 	WindowManager* window = WindowManager::getInstance();
