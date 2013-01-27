@@ -1,5 +1,7 @@
 #include "Bat.h"
 #include "ResourceManager.h"
+#include "DeathAnimation.h"
+#include <memory>
 
 Bat::Bat(sf::Vector2f spawnPos, MapCollider map): Enemy(spawnPos, 20), mMap(map)
 	,mLeft("BatLeft",50,10), mRigth("BatRigth",50,10), mUp("BatUp",50,10), mDown("BatDown",50,10)
@@ -23,8 +25,10 @@ void Bat::update()
 {
 
 	if (getHP() < 0.f)
+	{
+		Drop(std::make_shared<DeathAnimation>(mPos));
 		kill();
-
+	}
 	sf::Vector2f move(0,0);
 	if(closeToMyEnemy)
 	{

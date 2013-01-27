@@ -1,6 +1,7 @@
 #include "MegaSuperHackerGuy.h"
 #include "ResourceManager.h"
-
+#include <memory>
+#include "DeathAnimation.h"
 
 MegaSuperHackerGuy::MegaSuperHackerGuy(sf::Vector2f spawnPos, MapCollider map):Enemy(spawnPos, 100.0f), mMap(map)
 	, mRigth("MegaSuperHackerGuyRigth",50,10) , mLeft("MegaSuperHackerGuyLeft",50,10), 
@@ -27,7 +28,10 @@ MegaSuperHackerGuy::~MegaSuperHackerGuy(void)
 void MegaSuperHackerGuy::update()
 {
 	if (getHP() < 0.f)
+	{
+		Drop(std::make_shared<DeathAnimation>(mPos));
 		kill();
+	}
 
 	sf::Vector2f move(0,0);
 	if(closeToMyEnemy)

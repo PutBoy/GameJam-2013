@@ -1,5 +1,7 @@
 #include "Frog.h"
 #include "ResourceManager.h"
+#include "DeathAnimation.h"
+#include <memory>
 
 
 Frog::Frog(sf::Vector2f spawnPos, MapCollider map): Enemy(spawnPos, 20), mMap(map),
@@ -24,8 +26,10 @@ Frog::~Frog(void)
 void Frog::update()
 {
 	if (getHP() < 0.f)
+	{
+		Drop(std::make_shared<DeathAnimation>(mPos));
 		kill();
-
+	}
 	sf::Vector2f move(0,0);
 	if(closeToMyEnemy)
 	{
@@ -56,21 +60,6 @@ void Frog::render()
 {
 	mCurrentAnim->setPosition(mPos - sf::Vector2f(64, 96));
 	mWindow->renderToCanvas(mCurrentAnim->getSprite(), 0);
-}
-
-std::string Frog::isID(std::string ID)
-{
-	return "Frog";
-}
-
-float Frog::getDamage()
-{
-	return 0.f;
-}
-
-void Frog::setHP(float damage)
-{
-
 }
 
 sf::FloatRect Frog::getColBox()

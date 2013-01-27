@@ -212,5 +212,8 @@
     <ClInclude Include="AnimationEntity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DeathAnimation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
