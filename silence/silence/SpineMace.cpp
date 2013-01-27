@@ -44,9 +44,10 @@ std::shared_ptr<Entity> SpineMace::shoot(){
 	}
 
 
-	if(mAttackTimer.getElapsedTime().asSeconds() > mAttackSpeed){
+	if(mAttackTimer.getElapsedTime().asSeconds() > mAttackSpeed)
+	{
 		MusicManager* musica = MusicManager::getInstance();
-		musica->loadSound("ljud","Enemy_hit1.wav");
+		musica->loadSound("ljud","sounds/Heart_hit3.wav");
 		musica->playSound("ljud");
 		mAttacking = true;
 

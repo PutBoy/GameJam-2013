@@ -3,10 +3,10 @@
 #include <memory>
 #include "DeathAnimation.h"
 #include "SpineMacePickup.h"
-
+#include "Player.h"
 
 Kriminel::Kriminel(sf::Vector2f spawnPos, MapCollider map) : 
-	Enemy(spawnPos, 100.0f), mMap(map),
+	Enemy(spawnPos, 400.0f), mMap(map),
 	
 	mRigth("KriminelRigth",50,10), 
 	mLeft("KriminelLeft",50,10), 
@@ -21,7 +21,6 @@ Kriminel::Kriminel(sf::Vector2f spawnPos, MapCollider map) :
 	mCollisionBox.left = mPos.x - mCollisionBox.width / 2;
 	mCollisionBox.top = mPos.y - mCollisionBox.height / 2;
 	closeToMyEnemy = false;
-
 
 }
 
@@ -106,4 +105,9 @@ void Kriminel::ResolveCollision(std::shared_ptr<Entity> entity)
 		entbox.top = mPos.y - mCollisionBox.height / 2;
 	}
 	entity->setPos(newPos);
+
+
+	std::shared_ptr<Player> play = std::dynamic_pointer_cast<Player>(entity);
+	if(std::dynamic_pointer_cast<Player>(entity))
+		play->doDamage(0.2);
 }
