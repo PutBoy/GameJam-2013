@@ -60,7 +60,6 @@ std::shared_ptr<Entity> Knuckles::shoot(){
 		return nullptr;
 	}
 }
-}
 
 sf::Sprite& Knuckles::getSprite(){
 		if (mCurrentAttack->loopAmounts() >= 1)
