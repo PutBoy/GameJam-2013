@@ -20,7 +20,9 @@ public:
 private:
 	Animation mAnimIdle;
 	Animation mAnimAttack;
-	Animation* mCurrentAnimation;
+
+	bool mAttacking;
+
 	sf::Clock mAttackTimer;
 
 	float mAttackSpeed;

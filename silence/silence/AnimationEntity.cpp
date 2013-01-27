@@ -17,5 +17,6 @@ void AnimationEntity::update()
 
 void AnimationEntity::render()
 {
+	mAnimation.getSprite().setPosition(getXpos(), getYpos());
 	WindowManager::getInstance()->renderToCanvas(mAnimation.getSprite(), 4);
 }

@@ -5,10 +5,10 @@
 
 SpineMace::SpineMace(std::shared_ptr<Entity> player): 
 	Weapon(player),
-	mAttackSpeed(0.5),
+	mAttackSpeed(1),
 	mAnimIdle("spinemaceIdle", 150, 1), mAnimAttack("spinemaceAttack", 100, 10)
 {
-	mCurrentAnimation = &mAnimIdle;
+	mAttacking = false;
 }
 
 SpineMace::~SpineMace()
@@ -17,15 +17,20 @@ SpineMace::~SpineMace()
 }
 
 std::shared_ptr<Entity> SpineMace::shoot(){
+
+
 	if(mAttackTimer.getElapsedTime().asSeconds() > mAttackSpeed){
 
-		mCurrentAnimation = &mAnimAttack;
+		mAttacking = true;
+		mAnimAttack.restart();
+
 		mAttackTimer.restart();
 		return std::make_shared<BulletSpineMace>(getPlayer()->getPos(), getPlayer()); //<------- kolla upp dennna ?
 
 
 	}else{
-		mCurrentAnimation = &mAnimIdle;
+
+		
 		return nullptr;
 
 	}
@@ -33,16 +38,28 @@ std::shared_ptr<Entity> SpineMace::shoot(){
 
 
 sf::Sprite& SpineMace::getSprite(){
+	if (mAnimAttack.loopAmounts() >= 1)
+		mAttacking = false;
+
 	int pX = getPlayer()->getXpos();
 	int pY = getPlayer()->getYpos();
 
-	mCurrentAnimation->getSprite().setPosition(
-		pX - mCurrentAnimation->getSprite().getTextureRect().width / 2,
-		pY - mCurrentAnimation->getSprite().getTextureRect().height / 2);
-	mCurrentAnimation->update();
-	return mCurrentAnimation->getSprite();
+	mAnimIdle.getSprite().setPosition(
+		pX - mAnimAttack.getSprite().getTextureRect().width / 2,
+		pY - mAnimAttack.getSprite().getTextureRect().height / 2);
+	mAnimIdle.update();
+	
+	mAnimAttack.getSprite().setPosition(
+		pX - mAnimAttack.getSprite().getTextureRect().width / 2,
+		pY - mAnimAttack.getSprite().getTextureRect().height / 2);
+	mAnimAttack.update();
+
+	if (mAttacking)
+		return mAnimAttack.getSprite();
+	else
+		return mAnimIdle.getSprite();
 }
 
 sf::FloatRect SpineMace::getColBox(){
-	return mCurrentAnimation->getSprite().getGlobalBounds();
+	return mAnimIdle.getSprite().getGlobalBounds();
 }

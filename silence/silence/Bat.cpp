@@ -26,7 +26,7 @@ void Bat::update()
 
 	if (getHP() < 0.f)
 	{
-		Drop(std::make_shared<DeathAnimation>(mPos));
+		Drop(std::make_shared<DeathAnimation>(mPos, 0.6));
 		kill();
 	}
 	sf::Vector2f move(0,0);

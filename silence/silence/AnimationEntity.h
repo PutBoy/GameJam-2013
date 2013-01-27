@@ -16,7 +16,8 @@ public:
 	virtual void render();
 	virtual sf::FloatRect getColBox() {return sf::FloatRect(0.f,0.f,0.f,0.f);};
 	void ResolveCollision(std::shared_ptr<Entity>) {};
-
+protected:
+	Animation& getAnimation() {return mAnimation;};
 private:
 	Animation mAnimation;
 };

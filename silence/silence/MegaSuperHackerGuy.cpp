@@ -29,7 +29,7 @@ void MegaSuperHackerGuy::update()
 {
 	if (getHP() < 0.f)
 	{
-		Drop(std::make_shared<DeathAnimation>(mPos));
+		Drop(std::make_shared<DeathAnimation>(mPos, 1.f));
 		kill();
 	}
 

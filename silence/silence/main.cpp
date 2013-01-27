@@ -46,7 +46,7 @@ void loadTextures()
 	r->loadTexture("BatDown", "images/fladdermus-sprite.png",sf::IntRect(0,0,1280,128));
 
 	//AnimationEntities
-	r->loadTexture("deathanimationenemy", "death_animation_enemy_png",sf::IntRect(0,0,1280,128));
+	r->loadTexture("deathanimationenemy", "death_animation_enemy_png.png",sf::IntRect(0,0,2580,258));
 
 }
 

@@ -5,8 +5,14 @@
 
 class DeathAnimation : public AnimationEntity
 {
-	DeathAnimation(sf::Vector2f pos):
-		AnimationEntity(pos, "deathanimationenemy", 100, 10){};
+public:
+	DeathAnimation(sf::Vector2f pos, float scale):
+		AnimationEntity(pos - sf::Vector2f(0, 24), "deathanimationenemy", 50, 10){
+			getAnimation().getSprite().setScale(scale, scale);
+			getAnimation().getSprite().setOrigin(129, 129);
+		};
+private:
+	float mScale;
 };
 
 #endif

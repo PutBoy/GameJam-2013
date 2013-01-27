@@ -14,9 +14,6 @@ public:
 	virtual void update();
 	virtual void render();
 
-	virtual std::string isID(std::string ID);
-	virtual float getDamage();
-	virtual void setHP(float damage);
 	virtual sf::FloatRect getColBox();
 	virtual void ResolveCollision(std::shared_ptr<Entity> entity);
 private:
