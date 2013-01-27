@@ -2,7 +2,7 @@
 #include "ResourceManager.h"
 #include "DeathAnimation.h"
 #include <memory>
-
+#include "Player.h"
 Bat::Bat(sf::Vector2f spawnPos, MapCollider map): Enemy(spawnPos, 20), mMap(map)
 	,mLeft("BatLeft",50,10), mRigth("BatRigth",50,10), mUp("BatUp",50,10), mDown("BatDown",50,10)
 {
@@ -110,4 +110,9 @@ void Bat::ResolveCollision(std::shared_ptr<Entity> entity)
 		entbox.top = mPos.y - mCollisionBox.height / 2;
 	}
 	entity->setPos(newPos);
+
+
+	if(std::dynamic_pointer_cast<Player>(entity))
+
+
 }
