@@ -37,5 +37,6 @@ void SpineMacePickup::ResolveCollision(Entity* entity){
 	if(entity->isID("Player") && sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
 			Player* player = static_cast<Player*>(entity);
 			player->setWep(new SpineMace(player)); // player går kanske ur scoope `?
+			kill();
 		}
 }

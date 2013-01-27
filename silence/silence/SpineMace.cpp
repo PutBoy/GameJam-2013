@@ -1,7 +1,7 @@
 #include "SpineMace.h"
 #include "Animation.h"
 #include "ResourceManager.h"
-//#include "BulletSpineMace.h"
+#include "BulletSpineMace.h"
 
 SpineMace::SpineMace(Entity* player): 
 	Weapon(player)
@@ -14,8 +14,8 @@ SpineMace::~SpineMace()
 {}
 
 Entity* SpineMace::shoot(){
-	//return new BulletSpineMace(getPlayer()->getPos(), getPlayer()); //<------- kolla upp dennna ?
-	return nullptr;
+	return new BulletSpineMace(getPlayer()->getPos(), getPlayer()); //<------- kolla upp dennna ?
+	//return nullptr;
 }
 
 Entity* SpineMace::specialShoot(){
