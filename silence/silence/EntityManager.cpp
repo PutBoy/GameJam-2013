@@ -33,6 +33,7 @@ void EntityManager::Draw() {
 }
 
 void EntityManager::Update(){
+
 	for(EntityVector::size_type i = 0; i < mEntities.size(); i++)
 	{
 		if(mEntities[i] != mPlayer)	
@@ -41,18 +42,26 @@ void EntityManager::Update(){
 	}
 
 	Updatedrops();
+	
+	Collision();
 
+	AliveCheck();
 }
 
 void EntityManager::AliveCheck(){
+	for(size_t i = 0; i < mGraveYard.size(); i++)
+	{
+		delete mGraveYard[i];
+	}
+	mGraveYard.clear();
 
 	for(EntityVector::size_type i = 0; i < mEntities.size(); i++){
 	
 		if(mEntities[i]->isDead() == true){
-			delete mEntities[i];
+			mGraveYard.push_back(mEntities[i]);
 			mEntities[i] = mEntities.back();
 			mEntities.pop_back();
-
+			i--;
 		}
 	}
 }

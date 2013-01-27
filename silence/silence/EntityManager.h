@@ -26,6 +26,7 @@
 	Entity* mPlayer;
 	typedef std::vector <Entity*> EntityVector;
 	EntityVector mEntities;
+	EntityVector mGraveYard;
 	};
 
 #endif

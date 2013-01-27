@@ -32,11 +32,8 @@ void Game::update()
 		//mEntityMan.Add(newEntity);
 		mEnemySpawnTimer.restart();
 	}
-	mEntityMan.Update();
 
-	mEntityMan.AliveCheck();
-	mEntityMan.Collision();
-	mEntityMan.Updatedrops();
+	mEntityMan.Update();
 
 	input();
 	mCam->update();
