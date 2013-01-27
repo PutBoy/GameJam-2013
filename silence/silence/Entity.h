@@ -15,6 +15,7 @@ public:
 	Entity* getNextDrop();
 	void Drop(Entity* drop);
 	
+	bool isDead() {return mIsDead;};
 	float getXpos()const;
 	float getYpos()const;
 
@@ -30,6 +31,8 @@ public:
 	virtual void ResolveCollision(Entity* entity)=0;
 
 protected:
+	void kill() {mIsDead = true;};
+	
 	void pushID(std::string ID);
 	
 	sf::Vector2f mPos;
@@ -39,8 +42,10 @@ protected:
 	sf::Vector2f distanceRectToRect(sf::FloatRect r0, sf::FloatRect r1);
 	sf::Vector2f getMajorVector(sf::Vector2f vec);
 private:
+	bool mIsDead;
 	std::vector <Entity*> drops;
 	std::set<std::string> IDset;
+	
 };
 
 #endif

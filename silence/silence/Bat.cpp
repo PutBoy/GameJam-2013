@@ -1,7 +1,7 @@
 #include "Bat.h"
 #include "ResourceManager.h"
 
-Bat::Bat(sf::Vector2f spawnPos, MapCollider map): Enemy(spawnPos), mMap(map)
+Bat::Bat(sf::Vector2f spawnPos, MapCollider map): Enemy(spawnPos, 20), mMap(map)
 {
 	ResourceManager* r = ResourceManager::getInstance();
 	r->loadTexture("BatLeft", "images/fladdemus-sida.png",sf::IntRect(0,0,1280,128));

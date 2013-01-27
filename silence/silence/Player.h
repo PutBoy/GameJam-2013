@@ -16,6 +16,7 @@ public:
 	~Player(void);
 	virtual void update();
 	virtual void render();
+	void doDamage(float damage);
 
 
 	void setWep(Weapon* weapon);
@@ -45,7 +46,7 @@ private:
 
 	float mYvel, mXvel;
 	WindowManager* mWindow;
-
+	float mHP;
 
 	Weapon* mWeapon;
 };

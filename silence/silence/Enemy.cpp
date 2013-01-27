@@ -1,8 +1,10 @@
 #include "Enemy.h"
 
 
-Enemy::Enemy(sf::Vector2f spawnPos): Entity(spawnPos)
-{}
+Enemy::Enemy(sf::Vector2f spawnPos, float HP): Entity(spawnPos), mHP(HP)
+{
+
+}
 Enemy::~Enemy(void)
 {
 }
@@ -19,3 +21,7 @@ sf::Vector2f Enemy::getRandomMove()
 
 void Enemy::ResolveCollision(Entity* entity)
 {}
+
+void Enemy::doDamage(float damage){
+	mHP -= damage;
+}

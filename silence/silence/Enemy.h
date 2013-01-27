@@ -6,18 +6,18 @@ class Enemy :
 	public Entity
 {
 public:
-	Enemy(sf::Vector2f spawnPos);
+	Enemy(sf::Vector2f spawnPos,float HP);
 	virtual ~Enemy(void);
 	virtual void update()=0;
 	virtual void render()=0;
-	virtual float getHP()=0;
+	void doDamage(float damage);
 
-	virtual float getDamage()=0;
-	virtual void setHP(float damage)=0;
 	virtual sf::FloatRect getColBox()=0;
 
 	virtual void ResolveCollision(Entity* entity);
 protected:
+	float getHP();
+	float mHP;
 	sf::Vector2f getRandomMove();
 };
 

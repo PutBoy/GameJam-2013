@@ -2,7 +2,7 @@
 #include "ResourceManager.h"
 
 
-Frog::Frog(sf::Vector2f spawnPos, MapCollider map): Enemy(spawnPos), mMap(map)
+Frog::Frog(sf::Vector2f spawnPos, MapCollider map): Enemy(spawnPos, 20), mMap(map)
 {
 	ResourceManager* r = ResourceManager::getInstance();
 	r->loadTexture("FrogRigth", "images/frog-right.png",sf::IntRect(0,0,1280,128));
