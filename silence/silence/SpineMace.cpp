@@ -4,18 +4,32 @@
 #include "BulletSpineMace.h"
 
 SpineMace::SpineMace(Entity* player): 
-	Weapon(player)
+	Weapon(player),
+	mAttackSpeed(0.5)
 {
-	ResourceManager::getInstance()->loadTexture("spinemace", "bonemace_idle_png.png", sf::IntRect(0,0,256,256));
-	mAnimation = new Animation("spinemace", 150, 1);
+
+	ResourceManager* r = ResourceManager::getInstance();
+
+	r->loadTexture("spinemaceIdle", "bonemace_idle_png.png", sf::IntRect(0,0,256,256));
+	r->loadTexture("spinemaceAttack", "paint_spinemace.png", sf::IntRect(0,0,256,256));
+
+	mAnimIdle = new Animation("spinemaceIdle", 150, 1);
+	mAnimAttack = new Animation("spinemaceAttack", 100, 10);
+	mCurrentAnimation = mAnimIdle;
 }
 
 SpineMace::~SpineMace()
 {}
 
 Entity* SpineMace::shoot(){
-	return new BulletSpineMace(getPlayer()->getPos(), getPlayer()); //<------- kolla upp dennna ?
-	//return nullptr;
+	if(mAttackTimer.getElapsedTime().asSeconds() > mAttackSpeed){
+		mCurrentAnimation = mAnimAttack;
+		return new BulletSpineMace(getPlayer()->getPos(), getPlayer()); //<------- kolla upp dennna ?
+		//return nullptr;
+		mAttackTimer.restart();
+	}else{
+		mCurrentAnimation = mAnimIdle;
+	}
 }
 
 Entity* SpineMace::specialShoot(){
@@ -27,13 +41,13 @@ sf::Sprite& SpineMace::getSprite(){
 	int pX = getPlayer()->getXpos();
 	int pY = getPlayer()->getYpos();
 
-	mAnimation->getSprite().setPosition(
-		pX - mAnimation->getSprite().getTextureRect().width / 2,
-		pY - mAnimation->getSprite().getTextureRect().height / 2);
-
-	return mAnimation->getSprite();
+	mCurrentAnimation->getSprite().setPosition(
+		pX - mCurrentAnimation->getSprite().getTextureRect().width / 2,
+		pY - mCurrentAnimation->getSprite().getTextureRect().height / 2);
+	mCurrentAnimation->update();
+	return mCurrentAnimation->getSprite();
 }
 
 sf::FloatRect SpineMace::getColBox(){
-	return mAnimation->getSprite().getGlobalBounds();
+	return mCurrentAnimation->getSprite().getGlobalBounds();
 }

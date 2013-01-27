@@ -2,12 +2,9 @@
 
 
 BulletSpineMace::BulletSpineMace(sf::Vector2f mpos, Entity* ent):
-Bullet(mpos,ent)
-
-
+	Bullet(mpos,ent)
 {
 	mTimer.restart();
-
 }
 
 
