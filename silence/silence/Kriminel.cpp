@@ -3,6 +3,8 @@
 #include <memory>
 #include "DeathAnimation.h"
 #include "SpineMacePickup.h"
+#include "StateManager.h"
+#include "WinState.h"
 
 
 Kriminel::Kriminel(sf::Vector2f spawnPos, MapCollider map) : 
@@ -37,7 +39,10 @@ void Kriminel::update()
 	{
 		Drop(std::make_shared<DeathAnimation>(mPos, 1.f));
 		Drop(std::make_shared<SpineMacePickup>(mPos));
+
+		StateManager::getInstance()->add(new WinState());
 		kill();
+		
 	}
 
 	sf::Vector2f move(0,0);
