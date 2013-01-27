@@ -93,6 +93,7 @@
     <ClCompile Include="Frog.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="HealthBar.cpp" />
+    <ClCompile Include="IntroScreen.cpp" />
     <ClCompile Include="Knuckles.cpp" />
     <ClCompile Include="KnucklesPickUp.cpp" />
     <ClCompile Include="main.cpp" />
@@ -128,6 +129,7 @@
     <ClInclude Include="Frog.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="HealthBar.h" />
+    <ClInclude Include="IntroScreen.h" />
     <ClInclude Include="Knuckles.h" />
     <ClInclude Include="KnucklesPickUp.h" />
     <ClInclude Include="Map.h" />

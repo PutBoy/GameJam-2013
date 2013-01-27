@@ -1,5 +1,12 @@
 #include "BulletSpineMace.h"
-
+#include "SpineMace.h"
+#include "Animation.h"
+#include "ResourceManager.h"
+#include "BulletSpineMace.h"
+#include "Player.h"
+#include <SFML\System\Vector2.hpp>
+#include "MusicManager.h"
+#include "BulletKnuckles.h"
 
 BulletSpineMace::BulletSpineMace(sf::Vector2f mpos, std::shared_ptr<Entity> ent):
 	Bullet(mpos,ent)
@@ -31,6 +38,20 @@ void BulletSpineMace::ResolveCollision(std::shared_ptr<Entity> entity){
 }
 
 sf::FloatRect BulletSpineMace::getColBox(){
-	return sf::FloatRect(getPos().x - 128, getPos().y - 128, 256, 256); 
+	sf::Vector2f dir = (std::dynamic_pointer_cast<Player>(getEntity()))->getDir();
+
+	if(dir.x >= 1){
+		return sf::FloatRect(getPos().x + 128, getPos().y - 128, 200, 200);
+	}else if(dir.x <= -1){
+		return sf::FloatRect(getPos().x - 128, getPos().y - 128, 200, 200);
+	}else if(dir.y >= 1){
+		return sf::FloatRect(getPos().x - 128, getPos().y + 128, 200, 200);
+	}else if(dir.y <= -1){
+		return sf::FloatRect(getPos().x - 128, getPos().y - 128, 200, 200);
+	}
+	else
+	{
+		return sf::FloatRect(getPos().x - 128, getPos().y - 128, 128, 128); 
+	}
 
 }

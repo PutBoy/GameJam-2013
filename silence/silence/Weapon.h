@@ -14,7 +14,7 @@ public:
 	virtual std::shared_ptr<Entity> shoot()=0;
 	virtual sf::Sprite& getSprite()=0;
 	virtual sf::FloatRect getColBox()=0;
-protected:
+
 	std::shared_ptr<Entity> getPlayer(){return mPlayer;};
 private:
 	sf::Vector2f mDirection;

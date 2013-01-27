@@ -3,6 +3,8 @@
 #include <SFML\System\Clock.hpp>
 #include "Bullet.h"
 #include "Enemy.h"
+#include "Weapon.h"
+#include <SFML\System\Clock.hpp>
 
 class BulletSpineMace : public Bullet
 

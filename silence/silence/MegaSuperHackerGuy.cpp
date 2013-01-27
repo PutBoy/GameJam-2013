@@ -36,8 +36,8 @@ void MegaSuperHackerGuy::update()
 	sf::Vector2f move(0,0);
 	if(closeToMyEnemy)
 	{
-		move.x -= directionToMyEnemy.x*2;
-		move.y -= directionToMyEnemy.y*2;
+		move.x -= directionToMyEnemy.x*4;
+		move.y -= directionToMyEnemy.y*4;
 	}
 
 	if(move.x > 0 && move.x > move.y)

@@ -7,7 +7,6 @@
 #include "MusicManager.h"
 
 
-#include <iostream>
 
 SpineMace::SpineMace(std::shared_ptr<Entity> player): 
 	Weapon(player),
@@ -28,8 +27,6 @@ SpineMace::~SpineMace()
 }
 
 std::shared_ptr<Entity> SpineMace::shoot(){
-	sf::Vector2f vec = (std::dynamic_pointer_cast<Player>(getPlayer()))->getDirection();
-	
 	sf::Vector2f dir = (std::dynamic_pointer_cast<Player>(getPlayer()))->getDir();
 
 	if(dir.x == 5){
