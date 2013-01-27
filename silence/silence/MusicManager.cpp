@@ -19,7 +19,7 @@ MusicManager* MusicManager::getInstance()
 	static MusicManager MusicInstance;
 	return &MusicInstance;
 }
-
+	
 sf::Sound& MusicManager::loadSound(std::string key, std::string file)
 {
 	if (mBuffers.count(file) == 0)

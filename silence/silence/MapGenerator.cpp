@@ -59,8 +59,33 @@ void MapGenerator::generateNew(size_t w, size_t h)
 		placeHut(std::rand() % mMap.getWidth(), std::rand() % mMap.getHeight());
 		placeTree(std::rand() % mMap.getWidth(), std::rand() % mMap.getHeight());
 		placeDoodad(std::rand() % mMap.getWidth(), std::rand() % mMap.getHeight());
+		placeKrimsKrams(std::rand() % mMap.getWidth(), std::rand() % mMap.getHeight());
 	}
 }
+
+void MapGenerator::placeKrimsKrams(int x, int y)
+{
+	sf::IntRect krimsRect(x, y, 1, 1);
+
+	if (isClear(krimsRect))
+	{
+		std::vector<sf::Vector2i> krimsSprites;
+		krimsSprites.push_back(sf::Vector2i(0, 8));
+		krimsSprites.push_back(sf::Vector2i(1, 8));
+		krimsSprites.push_back(sf::Vector2i(2, 8));
+		krimsSprites.push_back(sf::Vector2i(4, 6));
+
+		if (x >= 0 && x < mMap.getWidth() &&
+			y >= 0 && y < mMap.getHeight())
+		{
+			mMap[x][y].setSprite(1, krimsSprites[std::rand() % krimsSprites.size()]);
+			mMap[x][y].setCollidable(false);
+			mMap[x][y].setOccupied(true);
+		}
+
+	}
+}
+
 void MapGenerator::placeDoodad(int x, int y)
 {
 
