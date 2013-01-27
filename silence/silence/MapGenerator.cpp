@@ -14,7 +14,7 @@ MapGenerator::MapGenerator(size_t w, size_t h)
 	std::stringstream ss;
 	for (int i = 0; i < 5; ++i)
 	{
-		for (int j = 0; j < 8; ++j)
+		for (int j = 0; j < 10; ++j)
 		{
 			ss << "maptiles_" << i << "_" << j;
 			ResourceManager::getInstance()->loadTexture(ss.str(), "map_collection_png.png", sf::IntRect(i * 64, j * 64, 64, 64));
@@ -80,6 +80,8 @@ void MapGenerator::placeDoodad(int x, int y)
 			y >= 0 && y < mMap.getHeight())
 		{
 			mMap[x][y].setSprite(1, doodadSprites[std::rand() % doodadSprites.size()]);
+			mMap[x][y].setCollidable(true);
+			mMap[x][y].setOccupied(true);
 		}
 
 	}
