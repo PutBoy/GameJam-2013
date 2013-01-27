@@ -21,10 +21,10 @@ public:
 	virtual sf::FloatRect getColBox();
 	virtual void ResolveCollision(Entity* entity);
 private:
-	Animation* mRigth;
-	Animation* mLeft;
-	Animation* mUp;
-	Animation* mDown;
+	Animation mRigth;
+	Animation mLeft;
+	Animation mUp;
+	Animation mDown;
 	Animation* mCurrentAnim;
 	WindowManager* mWindow;
 

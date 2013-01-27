@@ -3,19 +3,10 @@
 
 
 MegaSuperHackerGuy::MegaSuperHackerGuy(sf::Vector2f spawnPos, MapCollider map):Enemy(spawnPos, 100.0f), mMap(map)
-
+	, mRigth("MegaSuperHackerGuyRigth",50,10) , mLeft("MegaSuperHackerGuyLeft",50,10), 
+	mDown("MegaSuperHackerGuyDown",50,10) , mUp("MegaSuperHackerGuyUp",25,10)
 {
-	ResourceManager* r = ResourceManager::getInstance();
-	r->loadTexture("MegaSuperHackerGuyRigth", "images/machete_man_walk_right_sprite_png.png",sf::IntRect(0,0,1280,128));
-	r->loadTexture("MegaSuperHackerGuyLeft", "images/machete_man_walk_left_sprite_png.png",sf::IntRect(0,0,1280,128));
-	r->loadTexture("MegaSuperHackerGuyDown", "images/machete_man_walk_forward_sprite_png.png",sf::IntRect(0,0,1280,128));
-	r->loadTexture("MegaSuperHackerGuyUp", "images/machete_man_walk_back_sprite_png.png",sf::IntRect(0,0,1280,128));
-	mRigth = new Animation("MegaSuperHackerGuyRigth",50,10);
-	mLeft = new Animation("MegaSuperHackerGuyLeft",50,10);
-	mDown = new Animation("MegaSuperHackerGuyDown",50,10);
-	mUp = new Animation("MegaSuperHackerGuyUp",25,10);
-
-	mCurrentAnim = mRigth;
+	mCurrentAnim = &mRigth;
 	mWindow = WindowManager::getInstance();
 
 	mCollisionBox.height = 64;
@@ -47,13 +38,13 @@ void MegaSuperHackerGuy::update()
 	}
 
 	if(move.x > 0 && move.x > move.y)
-		mCurrentAnim = mRigth;//
+		mCurrentAnim = &mRigth;//
 	else if(move.x < 0 && move.x < move.y)
-		mCurrentAnim = mLeft;
+		mCurrentAnim = &mLeft;
 	if(move.y > 0 && move.x < move.y)
-		mCurrentAnim = mDown;//
+		mCurrentAnim = &mDown;//
 	else if(move.y < 0 && move.x > move.y)
-		mCurrentAnim = mUp;
+		mCurrentAnim = &mUp;
 
 	mPos += move;
 	mCollisionBox.left = mPos.x - mCollisionBox.width / 2;

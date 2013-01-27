@@ -9,12 +9,10 @@
 #include <iostream>
 
 SpineMacePickup::SpineMacePickup(sf::Vector2f startPos, MapCollider m):
-	Pickup(startPos, m)
+	Pickup(startPos, m), mAnimation("spinemace",150,1)
 {
 	pushID("SpineMace");
-	ResourceManager::getInstance()->loadTexture("spinemace","bonemace_idle_png.png", sf::IntRect(0,0,256,256));
-	mAnimation = new Animation("spinemace", 150, 1);
-	mAnimation->setPosition(startPos);
+	mAnimation.setPosition(startPos);
 }
 
 SpineMacePickup::~SpineMacePickup(){}
@@ -22,7 +20,7 @@ SpineMacePickup::~SpineMacePickup(){}
 void SpineMacePickup::update(){}
 
 void SpineMacePickup::render(){
-	WindowManager::getInstance()->renderToCanvas(mAnimation->getSprite(), -1);
+	WindowManager::getInstance()->renderToCanvas(mAnimation.getSprite(), -1);
 }
 
 
@@ -30,7 +28,7 @@ sf::FloatRect SpineMacePickup::getColBox(){
 
 	//testa om denna funkar. borde funka men har haft problem tidigare.
 
-	return mAnimation->getSprite().getGlobalBounds();
+	return mAnimation.getSprite().getGlobalBounds();
 }
 
 void SpineMacePickup::ResolveCollision(Entity* entity){

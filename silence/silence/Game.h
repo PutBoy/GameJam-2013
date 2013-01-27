@@ -25,7 +25,7 @@ public:
 	void input();
 private:
 	Entity* spawnEnemy();
-
+	void loadTextures();
 	MapManager map;
 	EntityManager mEntityMan;
 	

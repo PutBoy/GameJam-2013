@@ -3,10 +3,8 @@
 #include "ResourceManager.h"
 
 Knuckles::Knuckles(Entity* player):
-Weapon(player)
+Weapon(player), mAnimation("Knuckles", 150, 10)
 {
-	ResourceManager::getInstance()->loadTexture("Knuckles", "sökväg", sf::IntRect(0,0,500,500));
-	mAnimation = new Animation("Knuckles", 150, 10);
 
 }
 
@@ -20,7 +18,7 @@ return false;
 }
 
 sf::Sprite& Knuckles::getSprite(){
-	return mAnimation->getSprite();
+	return mAnimation.getSprite();
 }
 
 Entity* Knuckles::createBullet(){
@@ -32,5 +30,5 @@ Entity* Knuckles::getPlayer(){
 }
 
 sf::FloatRect Knuckles::getColBox(){
-	return mAnimation->getSprite().getGlobalBounds();
+	return mAnimation.getSprite().getGlobalBounds();
 }

@@ -32,13 +32,15 @@ protected:
 
 private:
 
-	Animation* mDown;
-	Animation* mLeft;
-	Animation* mRigth;
-	Animation* mUp;
+	Animation mDown;
+	Animation mLeft;
+	Animation mRigth;
+	Animation mUp;
+
+	Animation mDownIdle;
+
 	Animation* mCurrentAnim;
-	
-	Animation* mDownIdle;
+
 
 	MapCollider mMapColider;
 	sf::Vector2f mDirection;

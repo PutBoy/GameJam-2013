@@ -23,7 +23,7 @@ protected:
 	Entity* getPlayer();
 
 private:
-	Animation* mAnimation;
+	Animation mAnimation;
 
 };
 

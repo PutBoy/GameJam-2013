@@ -5,10 +5,6 @@
 Frog::Frog(sf::Vector2f spawnPos, MapCollider map): Enemy(spawnPos, 20), mMap(map)
 {
 	ResourceManager* r = ResourceManager::getInstance();
-	r->loadTexture("FrogRigth", "images/frog-right.png",sf::IntRect(0,0,1280,128));
-	r->loadTexture("FrogLeft", "images/frog-left.png",sf::IntRect(0,0,1280,128));
-	r->loadTexture("FrogDown", "images/frog-down.png",sf::IntRect(0,0,1280,128));
-	r->loadTexture("FrogUp", "images/frog-up.png",sf::IntRect(0,0,1280,128));
 	mRigth = new Animation("FrogRigth",50,10);
 	mLeft = new Animation("FrogLeft",50,10);
 	mDown = new Animation("FrogDown",50,10);
