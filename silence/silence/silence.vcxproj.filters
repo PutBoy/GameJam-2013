@@ -117,6 +117,9 @@
     <ClCompile Include="BulletKnuckles.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Kriminel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WindowManager.h">
@@ -219,6 +222,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BulletKnuckles.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Kriminel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

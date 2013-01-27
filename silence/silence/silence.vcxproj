@@ -95,6 +95,7 @@
     <ClCompile Include="HealthBar.cpp" />
     <ClCompile Include="Knuckles.cpp" />
     <ClCompile Include="KnucklesPickUp.cpp" />
+    <ClCompile Include="Kriminel.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapCollider.cpp" />
@@ -130,6 +131,7 @@
     <ClInclude Include="HealthBar.h" />
     <ClInclude Include="Knuckles.h" />
     <ClInclude Include="KnucklesPickUp.h" />
+    <ClInclude Include="Kriminel.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapCollider.h" />
     <ClInclude Include="MapGenerator.h" />
